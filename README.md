@@ -36,9 +36,7 @@ ansible-playbook masterplan.yml
 
 
 
-
 You should now have two hardened builds to play around with.
-
 
 
 
@@ -52,7 +50,6 @@ Complements ISO 27001 standards for Information Security Management (ISM)
 
 
 
-
 Assumptions:
 
 We want to enable strategies for security automation which can apply to both bare metal and virtual (cloud) environments.
@@ -61,13 +58,9 @@ We want to work within current ISO 27001 standards for ISM.
 
 
 
-
 In Scope
 
 Ubuntu Server 16.04 LTS operating system hardening
-
-
-
 
 
 Currently Out of Scope 
@@ -88,11 +81,9 @@ Legal and Compliance issues relating to Information Technology or Blockchain.
 
 
 
-
 Disclaimer
 
 The author is a security consultant with some Chainlink holdings. 
-
 
 
 
@@ -140,6 +131,7 @@ Vagrant
 https://www.vagrantup.com/ 
 
 Vagrant can use VMWare and so is largely cloud agnostic. It also supports VirtualBox well, and so provides a simple and free toolset for a test lab.
+
 US DOD / STIG
 
 https://iase.disa.mil/stigs/Pages/index.aspx
