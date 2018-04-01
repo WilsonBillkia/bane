@@ -1,4 +1,5 @@
 # Get Xenial as of 180318
+# swap the key listed here for your own to enable ansible ssh and ssh in general
 
 Vagrant.configure("2") do |config|
 config.vm.provision "file", source: "~/keys/pub/networkkeypair.pub", destination: "networkkeypair.pub"
