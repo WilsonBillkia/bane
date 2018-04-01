@@ -32,7 +32,7 @@ vagrant up all
 
 ansible-playbook chainlink_install.yml
 
-Ansible-playbook masterplan.yml
+ansible-playbook masterplan.yml
 
 
 
@@ -45,7 +45,9 @@ You should now have two hardened builds to play around with.
 About This Build Guide
 
 This build guide proposes a high security level architecture for securing multiple Chain Link nodes.
+
 Leverages United States Department of Defense Security Technical Implementation Guides (DoD STIG) as the security baseline
+
 Complements ISO 27001 standards for Information Security Management (ISM) 
 
 
