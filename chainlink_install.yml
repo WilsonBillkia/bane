@@ -59,8 +59,6 @@
   - name: Run the online dep install script 
     command: /home/vagrant/install.sh creates=/home/vagrant/go/bin/dep
     become: true
-#  - name: install dep src code as well - OPTIONAL
-#    command: go get -u github.com/golang/dep/cmd/dep creates=/home/vagrant/go/pkg/linux_amd64/github.com/golang/dep
   - name: Download Chainlink from Smartcontract github
     command: /usr/lib/go-1.9/bin/go get -d github.com/smartcontractkit/chainlink creates=/home/vagrant/go/src/github.com/smartcontractkit/
     become: true
