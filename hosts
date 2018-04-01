@@ -3,7 +3,7 @@ all:
   hosts:
   vars:
     ansible_ssh_user: vagrant
-    ansible_ssh_private_key_file: /home/network/keys/priv/networkkeypair
+    ansible_ssh_private_key_file: ~/keys/priv/networkkeypair
     ansible_become: true
     ansible_python_interpreter: /usr/bin/python3
   children:
