@@ -51,7 +51,7 @@
     apt:
       name: golang-1.9-go
       update_cache: yes
-  - name: Get dep online install script
+  - name: Get dep online install script and make it executable
     get_url: 
       url: https://raw.githubusercontent.com/golang/dep/master/install.sh
       dest: /home/vagrant
@@ -59,7 +59,7 @@
   - name: Run the online dep install script 
     command: /home/vagrant/install.sh creates=/home/vagrant/go/bin/dep
     become: true
-  - name: Download Chainlink from Smartcontract github
+  - name: Download Chainlink from Smartcontract github, check its not already downloaded first.
     command: /usr/lib/go-1.9/bin/go get -d github.com/smartcontractkit/chainlink creates=/home/vagrant/go/src/github.com/smartcontractkit/
     become: true
   - name: Install chainlink using make install in its dir, checking its not already installed first
