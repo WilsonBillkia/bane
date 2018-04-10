@@ -10,16 +10,21 @@ A vagrant / ansible lab for building idempotent Chainlink nodes. Version One jus
 * Openstack Ansible Hardening role installed in ansible roles on Host VM
 
 ## Installation Instructions:
+With ansible installed just run...
 ```
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
 ```
-```
-vagrant init
-```
+...to make the Openstack Ansible Hardening role available in /etc/ansible/roles.
+Then run...
+
 ```
 vagrant up all 
 ```
-(this has brought up two vm’s - bane and cia - check them by running vagrant status)
+This reads the Vagrantfile and provides two virtual Ubuntu Xenial servers - bane and cia. 
+The Vagrantfile also copies your public key to authorized_users on each server, sets up a private network of 192.168.33.0, and gives each guest an interface onto it.  You should now be able to ssh into either machine using their ip address and username vagrant. Ansible commands and playbooks should now also work on the guests.
+NB you can also just run vagrant up bane or vagrant up cia to provision and boot individual guests.
+
+To install Chainlink run the chainlink_install.yml playbook. This installs our requirements (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests) 
 ```
 ansible-playbook chainlink_install.yml
 ```
