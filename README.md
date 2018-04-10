@@ -1,6 +1,6 @@
 # bane
 
-Build Guide For a Chainlink Node v 0.9
+# Build Guide For a Chainlink Node v 0.9
 
 A vagrant / ansible lab for building idempotent Chainlink nodes. Version One just builds a couple of VM’s with Chainlink installed, and applies the Openstack ansible hardening role for US DoD STIG. 
 
@@ -9,7 +9,7 @@ A vagrant / ansible lab for building idempotent Chainlink nodes. Version One jus
 
 
 
-Requirements on Host:
+# Requirements on Host:
 
 ansible 2.5.0
 
@@ -20,7 +20,7 @@ Openstack Ansible Hardening role installed in ansible roles on Host VM
 
 
 
-Instructions:
+# Instructions:
 
 
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
@@ -40,7 +40,7 @@ You should now have two hardened builds to play around with.
 
 
 
-About This Build Guide
+# About This Build Guide
 
 This build guide proposes a high security level architecture for securing multiple Chain Link nodes.
 
@@ -50,7 +50,7 @@ Complements ISO 27001 standards for Information Security Management (ISM)
 
 
 
-Assumptions:
+# Assumptions:
 
 We want to enable strategies for security automation which can apply to both bare metal and virtual (cloud) environments.
 
@@ -58,12 +58,12 @@ We want to work within current ISO 27001 standards for ISM.
 
 
 
-In Scope
+# In Scope
 
 Ubuntu Server 16.04 LTS operating system hardening
 
 
-Currently Out of Scope 
+# Currently Out of Scope 
 
 Container security
 
@@ -81,13 +81,12 @@ Legal and Compliance issues relating to Information Technology or Blockchain.
 
 
 
-Disclaimer
+# Disclaimer
 
 The author is a security consultant with some Chainlink holdings. 
 
 
-
-A Word on Risk Assessment
+# A Word on Risk Assessment
 
 This is not a risk assessment. The build guide is based on a limited understanding of the threats and risks specific to the processing of blockchain data and the basic business model of Chain Link or other blockchains.
  Any enterprise using these technologies should benefit from being risk managed on its own merits.
@@ -95,7 +94,7 @@ This is not a risk assessment. The build guide is based on a limited understandi
 
 
 
-Architecture
+# Architecture
 
 The goals of the architecture were:
 
@@ -118,7 +117,7 @@ Supports Go version of ChainLink, (current as at April‘18)
 
 The following main components were chosen for this project:
 
-Ansible (2.5.0)
+# Ansible (2.5.0)
 
 https://www.ansible.com/ 
 
@@ -126,13 +125,13 @@ Ansible requires only that the node operator have access to the host via SSH. No
 
 NB, while Ansible is clientless there are some modules within it which require libraries to be available on the host. This is the case with the Ansible Hardening scripts and Python 2.7 
 
-Vagrant 
+# Vagrant 
 
 https://www.vagrantup.com/ 
 
 Vagrant can use VMWare and so is largely cloud agnostic. It also supports VirtualBox well, and so provides a simple and free toolset for a test lab.
 
-US DOD / STIG
+# US DOD / STIG
 
 https://iase.disa.mil/stigs/Pages/index.aspx
 
@@ -141,7 +140,8 @@ The body of knowledge is trusted, well maintained, and maps into information sec
 NB Other standards exist (US Centre for Internet Security or CIS builds.) US DOD STIG was chosen because it is more granular (CIS has two basic standards of Level One and Level Two whereas STIG uses a matrix. The matrix approach of DOD provides us with the opportunity to expose fine grained reporting of security controls onto the blockchain itself.)
 
 Finally DOD STIG was chosen because an automated implementation of it has been made available by the Ansible Hardening project…
-Ansible Hardening
+
+# Ansible Hardening
 
 https://github.com/openstack/ansible-hardening 
 
@@ -150,7 +150,7 @@ This Red Hat funded, open source project supports a wide variety of Linux operat
 NB. Full, commercial support is available for Red Hat only. However in testing on Ubuntu the majority of fixes work out of the box, and issues can be easily followed from the Ansible Hardening output when running in dry run (ansible --check) mode. 
 
 
-Ubuntu Server LTS 16.04.
+# Ubuntu Server LTS 16.04.
 
 Headless, lightweight and familiar Linux distribution with good support. Chosen for it’s ubiquity and the authors own familiarity with it. System builders with a preference for Red Hat should probably use it instead as the STIG Ansible Hardening has Red Hat as its main focus for commercial support. 
 
