@@ -24,14 +24,15 @@ This reads the Vagrantfile and provides two virtual Ubuntu Xenial servers - bane
 The Vagrantfile also copies your public key to authorized_users on each server, sets up a private network of 192.168.33.0, and gives each guest an interface onto it.  You should now be able to ssh into either machine using their ip address and username vagrant. Ansible commands and playbooks should now also work on the guests.
 NB you can also just run vagrant up bane or vagrant up cia to provision and boot individual guests.
 
-To install Chainlink run the chainlink_install.yml playbook. This installs our requirements (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests) 
 ```
 ansible-playbook chainlink_install.yml
 ```
+This installs our requirements (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests) 
 ```
 ansible-playbook masterplan.yml
 ```
-You should now have two hardened builds to play around with.
+This applies the Openstack Ansible Hardening Role onto the hosts listed in masterplan.yml (defaults to both.)  
+You should now have two hardened builds to play around with. 
 
 ## About This Build Guide
 * This build guide proposes a high security level architecture for securing multiple Chain Link nodes.
