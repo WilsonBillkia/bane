@@ -6,99 +6,56 @@ A vagrant / ansible lab for building idempotent Chainlink nodes. Version One jus
 
 (This is an early version, not quite finished, but should run and build two chainlink boxes - it’s two because my early build needs to be changed and have one running geth, or just shelved, but for now two is better than one right?)
 
-
-
-
 ## Requirements on Host:
+* ansible 2.5.0
+* Vagrant 2.0.1
+* Openstack Ansible Hardening role installed in ansible roles on Host VM
 
-ansible 2.5.0
-
-Vagrant 2.0.1
-
-Openstack Ansible Hardening role installed in ansible roles on Host VM
-
-
-
-
-## Instructions:
-
-
+## Installation Instructions:
+```
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
 ```
-
+```
 vagrant init
 ```
-
 ```
-
 vagrant up all 
 ```
-
 (this has brought up two vm’s - bane and cia - check them by running vagrant status)
 ```
-
 ansible-playbook chainlink_install.yml
 ```
-
 ```
-
 ansible-playbook masterplan.yml
 ```
-
-
-
 You should now have two hardened builds to play around with.
 
-
-
 ## About This Build Guide
-
-### This build guide proposes a high security level architecture for securing multiple Chain Link nodes.
-
-### Leverages United States Department of Defense Security Technical Implementation Guides (DoD STIG) as the security baseline
-
-### Complements ISO 27001 standards for Information Security Management (ISM) 
-
-
+* This build guide proposes a high security level architecture for securing multiple Chain Link nodes.
+* Leverages United States Department of Defense Security Technical Implementation Guides (DoD STIG) as the security baseline
+* Complements ISO 27001 standards for Information Security Management (ISM) 
 
 ## Assumptions:
-
-We want to enable strategies for security automation which can apply to both bare metal and virtual (cloud) environments.
-
-We want to work within current ISO 27001 standards for ISM.
-
-
+* We want to enable strategies for security automation which can apply to both bare metal and virtual (cloud) environments.
+* We want to work within current ISO 27001 standards for ISM.
 
 ## In Scope
-
-Ubuntu Server 16.04 LTS operating system hardening
-
+* Ubuntu Server 16.04 LTS operating system hardening
 
 ## Out of Scope 
-
-Container security
-
-Cloud storage, user management, policies, tags etc. 
-
-Intrusion Detection and Prevention for the Chainlink API
-
-Web Application Firewall configuration for the Chainlink API
-
-Smart Contract audit
-
-Application security. (eg Node.js, databases, front ends, API’s, etc)
-
-Legal and Compliance issues relating to Information Technology or Blockchain.
-
-
+* Container security
+* Cloud storage, user management, policies, tags etc. 
+* Intrusion Detection and Prevention for the Chainlink API
+* Web Application Firewall configuration for the Chainlink API
+* Smart Contract audit
+* Application security. (eg Node.js, databases, front ends, API’s, etc)
+* Legal and Compliance issues relating to Information Technology or Blockchain.
 
 ## Disclaimer
-
 The author is a security consultant with some Chainlink holdings. 
 
 
 ## A Word on Risk Assessment
-
 This is not a risk assessment. The build guide is based on a limited understanding of the threats and risks specific to the processing of blockchain data and the basic business model of Chain Link or other blockchains.
  Any enterprise using these technologies should benefit from being risk managed on its own merits.
 
