@@ -44,9 +44,10 @@ You should now have two hardened builds to play around with.
 * We want to work within current ISO 27001 standards for ISM.
 
 ## In Scope
-* Ubuntu Server 16.04 LTS operating system hardening
+* Ubuntu Server 16.04 LTS operating system hardening on virtual machines
 
 ## Out of Scope 
+* Bare metal / PXE boot installations
 * Cloud storage, user management, policies, tags etc. 
 * Intrusion Detection and Prevention for the Chainlink API
 * Web Application Firewall configuration for the Chainlink API
