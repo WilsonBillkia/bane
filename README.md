@@ -66,21 +66,21 @@ This is not a risk assessment. The build guide is based on a limited understandi
 
 The goals of the architecture were:
 
-### Consistency with Phase One of the ChainLink project (high reliance on per host security, and no enclaving)
+* Consistency with Phase One of the ChainLink project (high reliance on per host security, and no enclaving)
 
-### Lightweight - enables provisioning of Internet of Things / bare metal devices, providing greater opportunity for innovative Oracles
+* Lightweight - enables provisioning of Internet of Things / bare metal devices, providing greater opportunity for innovative Oracles
 
-### Automating implementation and review of US DoD standards available in the Ubuntu Linux operating system.
+* Automating implementation and review of US DoD standards available in the Ubuntu Linux operating system.
 
-### Leverage pre existing, well trusted, Linux system level security hardening models and standards.
+* Leverage pre existing, well trusted, Linux system level security hardening models and standards.
 
-### Avoid containers and so remove them as an attack vector entirely.
+* Avoid containers and so remove them as an attack vector entirely.
 
-### Agentless Management to reduce attack surface
+* Agentless Management to reduce attack surface
 
-### Integrates well with Elastic Compute style cloud solutions. 
+* Integrates well with Elastic Compute style cloud solutions. 
 
-### Supports Go version of ChainLink, (current as at April‘18)
+* Supports Go version of ChainLink, (current as at April‘18)
 
 
 The following main components were chosen for this project:
@@ -121,6 +121,3 @@ NB. Full, commercial support is available for Red Hat only. However in testing o
 ## Ubuntu Server LTS 16.04.
 
 Headless, lightweight and familiar Linux distribution with good support. Chosen for it’s ubiquity and the authors own familiarity with it. System builders with a preference for Red Hat should probably use it instead as the STIG Ansible Hardening has Red Hat as its main focus for commercial support. 
-
-
-
