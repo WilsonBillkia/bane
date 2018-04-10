@@ -24,19 +24,27 @@ Openstack Ansible Hardening role installed in ansible roles on Host VM
 
 
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
-...
+```
+
 vagrant init
-...
-...
+```
+
+```
+
 vagrant up all 
-...
+```
+
 (this has brought up two vm’s - bane and cia - check them by running vagrant status)
-...
+```
+
 ansible-playbook chainlink_install.yml
-...
-...
+```
+
+```
+
 ansible-playbook masterplan.yml
-...
+```
+
 
 
 You should now have two hardened builds to play around with.
@@ -55,9 +63,9 @@ You should now have two hardened builds to play around with.
 
 ## Assumptions:
 
-### We want to enable strategies for security automation which can apply to both bare metal and virtual (cloud) environments.
+We want to enable strategies for security automation which can apply to both bare metal and virtual (cloud) environments.
 
-### We want to work within current ISO 27001 standards for ISM.
+We want to work within current ISO 27001 standards for ISM.
 
 
 
