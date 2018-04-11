@@ -1,5 +1,10 @@
-# Get Xenial as of 180318
+# Bane
+# Get Xenial as of 180318 from the Vagrant cloud (Currently locked for compatibility during testing)
+# TODO: Make it ship latest version by default
+# The provisioning commands copy your ssh public key to the guests using the working directory
+# which is mounted on the vagrant guests by default.
 # swap the key listed here for your own to enable ansible ssh and ssh in general
+# /Bane
 
 Vagrant.configure("2") do |config|
 config.vm.provision "file", source: "~/keys/pub/networkkeypair.pub", destination: "networkkeypair.pub"
