@@ -1,5 +1,9 @@
 ---
 # YAML formatted list of actions to install chainlink
+# NB If this script errors out while gathering facts, its almost certainly because APT is running update daemon on the guests
+# This can happen just after boot. Just try it again - it only needs to run successfully once. You can ssh into the machine 
+# as well to check whether its APT 
+# TODO put in an error check for this and perform retry
 
 - hosts: all
   gather_facts: false
@@ -70,6 +74,10 @@
       GOPATH: '/home/vagrant/go'
       PATH: '/home/vagrant/bin:/home/vagrant/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/go-1.9/bin:/home/vagrant/go:/home/vagrant/go/bin:/snap/bin' 
     become: true
+
+
+# If you want to harden the machines immediately each time you install chainlink, 
+# without having to run the masterplan.yml playbook, then just uncomment the two lines below
 
 #  - import_role:
 #      name: ansible-hardening
