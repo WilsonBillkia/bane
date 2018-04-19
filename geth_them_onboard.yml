@@ -1,0 +1,31 @@
+---
+# By default we are installing ethereum on cia, just fix it to the ip of the guest you want to install onto
+- name: Lets install ethereum
+  hosts: 192.168.33.16
+
+  tasks:
+  - name: get the gophers repo installed and run apt-get update
+    apt_repository:
+      repo: 'ppa:gophers/archive'
+  - name: Update repositories cache and install golang package
+    apt:
+      name: golang-1.9-go
+      update_cache: yes
+  - name: Add PPA for Geth
+    apt_repository:
+      repo: 'ppa:ethereum/ethereum'
+  - name: run apt-get update baby
+    apt:
+      update_cache: yes
+  - name: install ethereum from ppa
+    apt:
+      name: ethereum
+      update_cache: yes
+
+#OPTIONAL makes setting up ethereum test networks alot easier
+  - name: Git clone the python script for generating test ethereum netz
+    git:
+      repo: https://github.com/smartcontractkit/chainlink.git
+      dest: /home/vagrant/
+#/OPTIONAL
+...
