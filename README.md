@@ -15,7 +15,7 @@ If you don't have an existing keypair then first generate your own keypair for a
 ```
 ssh-keygen -t rsa -b 4096
 ```
-and update the 
+and update the references to networkkeypair with your own key.
 ```
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
 ```
