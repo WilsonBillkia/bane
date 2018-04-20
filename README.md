@@ -39,7 +39,7 @@ ansible-playbook chainlink_install.yml
 ```
 This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests)
 
-![See some output here](https://github.com/WilsonBillkia/bane/edit/master/bane.jpg)
+![See some output here](bane.jpg?raw=true "Building a Chainlink")
 ```
 ansible-playbook stig_guide.yml
 ```
