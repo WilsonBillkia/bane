@@ -37,7 +37,7 @@ NB you can also just run vagrant up bane or vagrant up cia to provision and boot
 ```
 ansible-playbook chainlink_install.yml
 ```
-This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests)
+This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha)
 
 ![See some output here](bane.jpg?raw=true "Building a Chainlink")
 ```
