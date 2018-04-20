@@ -66,7 +66,7 @@ The Openstack Ansible Hardening scripts will skip some steps, usually for harden
 
 
 ## About This Build Guide
-* This build guide proposes a high security level plan for securing multiple Chain Link nodes.
+* This build guide proposes a high level model for securing multiple Chain Link nodes.
 * Leverages United States Department of Defense Security Technical Implementation Guides (DoD STIG) as the security baseline
 * Complements ISO 27001 standards for Information Security Management (ISM) 
 * In no way endorses Christopher Nolan 
