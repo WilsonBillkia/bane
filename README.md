@@ -1,10 +1,13 @@
 # bane
 
-## Build Guide For a Chainlink Node v 0.9
-A vagrant / ansible lab for building idempotent Chainlink nodes. Version One just builds a couple of VM’s with Chainlink installed, and applies the Openstack ansible hardening role for US DoD STIG. 
-(This is an early version, not quite finished, but should run and build two chainlink boxes - it’s two because my early build needs to be changed and have one running geth, or just shelved, but for now two is better than one right?)
+## Automated Build and Hardening Guide For a Chainlink Node
+A set of ansible playbooks for rapid deployment of test Chainlink and Ethereum nodes. 
+Version One builds a Chainlink VM and an Ethereum VM on a virtual network 192.168.33.* , and can apply the Openstack Ansible Hardening role for US DoD STIG on them both (just change the ip address in the Stig_guide.yml script to the host you want to harden.) 
+
+The Ansible playbooks use Vagrant and VirtualBox VMs for the provisioning but they should work on any linux host with whatever user and  keypair you want to use to manage things install on it. (I set this up mainly to do some stuff with raspberry pi's)
 
 ## Requirements on Host:
+Tested on the following:
 * ansible 2.5.0
 * Vagrant 2.0.1
 * Openstack Ansible Hardening role installed in ansible roles on Host VM
@@ -32,17 +35,28 @@ NB you can also just run vagrant up bane or vagrant up cia to provision and boot
 ```
 ansible-playbook chainlink_install.yml
 ```
-This installs our requirements (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests) 
+This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests) 
 ```
-ansible-playbook masterplan.yml
+ansible-playbook stig_guide.yml
 ```
 This applies the Openstack Ansible Hardening Role onto the hosts listed in masterplan.yml (defaults to both.)  
 You should now have two hardened builds to play around with. 
 
+To turn CIA into an Ethereum node just type: 
+```
+ansible-playbook geth_them_onboard.yml
+```
+That's it, you now have a virtual lab built with 1x Chainlink node (hardened) and 1x Ethereum node (unhardened) To apply the different playbooks to the different hosts just swap the ip address under hosts at the start of each script.
+
+## Operation
+
+The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require some manual intervention or arhitectural choices. 
+
 ## About This Build Guide
-* This build guide proposes a high security level architecture for securing multiple Chain Link nodes.
+* This build guide proposes a high security level plan for securing multiple Chain Link nodes.
 * Leverages United States Department of Defense Security Technical Implementation Guides (DoD STIG) as the security baseline
 * Complements ISO 27001 standards for Information Security Management (ISM) 
+* In no way endorses Christopher Nolan 
 
 ## Assumptions:
 * We want to enable strategies for security automation which can apply to both bare metal and virtual (cloud) environments.
@@ -52,7 +66,6 @@ You should now have two hardened builds to play around with.
 * Ubuntu Server 16.04 LTS operating system hardening on virtual machines
 
 ## Out of Scope 
-* Bare metal / PXE boot installations
 * Cloud storage, user management, policies, tags etc. 
 * Intrusion Detection and Prevention for the Chainlink API
 * Web Application Firewall configuration for the Chainlink API
@@ -64,9 +77,10 @@ You should now have two hardened builds to play around with.
 The author is a security consultant with some Chainlink holdings. 
 
 
-## A Word on Risk Assessment
+## A Word on Risk Management
 This is not a risk assessment. The build guide is based on a limited understanding of the threats and risks specific to the processing of blockchain data and the basic business model of Chain Link or other blockchains.
  Any enterprise using these technologies should benefit from being risk managed on its own merits.
+
 
 ## Architecture
 The goals of the architecture were:
