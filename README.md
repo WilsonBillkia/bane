@@ -58,7 +58,7 @@ To check the status of the hardening you can run the ansible playbook in --check
 
 Ansible is declarative. If the step shows as OK, that means it's in place. If it says changed, then it has just been altered to the desired setting. 'Skipping' is described above.
 
-![See some output here](stig_guide.jpg?raw=true "Hardening Output")
+![See some output here](stig_guide.PNG?raw=true "Hardening Output")
 
 ## Operation
 
