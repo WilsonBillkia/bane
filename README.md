@@ -36,8 +36,8 @@ NB you can also just run vagrant up bane or vagrant up cia to provision and boot
 ansible-playbook chainlink_install.yml
 ```
 This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests) 
-```
 ![alt text](https://github.com/WilsonBillkia/bane/edit/master/bane.png)
+```
 ansible-playbook stig_guide.yml
 ```
 This applies the Openstack Ansible Hardening Role onto the hosts listed in masterplan.yml (defaults to both.)  
