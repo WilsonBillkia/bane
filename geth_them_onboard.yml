@@ -21,11 +21,4 @@
     apt:
       name: ethereum
       update_cache: yes
-
-#OPTIONAL makes setting up ethereum test networks alot easier
-  - name: Git clone the python script for generating test ethereum netz
-    git:
-      repo: https://github.com/smartcontractkit/chainlink.git
-      dest: /home/vagrant/
-#/OPTIONAL
 ...
