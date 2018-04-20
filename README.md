@@ -43,10 +43,10 @@ This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha 
 ```
 ansible-playbook stig_guide.yml
 ```
-This applies the Openstack Ansible Hardening Role onto the hosts listed in masterplan.yml (defaults to both.)  
-You should now have two hardened builds to play around with. 
+This applies the Openstack Ansible Hardening Role onto Bane.  
+You should now have a hardened build to play around with. 
 
-To turn CIA into an Ethereum node just type: 
+To also turn CIA into an Ethereum node just type: 
 ```
 ansible-playbook geth_them_onboard.yml
 ```
