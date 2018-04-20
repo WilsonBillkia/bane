@@ -6,6 +6,8 @@ Version One builds a Chainlink VM and an Ethereum VM on a virtual network 192.16
 
 The Ansible playbooks use Vagrant and VirtualBox VMs for the provisioning but they should work on any linux host with whatever user and  keypair you want to use to manage things install on it. (I set this up mainly to do some stuff with raspberry pi's)
 
+NB most of the heavy lifting here is someone elses code: the excellent Openstack Ansible Hardening project. All I've done is automating the build of the lab pretty much!
+
 ## Requirements on Host:
 Tested on the following:
 * ansible 2.5.0
@@ -35,7 +37,8 @@ NB you can also just run vagrant up bane or vagrant up cia to provision and boot
 ```
 ansible-playbook chainlink_install.yml
 ```
-This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests) 
+This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha under the vagrant home directory in the two guests)
+
 ![See some output here](https://github.com/WilsonBillkia/bane/edit/master/bane.jpg)
 ```
 ansible-playbook stig_guide.yml
@@ -51,9 +54,15 @@ That's it, you now have a virtual lab built with 1x Chainlink node (hardened) an
 
 Not all the hardening steps of the DOD STIG have been applied, but a great many have by default. So we now have a (semi) hardened box that we can just as easily promote into production as we can tear it up and start again (my boxes build in about five minutes with an old centrino desktop doing the virtualisation.)
 
+To check the status of the hardening you can run the ansible playbook in --check mode and you can apply four different levels of verbosity using the (-v ... -vvvv) flags.
+
+Ansible is declarative. If the step shows as OK, that means it's in place. If it says changed, then it has just been altered to the desired setting. 'Skipping' is described above.
+
+![See some output here](https://github.com/WilsonBillkia/bane/edit/master/stig_guide.jpg)
+
 ## Operation
 
-The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require some manual intervention or arhitectural choices. For example the iptables firewall is disabled by default and there is no off box logging enabled. To adjust the settings on your guest make the necessary changes to the Ansible Hardening roles main playbook under .ansible/roles/ etc and the output can be seen clearly each time you run the script.
+The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require some manual intervention or arhitectural choices. For example the iptables firewall is disabled by default and there is no off box logging enabled. To adjust the settings on your guest make the necessary changes to the Ansible Hardening roles main playbook under .ansible/roles/... and the output can be seen clearly each time you run the script.
 
 
 ## About This Build Guide
