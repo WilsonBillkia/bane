@@ -5,7 +5,7 @@
 # as well to check whether its APT 
 # TODO put in an error check for this and perform retry
 
-- hosts: all
+- hosts: 192.168.33.15
   gather_facts: false
   pre_tasks:
 # installing python2 with raw shell commands before we can use apt.
