@@ -10,7 +10,12 @@ A vagrant / ansible lab for building idempotent Chainlink nodes. Version One jus
 * Openstack Ansible Hardening role installed in ansible roles on Host VM
 
 ## Installation Instructions:
-With ansible installed just run...
+This version contains references throughout to the keypair I used for ansible (networkkeypair)
+If you don't have an existing keypair then first generate your own keypair for ansible to use:
+```
+ssh-keygen -t rsa -b 4096
+```
+and update the 
 ```
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
 ```
