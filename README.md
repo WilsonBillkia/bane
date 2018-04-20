@@ -48,9 +48,12 @@ ansible-playbook geth_them_onboard.yml
 ```
 That's it, you now have a virtual lab built with 1x Chainlink node (hardened) and 1x Ethereum node (unhardened) To apply the different playbooks to the different hosts just swap the ip address under hosts at the start of each script.
 
+Not all the hardening steps of the DOD STIG have been applied, but a great many have by default. So we now have a (semi) hardened box that we can just as easily promote into production as we can tear it up and start again (my boxes build in about five minutes with an old centrino desktop doing the virtualisation.)
+
 ## Operation
 
-The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require some manual intervention or arhitectural choices. 
+The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require some manual intervention or arhitectural choices. For example the iptables firewall is disabled by default and there is no off box logging enabled. To adjust the settings on your guest make the necessary changes to the Ansible Hardening roles main playbook under .ansible/roles/ etc and the output can be seen clearly each time you run the script.
+
 
 ## About This Build Guide
 * This build guide proposes a high security level plan for securing multiple Chain Link nodes.
