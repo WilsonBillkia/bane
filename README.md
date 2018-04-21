@@ -20,24 +20,29 @@ If you don't have an existing keypair then first generate your own keypair for a
 ```
 ssh-keygen -t rsa -b 4096
 ```
-and update the references to networkkeypair with your own key.
+and update the references to networkkeypair and networkkeypair.pub in this repository with your own keys and their locations. This enables ansible (and you) to ssh in to your nodes without having to protect a password.
+
+The Openstack Ansible Hardening Role needs to be installed on your VM host so it can be pushed to our nodes on request. To do this run...
 ```
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
 ```
-...to make the Openstack Ansible Hardening role available in /etc/ansible/roles.
-Then run...
+...to copy the Openstack Ansible Hardening role to /etc/ansible/roles on your VM host.
 
+Then run...
 ```
 vagrant up all 
 ```
 This reads the Vagrantfile and provides two virtual Ubuntu Xenial servers - bane and cia. 
-The Vagrantfile also copies your public key to authorized_users on each server, sets up a private network of 192.168.33.0, and gives each guest an interface onto it.  You should now be able to ssh into either machine using their ip address and username vagrant. Ansible commands and playbooks should now also work on the guests.
+The Vagrantfile also copies your public key to authorized_users on each server, sets up a private network of 192.168.33.0 (in addition to the default management network which Vagrant provides by default), and gives each guest an interface onto it.  
+
+You should now be able to ssh into either machine using their ip address and username vagrant. Ansible commands and playbooks should now also work on the guests.  
+
 NB you can also just run vagrant up bane or vagrant up cia to provision and boot individual guests.
 
 ```
 ansible-playbook chainlink_install.yml
 ```
-This installs our requirements on Bane (Go, etc, and builds the Chainlink Alpha)
+This installs our requirements on Bane (Python 2.x, Go, etc, and builds Chainlink from source using the Chainlink github)
 
 ![See some output here](bane.jpg?raw=true "Building a Chainlink")
 ```
