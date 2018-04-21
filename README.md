@@ -61,13 +61,21 @@ Not all the hardening steps of the DOD STIG have been applied, but a great many 
 
 To check the status of the hardening you can run the ansible playbook in --check mode and you can apply four different levels of verbosity using the (-v ... -vvvv) flags.
 
-Ansible is declarative. If the step shows as OK, that means it's in place. If it says changed, then it has just been altered to the desired setting. 'Skipping' is described above.
+Ansible is declarative. If the step shows as OK, that means it's in place. If it says changed, then it has just been altered to the desired setting. 'Skipping' is described below.
 
 ![See some output here](stig_guide.PNG?raw=true "Hardening Output")
 
 ## Operation
 
-The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require some manual intervention or arhitectural choices. For example the iptables firewall is disabled by default and there is no off box logging enabled. To adjust the settings on your guest make the necessary changes to the Ansible Hardening roles main playbook under .ansible/roles/... and the output can be seen clearly each time you run the script.
+The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require operator involvement or a better understanding of the operations and environment. 
+
+For example the iptables firewall is disabled by default because the ports required by the system need to be explained to it. Also, based on the environment, it could be that you want to manage your firewall elsewhere, such as within AWS, or whatever your host environment is, in which case you'd just manage that by dovetailing it and commenting on it for future ansible checks required by IT Audit, regulators, etc. 
+
+Another example is there is no off box logging enabled. Again, this needs some configuration based on what your syslogging infra is - if you have one! But if you're just a 'mom and pop' and you don't have the resource to setup proper, off box logging (you really should though) then you can just mark these skipped steps, and focus on what little security you'll get from having the logs stored on the node.
+
+To adjust the settings on your hardened guests make the necessary changes to the Ansible Hardening roles main playbook under .ansible/roles/... under your project directory.
+
+The output can be seen clearly each time you run the script. Once you have your hardened build you can run ansible-playbook with the --check option to gather the output for your ongoing security audits.
 
 
 ## About This Build Guide
@@ -92,7 +100,7 @@ The Openstack Ansible Hardening scripts will skip some steps, usually for harden
 * Legal and Compliance issues relating to Information Technology or Blockchain.
 
 ## Disclaimer
-The author is a security consultant with some Chainlink holdings. 
+The author is a security consultant with some Chainlink holdings. I'm not responsible for anything you do with this, etc. 
 
 
 ## A Word on Risk Management
