@@ -1,12 +1,12 @@
 # bane
 
 ## Automated Build and Hardening Guide For a Chainlink Node
-A set of ansible playbooks for rapid deployment of test Chainlink and Ethereum nodes. 
+A set of ansible playbooks for rapid deployment of Chainlink and Ethereum nodes. 
 Version One builds a Chainlink VM and an Ethereum VM on a virtual network 192.168.33.* , and can apply the Openstack Ansible Hardening role for US DoD STIG on them both (just change the ip address in the stig_guide.yml script to the host you want to harden.) 
 
 The Ansible playbooks use Vagrant and VirtualBox VMs for the provisioning but they should work on any linux host with whatever user and  keypair you want to use to manage things on it. (I set this up mainly to do some stuff with raspberry pi's)
 
-NB most of the heavy lifting here is someone elses code: the excellent Openstack Ansible Hardening project. All I've done is automating the build of the lab pretty much!
+NB most of the heavy lifting here is someone elses code: the excellent Openstack Ansible Hardening project. All I've done is automate the build of the lab and select technologies and a security model.
 
 ## Requirements on Host:
 Tested on the following:
