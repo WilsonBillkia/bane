@@ -22,7 +22,7 @@ ssh-keygen -t rsa -b 4096
 ```
 and update the references to networkkeypair and networkkeypair.pub in this repository with your own keys and their locations. This enables ansible (and you) to ssh in to your nodes without having to protect a password.
 
-The Openstack Ansible Hardening Role needs to be installed on your VM host so it can be pushed to our nodes on request. To do this run...
+The Openstack Ansible Hardening Role needs to be installed so it can be pushed to our nodes on request. To do this run...
 ```
 ansible-galaxy install git+https://github.com/openstack/ansible-hardening
 ```
@@ -33,7 +33,7 @@ Then run...
 vagrant up all 
 ```
 This reads the Vagrantfile and provides two virtual Ubuntu Xenial servers - bane and cia. 
-The Vagrantfile also copies your public key to authorized_users on each server, sets up a private network of 192.168.33.0 (in addition to the default management network which Vagrant provides by default), and gives each guest an interface onto it.  
+The Vagrantfile also copies your public key to authorized_users on each server, sets up a private network of 192.168.33.0 (in addition to the default management network which Vagrant provides), and gives each guest an interface onto it.  
 
 You should now be able to ssh into either machine using their ip address and username vagrant. Ansible commands and playbooks should now also work on the guests.  
 
