@@ -26,7 +26,7 @@ The Openstack Ansible Hardening Role needs to be installed so it can be pushed t
 ```
 ansible-galaxy install --roles-path . git+https://github.com/openstack/ansible-hardening
 ```
-...to copy the Openstack Ansible Hardening role to the current working directory on your VM host. NB the default ansible location for roles installed by galaxy is /etc/ansible/roles and these copies are read only. We want local copies which we can use to tweak security settings.
+...to copy the Openstack Ansible Hardening role to the current working directory on your VM host. NB the default ansible location for roles installed by galaxy is /etc/ansible/roles and these copies are read only. We want local copies which we can use to tweak security settings. Ansible typically looks for a local copy of most config files in the first instance, then defaults back to the read only ones. 
 
 Then run...
 ```
