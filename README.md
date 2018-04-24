@@ -4,7 +4,7 @@
 A set of ansible playbooks for rapid deployment of Chainlink and Ethereum nodes. 
 Version One builds a Chainlink VM and an Ethereum VM on a virtual network 192.168.33.* , and can apply the Openstack Ansible Hardening role for US DoD STIG on them both (just change the ip address in the stig_guide.yml script to the host you want to harden.) 
 
-This build is designed to spin up virtual machines (the Vagrantfile) but the seperate Ansible playbooks can work on any linux host with whatever user and keypair you want to use to manage things on it. So if you set up a raspberry pi with SSH enabled it should be trivial to run the Chainlink installer and DOD hardening.
+This build is designed to spin up virtual machines (the Vagrantfile) but the seperate Ansible playbooks can work on any linux host with whatever user and keypair you want to use to manage things on it. So if you set up a raspberry pi or Amazon EC2 instance with SSH enabled it should be trivial to run the Chainlink installer and DOD hardening against it.
 
 NB most of the heavy lifting here is someone elses code: the excellent Openstack Ansible Hardening project. 
 
