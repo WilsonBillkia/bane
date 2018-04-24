@@ -16,7 +16,6 @@ All I've done is automate the build of the lab and select technologies and a sec
 Tested on the following:
 * ansible 2.5.0
 * Vagrant 2.0.1
-* Openstack Ansible Hardening role installed in ansible roles on Host VM
 
 ## Requirements on Guest
 The Vagrantfile is currently locked to install the 20180316.0.0 (Mid March '18) release of Ubuntu Xenial from https://app.vagrantup.com/boxes/search. To change this to the absolute latest release just remove / comment the vm.box_version line from the Vagrantfile. 
