@@ -75,9 +75,102 @@
       PATH: '/home/vagrant/bin:/home/vagrant/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/go-1.9/bin:/home/vagrant/go:/home/vagrant/go/bin:/snap/bin' 
     become: true
 
+  - name: iptables - allow tcp in on port 8545
+    iptables: 
+      chain: INPUT
+      protocol: tcp
+      destination_port: 8545
+      ctstate: NEW,ESTABLISHED
+      jump: ACCEPT
+      comment: all ip tables rules on this machine added by ansible. Managed thru the playbooks.
+    become: yes
+  - name: iptables - allow tcp out on port 8545
+    iptables:
+      chain: OUTPUT
+      protocol: tcp
+      source_port: 8545
+      ctstate: NEW,ESTABLISHED
+      jump: ACCEPT
+    become: yes
 
-# If you want to harden the machines immediately each time you install chainlink, 
-# without having to run the masterplan.yml playbook, then just uncomment the two lines below
+  - name: iptables - allow tcp replies on port 22
+    iptables:
+      chain: OUTPUT
+      protocol: tcp
+      source_port: 22
+      ctstate: ESTABLISHED
+      jump: ACCEPT
+    become: yes
+
+
+  - name: iptables - allow tcp in on port 22
+    iptables:
+      chain: INPUT
+      protocol: tcp
+      destination_port: 22
+      ctstate: NEW,ESTABLISHED
+      jump: ACCEPT
+    become: yes
+
+  - name: iptables - allow dns tcp traffic out
+    iptables:
+      chain: OUTPUT
+      protocol: tcp
+      destination_port: 53
+      ctstate: NEW,ESTABLISHED
+      jump: ACCEPT
+    become: yes
+
+  - name: iptables - allow dns tcp replies in
+    iptables:
+      chain: INPUT
+      protocol: tcp
+      source_port: 53
+      ctstate: ESTABLISHED
+      jump: ACCEPT
+    become: yes
+
+  - name: iptables - allow dns udp traffic out
+    iptables:
+      chain: OUTPUT
+      protocol: udp
+      destination_port: 53
+      ctstate: NEW,ESTABLISHED
+      jump: ACCEPT
+    become: yes
+
+  - name: iptables - allow dns udp replies in
+    iptables:
+      chain: INPUT
+      protocol: udp
+      source_port: 53
+      ctstate: ESTABLISHED
+      jump: ACCEPT
+    become: yes
+
+  - name: iptables - drop all other traffic on INPUT
+    iptables:
+      chain: INPUT
+      policy: DROP
+    become: yes
+
+  - name: iptables - drop all other traffic on OUTPUT
+    iptables:
+      chain: OUTPUT
+      policy: DROP
+    become: yes
+
+  - name: iptables - drop all traffic from forwarding
+    iptables:
+      chain: FORWARD
+      policy: DROP
+    become: yes
+
+
+#  - name: Use apt-get to install firewalld as per the STIG requirements
+#    apt:
+#      name: firewalld
+#      update_cache: yes
 
 #  - import_role:
 #      name: ansible-hardening
