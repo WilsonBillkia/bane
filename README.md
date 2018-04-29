@@ -1,10 +1,14 @@
 # bane
 
 ## Automated Build and Hardening Guide For a Chainlink Node
-A set of ansible playbooks for rapid deployment of Chainlink and Ethereum nodes. 
-Version One builds a Chainlink VM and an Ethereum VM on a virtual network 192.168.33.* , and can apply the Openstack Ansible Hardening role for US DoD STIG on them both (just change the ip address in the stig_guide.yml script to the host you want to harden.) 
+A basic Ansible playbook for rapid deployment of a US DOD security hardened Chainlink node. 
 
-This build is designed to spin up virtual machines (the Vagrantfile) but the seperate Ansible playbooks can work on any linux host with whatever user and keypair you want to use to manage things on it. So if you set up a raspberry pi or Amazon EC2 instance with SSH enabled it should be trivial to run the Chainlink installer and DOD hardening against it.
+Version One...
+* Builds a Virtualbox Chainlink VM.
+* Installs a bespoke iptables firewall for Chainlink traffic 
+* Applies the Openstack Ansible Hardening role for US DoD STIG  
+
+This repository builds a virtual machine (using the Vagrantfile) but the seperate Ansible playbooks can work on any linux host with a suitable user and keypair. Eg if you set up a raspberry pi or Amazon EC2 instance with SSH enabled it should be trivial to run the playbook against it.
 
 NB most of the heavy lifting here is someone elses code: the excellent Openstack Ansible Hardening project. 
 
@@ -36,14 +40,12 @@ ansible-galaxy install --roles-path ./roles git+https://github.com/openstack/ans
 
 Then run...
 ```
-vagrant up all 
+vagrant up  
 ```
-This reads the Vagrantfile and provides two virtual Ubuntu Xenial servers - bane and cia. 
-The Vagrantfile also copies your public key to authorized_users on each server, sets up a private network of 192.168.33.0 (in addition to the default management network which Vagrant provides), and gives each guest an interface onto it.  
+This reads the Vagrantfile and provides a virtual Ubuntu Xenial server called bane. 
+The Vagrantfile also copies your public key to authorized_users on the server, sets up a private network of 192.168.33.0 (in addition to the default management network which Vagrant provides), and gives the virtual guest an interface onto it.  
 
-You should now be able to ssh into either machine using their ip address and username vagrant. Ansible commands and playbooks should now also work on the guests.  
-
-NB you can also just run vagrant up bane or vagrant up cia to provision and boot individual guests.
+You should now be able to ssh into the machine using its ip address and the username vagrant. Ansible commands and the playbook should now also work on the guest.  
 
 ```
 ansible-playbook chainlink_install.yml
@@ -52,16 +54,10 @@ This installs our requirements on Bane (Python 2.x, Go, etc, and builds Chainlin
 
 ![See some output here](bane.jpg?raw=true "Building a Chainlink")
 ```
-ansible-playbook stig_guide.yml
+ansible-playbook fire_rises.yml
 ```
 This applies the Openstack Ansible Hardening Role onto Bane.  
 You should now have a hardened build to play around with. 
-
-To also turn CIA into an Ethereum node just type: 
-```
-ansible-playbook geth_them_onboard.yml
-```
-That's it, you now have a virtual lab built with 1x Chainlink node (hardened) and 1x Ethereum node (unhardened) To apply the different playbooks to the different hosts just swap the ip address under hosts at the start of each script.
 
 Not all the hardening steps of the DOD STIG have been applied, but a great many have by default. So we now have a (semi) hardened box that we can just as easily promote into production as we can tear it up and start again (my boxes build in about five minutes with an old centrino desktop doing the virtualisation.)
 
@@ -75,7 +71,7 @@ Ansible is declarative. If the step shows as OK, that means it's in place. If it
 
 The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require operator involvement or a better understanding of the operations and environment. 
 
-For example the iptables firewall is disabled by default because the ports required by the system need to be explained to it. Also, based on the environment, it could be that you want to manage your firewall elsewhere, such as within AWS, or whatever your host environment is, in which case you'd just manage that by dovetailing it and commenting on it for future ansible checks required by IT Audit, regulators, etc. 
+For example the iptables firewall is disabled by default because the ports required by the system need to be explained to it. Also, based on the environment, it could be that you want to manage your firewall elsewhere, such as within AWS, or whatever your host environment is, in which case you'd just manage that by dovetailing it and commenting on it for future ansible checks required by IT Audit, regulators, etc. In this case I've set up an iptables firewall that allows for basic operation.
 
 Another example is there is no off box logging enabled. Again, this needs some configuration based on what your syslogging infra is - if you have one! But if you're just a 'mom and pop' and you don't have the resource to setup proper, off box logging (you really should though) then you can just mark these skipped steps, and focus on what little security you'll get from having the logs stored on the node.
 
