@@ -14,9 +14,4 @@ config.vm.define "bane" do |bane|
   bane.vm.box_version = "20180316.0.0"
   bane.vm.network "private_network", ip: "192.168.33.15"
   end
-config.vm.define "cia" do |cia|
-  cia.vm.box = "ubuntu/xenial64"
-  cia.vm.box_version = "20180316.0.0"
-  cia.vm.network "private_network", ip: "192.168.33.16"
-  end
 end
