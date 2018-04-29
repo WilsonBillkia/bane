@@ -1,51 +1,35 @@
-    get_url: 
-      url: https://raw.githubusercontent.com/golang/dep/master/install.sh
-      dest: /home/vagrant
-      mode: +x
-  - name: Run the online dep install script 
-    command: /home/vagrant/install.sh creates=/home/vagrant/go/bin/dep
-    become: true
-  - name: Download Chainlink from Smartcontract github, check its not already downloaded first.
-    command: /usr/lib/go-1.9/bin/go get -d github.com/smartcontractkit/chainlink creates=/home/vagrant/go/src/github.com/smartcontractkit/
-    become: true
-  - name: Install chainlink using make install in its dir, checking its not already installed first
-    command: make install creates="/home/vagrant/go/bin/chainlink" 
-    args:
-      chdir: "/home/vagrant/go/src/github.com/smartcontractkit/chainlink"
-    environment: 
-      GOPATH: '/home/vagrant/go'
-      PATH: '/home/vagrant/bin:/home/vagrant/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/go-1.9/bin:/home/vagrant/go:/home/vagrant/go/bin:/snap/bin' 
-    become: true
-
-  - name: iptables - allow tcp in on port 8545
+---
+- hosts: linkies
+  tasks: 
+  - name: Iptables - allow all TCP OUT on port 6688 for CHAINLINK
     iptables: 
       chain: INPUT
       protocol: tcp
       destination_port: 6688
-      ctstate: NEW,ESTABLISHED
       jump: ACCEPT
-      comment: all ip tables rules on this machine added by ansible. Managed thru the playbooks.
     become: yes
-  - name: iptables - allow tcp out on port 8545
+  - name: Iptables - allow all TCP OUT on port 6688 for CHAINLINK
     iptables:
       chain: OUTPUT
       protocol: tcp
       source_port: 6688
-      ctstate: NEW,ESTABLISHED
       jump: ACCEPT
     become: yes
-
-  - name: iptables - allow tcp replies on port 22
+  - name: Iptables - allow all UDP OUT on port 6688 for CHAINLINK
+    iptables:
+      chain: INPUT
+      protocol: udp
+      destination_port: 6688
+      jump: ACCEPT
+    become: yes
+  - name: Iptables - allow all UDP OUT on port 6688 for CHAINLINK
     iptables:
       chain: OUTPUT
-      protocol: tcp
-      source_port: 22
-      ctstate: ESTABLISHED
+      protocol: udp
+      source_port: 6688
       jump: ACCEPT
     become: yes
-
-
-  - name: iptables - allow tcp in on port 22
+  - name: Iptables - allow TCP IN on port 22 for SSH
     iptables:
       chain: INPUT
       protocol: tcp
@@ -53,8 +37,15 @@
       ctstate: NEW,ESTABLISHED
       jump: ACCEPT
     become: yes
-
-  - name: iptables - allow dns tcp traffic out
+  - name: Iptables - allow TCP replies on port 22 for SSH
+    iptables:
+      chain: OUTPUT
+      protocol: tcp
+      source_port: 22
+      ctstate: ESTABLISHED
+      jump: ACCEPT
+    become: yes
+  - name: Iptables - allow DNS TCP traffic OUT
     iptables:
       chain: OUTPUT
       protocol: tcp
@@ -63,7 +54,7 @@
       jump: ACCEPT
     become: yes
 
-  - name: iptables - allow dns tcp replies in
+  - name: Iptables - allow DNS TCP replies IN in response
     iptables:
       chain: INPUT
       protocol: tcp
@@ -71,8 +62,7 @@
       ctstate: ESTABLISHED
       jump: ACCEPT
     become: yes
-
-  - name: iptables - allow dns udp traffic out
+  - name: Iptables - allow DNS UDP traffic OUT
     iptables:
       chain: OUTPUT
       protocol: udp
@@ -80,8 +70,7 @@
       ctstate: NEW,ESTABLISHED
       jump: ACCEPT
     become: yes
-
-  - name: iptables - allow dns udp replies in
+  - name: Iptables - allow DNS UDP replies IN in response
     iptables:
       chain: INPUT
       protocol: udp
@@ -89,32 +78,62 @@
       ctstate: ESTABLISHED
       jump: ACCEPT
     become: yes
+  - name: Iptables - allow HTTP TCP OUT for UPDATES, GITHUB, etc
+    iptables:
+      chain: OUTPUT
+      protocol: tcp
+      destination_port: 80
+      ctstate: NEW,ESTABLISHED
+      jump: ACCEPT
+    become: yes
+  - name: Iptables - allow HTTP TCP back IN for UPDATES, GITHUB, etc
+    iptables:
+      chain: INPUT
+      protocol: tcp
+      source_port: 80
+      ctstate: ESTABLISHED
+      jump: ACCEPT
+    become: yes
+  - name: Iptables - allow HTTPS TCP OUT for UPDATES and GITHUB
+    iptables:
+      chain: OUTPUT
+      protocol: tcp
+      destination_port: 443
+      ctstate: NEW,ESTABLISHED
+      jump: ACCEPT
+    become: yes
+  - name: Iptables - allow HTTPS TCP back IN for UPDATES and GITHUB
+    iptables:
+      chain: INPUT
+      protocol: tcp
+      source_port: 443
+      ctstate: ESTABLISHED
+      jump: ACCEPT
+    become: yes
 
-  - name: iptables - drop all other traffic on INPUT
+  - name: Iptables - DROP ALL other traffic on default INPUT chain
     iptables:
       chain: INPUT
       policy: DROP
     become: yes
-
-  - name: iptables - drop all other traffic on OUTPUT
+  - name: Iptables - DROP ALL other traffic on default OUTPUT chain
     iptables:
       chain: OUTPUT
       policy: DROP
     become: yes
-
-  - name: iptables - drop all traffic from forwarding
+  - name: Iptables - DROP ALL traffic from default FORWARDING chain
     iptables:
       chain: FORWARD
       policy: DROP
     become: yes
-
-
-#  - name: Use apt-get to install firewalld as per the STIG requirements
-#    apt:
-#      name: firewalld
-#      update_cache: yes
+  - name: Install iptables-persistent to run rules at boot in future
+    apt: 
+      name: iptables-persistent
+    become: yes
+#  - name: Save the iptables configuration 
+#    shell: 'sudo iptables-save > /etc/iptables/rules.v4' 
+#    become: yes
 
 #  - import_role:
 #      name: ansible-hardening
-
 ...

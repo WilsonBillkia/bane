@@ -1,5 +1,5 @@
 ---
-- hosts: 192.168.33.15
+- hosts: all
   gather_facts: false
   pre_tasks:
 # installing python2 with raw shell commands before we can use apt.
