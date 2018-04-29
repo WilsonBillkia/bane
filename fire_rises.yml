@@ -1,5 +1,11 @@
 ---
 - hosts: linkies
+  pre_tasks:
+# installing python2 with raw shell commands before we can use apt.
+  - name: Install python2 for full ansible functionality - NB not installed by default on Ubuntu Xenial - Can be ommitted on distros that ship with python 2.7
+    raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
+    register: output
+    changed_when: output.stdout != ""
   tasks: 
   - name: Iptables - allow all TCP OUT on port 6688 for CHAINLINK
     iptables: 
@@ -110,7 +116,6 @@
       ctstate: ESTABLISHED
       jump: ACCEPT
     become: yes
-
   - name: Iptables - DROP ALL other traffic on default INPUT chain
     iptables:
       chain: INPUT
@@ -130,10 +135,62 @@
     apt: 
       name: iptables-persistent
     become: yes
-#  - name: Save the iptables configuration 
-#    shell: 'sudo iptables-save > /etc/iptables/rules.v4' 
-#    become: yes
-
-#  - import_role:
-#      name: ansible-hardening
+  - name: Save the iptables configuration 
+    shell: 'sudo iptables-save > /etc/iptables/rules.v4' 
+    become: yes
+  - name: Update repositories cache and install screen from apt - screen makes interaction over ssh significantly easier
+    apt:
+      name: screen
+      update_cache: yes
+    become: true
+  - name: Install tcpdump from apt - Useful to monitor traffic ad hoc
+    apt: 
+      name: tcpdump
+    become: true
+  - name: Install htop from apt - info rich and lets us know whats running on our box at a glance if we are  concerned with malware or intrusion
+    apt: 
+      name: htop
+    become: true
+  - name: Set PATH in /etc/environment to include /usr/lib/go-1.9/bin and remove ubuntu games directories while we're about it
+    lineinfile:
+      path: /etc/environment
+      regexp: '^PATH'
+      line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/go-1.9/bin:/home/vagrant/go"
+    become: true
+  - name: Set GOPATH in /etc/environment to be /home/vagrant/go 
+    lineinfile:
+      path: /etc/environment
+      line: GOPATH=/home/vagrant/go
+  - name: Create a /home/vagrant/go/bin dir for dep install script
+    file:
+      path: /home/vagrant/go/bin
+      state: directory
+  - name: Load the ppa repo for go from google
+    apt_repository:
+      repo: 'ppa:gophers/archive'
+  - name: Install go1.9 using apt command
+    apt:
+      name: golang-1.9-go
+      update_cache: yes
+  - name: Get dep online install script and make it executable
+    get_url: 
+      url: https://raw.githubusercontent.com/golang/dep/master/install.sh
+      dest: /home/vagrant
+      mode: +x
+  - name: Run the online dep install script 
+    command: /home/vagrant/install.sh creates=/home/vagrant/go/bin/dep
+    become: true
+  - name: Download Chainlink from Smartcontract github, check its not already downloaded first.
+    command: /usr/lib/go-1.9/bin/go get -d github.com/smartcontractkit/chainlink creates=/home/vagrant/go/src/github.com/smartcontractkit/
+    become: true
+  - name: Install chainlink using make install in its dir, checking its not already installed first
+    command: make install creates="/home/vagrant/go/bin/chainlink" 
+    args:
+      chdir: "/home/vagrant/go/src/github.com/smartcontractkit/chainlink"
+    environment: 
+      GOPATH: '/home/vagrant/go'
+      PATH: '/home/vagrant/bin:/home/vagrant/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/lib/go-1.9/bin:/home/vagrant/go:/home/vagrant/go/bin:/snap/bin' 
+    become: true
+  - import_role:
+      name: ansible-hardening
 ...
