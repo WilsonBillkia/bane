@@ -6,7 +6,7 @@
 # /Bane
 
 Vagrant.configure("2") do |config|
-config.vm.provision "file", source: "~/keys/pub/networkkeypair.pub", destination: "networkkeypair.pub"
+config.vm.provision "file", source: "./networkkeypair.pub", destination: "networkkeypair.pub"
 config.vm.provision "shell", inline: "cat networkkeypair.pub >> .ssh/authorized_keys"
 config.ssh.username = "vagrant"
 config.vm.define "bane" do |bane|
