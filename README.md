@@ -8,7 +8,7 @@ Version One...
 * Installs a bespoke iptables firewall for Chainlink traffic 
 * Applies the Openstack Ansible Hardening role for US DoD STIG  
 
-This repository builds a virtual machine (using the Vagrantfile) but the seperate Ansible playbooks can work on any linux host with a suitable user and keypair. Eg if you set up a raspberry pi or Amazon EC2 instance with SSH enabled it should be trivial to run the playbook against it.
+This repository builds a virtual machine (using the Vagrantfile) but the seperate Ansible playbook can work on any linux host with a suitable user and keypair. Eg if you set up a raspberry pi or Amazon EC2 instance with SSH enabled it should be trivial to run the playbook against it.
 
 NB most of the heavy lifting here is someone elses code: the excellent Openstack Ansible Hardening project. 
 
@@ -25,12 +25,10 @@ Tested on the following:
 The Vagrantfile is currently locked to install the 20180316.0.0 (Mid March '18) release of Ubuntu Xenial from https://app.vagrantup.com/boxes/search. To change this to the absolute latest release just remove / comment the vm.box_version line from the Vagrantfile. 
 
 ## Installation Instructions:
-This version contains references throughout to the keypair I used for ansible (networkkeypair)
-If you don't have an existing keypair then first generate your own keypair for ansible to use:
+First generate the keypair that ansible will use for passwordless ssh access:
 ```
-ssh-keygen -t rsa -b 4096
+ssh-keygen -f ~/networkkeypair -t rsa -b 4096
 ```
-and update the references to networkkeypair and networkkeypair.pub in this repository with your own keys and their locations. This enables ansible (and you) to ssh in to your nodes without having to protect a password.
 
 The Openstack Ansible Hardening Role needs to be installed so it can be pushed to our nodes on request. To do this run...
 ```
