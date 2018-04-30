@@ -16,14 +16,6 @@ https://github.com/openstack/ansible-hardening
 
 All I've done is select a basic security model and automate the latest Chainlink Alpha build guide.
 
-## Requirements on Host:
-Tested on the following:
-* ansible 2.5.0
-* Vagrant 2.0.1
-
-## Requirements on Guest
-The Vagrantfile is currently locked to install the 20180316.0.0 (Mid March '18) release of Ubuntu Xenial from https://app.vagrantup.com/boxes/search. To change this to the absolute latest release just remove / comment the vm.box_version line from the Vagrantfile. 
-
 ## About This Build Guide
 * This build guide proposes a high level model for securing multiple Chainlink nodes.
 * Leverages United States Department of Defense Security Technical Implementation Guides (DoD STIG) as the security baseline
@@ -56,6 +48,14 @@ The author is a security consultant with some Chainlink holdings. I'm not respon
 ## A Word on Risk Management
 This is not a risk assessment. The build guide is based on a limited understanding of the threats and risks specific to the processing of blockchain data and the basic business model of Chain Link or other blockchains.
 Any enterprise using these technologies should benefit from being risk managed on its own merits.
+
+## Requirements on Host:
+Tested on the following:
+* ansible 2.5.0
+* Vagrant 2.0.1
+
+## Requirements on Guest
+The Vagrantfile is currently locked to install the 20180316.0.0 (Mid March '18) release of Ubuntu Xenial from https://app.vagrantup.com/boxes/search. To change this to the absolute latest release just remove / comment the vm.box_version line from the Vagrantfile. 
 
 ## Installation Instructions:
 First, git clone and cd into the bane directory 
