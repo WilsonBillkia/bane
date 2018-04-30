@@ -1,6 +1,6 @@
 # bane
 
-## Automated Build and Hardening Guide For a Chainlink Node
+## Automated Build for a Hardened Chainlink Node
 A basic Ansible playbook for rapid deployment of a US DOD security hardened Chainlink node. 
 
 Version One...
