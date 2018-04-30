@@ -62,7 +62,7 @@ First, git clone and cd into the bane directory
 ```
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
-Generate the rsa keypair:
+Generate the rsa keypair: (When prompted for a password just press enter twice - and keep the key safe!!!)
 ```
 ssh-keygen -f ~/networkkeypair -t rsa -b 4096
 ```
