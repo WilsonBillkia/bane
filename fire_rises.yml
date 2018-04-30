@@ -115,6 +115,19 @@
       source_port: 443
       ctstate: ESTABLISHED
       jump: ACCEPT
+  - name: Iptables - allow ALL IN on LOOPBACK INTERFACE
+    iptables:
+      chain: INPUT
+      in_interface: lo
+      jump: ACCEPT
+    become: yes
+  - name: Iptables - allow ONLY SOURCE 127.0.0.1 on LOOPBACK INTERFACE to prevent spoofing
+    iptables:
+      chain: INPUT
+      in_interface: lo
+      source: ! 127.0.0.1
+      jump: REJECT
+    become: yes
     become: yes
   - name: Iptables - DROP ALL other traffic on default INPUT chain
     iptables:
