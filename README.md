@@ -14,7 +14,7 @@ NB most of the heavy lifting here is someone elses code: the excellent Openstack
 
 https://github.com/openstack/ansible-hardening 
 
-All I've done is automate the build of the lab and select technologies and a security model.
+All I've done is select a basic security model and automate the latest Chainlink Alpha build guide.
 
 ## Requirements on Host:
 Tested on the following:
