@@ -28,8 +28,7 @@ All I've done is select a basic security model and automate the latest Chainlink
 * Lightweight - enables provisioning of Internet of Things / bare metal devices, providing greater opportunity for innovative Oracles
 * Automate implementation of US DoD standards.
 * Automate review of US DoD standards.
-* Avoid containers and so remove them as an attack vector entirely.
-* Agentless Management to further reduce attack surface
+* Agentless Management to reduce attack surface
 
 ## In Scope
 * Ubuntu Server 16.04 LTS operating system hardening on virtual machines
@@ -88,19 +87,21 @@ ansible-playbook fire_rises.yml
 
 ![See some output here](bane.jpg?raw=true "Building a Chainlink")
 
+To remove the Chainlink server...
+```
+vagrant destroy bane
+```
+NB Host key checking on your Ansible management server may cause subsequent vagrant ups to error out until you clear the key from your own ssh client. I use the alias / shellscript killsshkeybane.sh to do this. 
+
 ## Operation
 
 To check the status of the hardening you can run the ansible playbook in --check mode and you can apply four different levels of verbosity using the (-v ... -vvvv) flags.
 
 ![See some output here](stig_guide.PNG?raw=true "Hardening Output")
 
-Ansible is declarative. If the step shows as OK, that means it's in place. If it says changed, then it has just been altered to the desired setting. 'Skipping' is described below.
-
-The Openstack Ansible Hardening scripts will skip some steps, usually for hardening measures which require operator involvement or a better understanding of the operations and environment. These can now be seperated out from the security measures that pass to be secured individually.
+Ansible is declarative. If the step shows as OK, that means it's in place. If it says changed, then it has just been altered to the desired setting. 'Skipping' means tasks which require operator involvement or a better understanding of the operations and environment. These can now be seperated out from the security measures that pass to be secured individually.
 
 To adjust the settings on your hardened guests make the necessary changes to the Ansible Hardening roles main playbook under .ansible/roles/... under your project directory.
-
-
 
 ## Architecture
 The following main components were chosen for this project:
