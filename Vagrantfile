@@ -6,9 +6,11 @@
 # /Bane
 
 Vagrant.configure("2") do |config|
-config.vm.provision "file", source: "./networkkeypair.pub", destination: "networkkeypair.pub"
-config.vm.provision "shell", inline: "cat networkkeypair.pub >> .ssh/authorized_keys"
+config.vm.provision "file", source: "./networkkeypair.pub", destination: "~/.ssh/authorized_keys"
+config.vm.provision "shell", inline: "sudo systemctl restart sshd.service"
 config.ssh.username = "vagrant"
+config.ssh.insert_key = true
+config.ssh.dsa_authentication = false
 config.vm.define "bane" do |bane|
   bane.vm.box = "ubuntu/xenial64"
   bane.vm.box_version = "20180316.0.0"

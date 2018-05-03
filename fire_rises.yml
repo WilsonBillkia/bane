@@ -1,7 +1,6 @@
 ---
 - hosts: linkies
   pre_tasks:
-# installing python2 with raw shell commands before we can use apt.
   - name: Install python2 for full ansible functionality - NB not installed by default on Ubuntu Xenial - Can be ommitted on distros that ship with python 2.7
     raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
     register: output
@@ -128,7 +127,6 @@
       source: ! 127.0.0.1
       jump: REJECT
     become: yes
-    become: yes
   - name: Iptables - DROP ALL other traffic on default INPUT chain
     iptables:
       chain: INPUT
@@ -168,7 +166,7 @@
     lineinfile:
       path: /etc/environment
       regexp: '^PATH'
-      line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/go-1.9/bin:/home/vagrant/go"
+      line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/go-1.9/bin:/home/vagrant/go/bin"
     become: true
   - name: Set GOPATH in /etc/environment to be /home/vagrant/go 
     lineinfile:
@@ -177,6 +175,7 @@
   - name: Create a /home/vagrant/go/bin dir for dep install script
     file:
       path: /home/vagrant/go/bin
+      owner: vagrant
       state: directory
   - name: Load the ppa repo for go from google
     apt_repository:
@@ -192,10 +191,10 @@
       mode: +x
   - name: Run the online dep install script 
     command: /home/vagrant/install.sh creates=/home/vagrant/go/bin/dep
-    become: true
+    environment: 
+      PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/go-1.9/bin:/home/vagrant/go/bin"
   - name: Download Chainlink from Smartcontract github, check its not already downloaded first.
     command: /usr/lib/go-1.9/bin/go get -d github.com/smartcontractkit/chainlink creates=/home/vagrant/go/src/github.com/smartcontractkit/
-    become: true
   - name: Install chainlink using make install in its dir, checking its not already installed first
     command: make install creates="/home/vagrant/go/bin/chainlink" 
     args:
