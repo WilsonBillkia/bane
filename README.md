@@ -109,7 +109,7 @@ The following main components were chosen for this project:
 ## Ansible (2.5.0)
 https://www.ansible.com/ 
 Ansible requires only that the node operator have access to the host via SSH. No additional agents or libraries are required. Ansible also provides simple creation and management of test environments and enterprise grade system provisioning and configuration.
-NB, while Ansible is clientless there are some modules within it which require libraries to be available on the host. This is the case with the Ansible Hardening scripts and Python 2.7 
+NB, while Ansible is clientless there are some modules, such as gather-facts which require Python 2.7 on the host. 
 
 ## Vagrant 
 https://www.vagrantup.com/ 
