@@ -23,7 +23,7 @@ All I've done is select a basic security model and automate the latest Chainlink
 * In no way endorses Christopher Nolan 
 
 ## Design Considerations:
-* Work within current ISO 27001 standards for Info Sec Manamenet.
+* Work within current ISO 27001 standards for Info Sec Management.
 * Consistency with Phase One of the ChainLink project (high reliance on per host security, and no recourse to enclaving)
 * Lightweight - enables provisioning of Internet of Things / bare metal devices, providing greater opportunity for innovative Oracles
 * Automate implementation of US DoD standards.
