@@ -8,13 +8,8 @@
 Vagrant.configure("2") do |config|
 config.vm.provision "file", source: "networkkeypair.pub", destination: "~/.ssh/authorized_keys"
 config.vm.provision "shell", inline: "sudo systemctl restart sshd.service"
-#config.vm.provision "shell", inline: "sudo systemctl restart sshd.service"
-#config.ssh.username = "vagrant"
 config.ssh.insert_key = false
-#config.ssh.keys_only = true
-#config.ssh.dsa_authentication = false
 config.vm.define "bane" do |bane|
-#config.ssh.private_key_path = "/home/network/private/networkkeypair"
 config.ssh.private_key_path = "/home/network/private/networkkeypair","~/.vagrant.d/insecure_private_key"
   bane.vm.box = "ubuntu/xenial64"
   bane.vm.box_version = "20180316.0.0"
