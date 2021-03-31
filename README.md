@@ -3,6 +3,8 @@
 ## Automated Build for a Hardened Chainlink Node
 A basic Ansible playbook for rapid deployment of a US DOD security hardened Chainlink node. 
 
+NB THIS IS BEING UPDATED FOR THE CHAINLINK HACKATHON. THIS VERSION SHOULD STILL DEPLOY BUT WILL BE UPDATED TO THE NEWEST BUILD OF CL SHORTLY
+
 Version One...
 * Builds a Virtualbox Chainlink VM.
 * Installs a bespoke iptables firewall for Chainlink traffic 
