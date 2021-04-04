@@ -62,6 +62,7 @@ ssh-keygen -f ./networkkeypair -t rsa -b 4096
 Build Geth:
 ```
 ansible-playbook vitalik.yml
+```
 The Vagrantfile also copies the networkkeypair public key to authorized_users on bane, and sets up a private virtual network of 192.168.33.0. You should now be able to ssh into bane with the username vagrant. Ansible commands and the playbook should now also work.
 
 Build the firewall, Install Chainlink, and run Ansible Hardening...
@@ -70,8 +71,6 @@ Build the firewall, Install Chainlink, and run Ansible Hardening...
 ansible-playbook sergey.yml
 ```
 
-
-```
 NB Host key checking on your Ansible management server may cause subsequent node spinups to error out until you clear the key from your own ssh client. I use the alias / shellscript killsshkeybane.sh to do this, which basically just replays the help from the sshd output. 
 
 ## Operation
