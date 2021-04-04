@@ -33,13 +33,14 @@ If you need to run Ansible from a Windows Box, I believe the WSL is your best be
 
 ## Removed
 * DoD STiG hardening scripts.
+* Vagrant pipeline
 
 ## Disclaimer
 The author is a consultant with some Chainlink holdings. I'm not responsible for anything you do with this, etc. 
 
 ## A Word on Risk Management
 This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
-Any enterprise using Bane should benefit from being risk managed on its own merits.
+Any enterprise using Bane should be risk managed on its own merits.
 
 ## Requirements on Host:
 * Tested on Ansible 2.9.19
@@ -55,15 +56,15 @@ git clone and cd into the bane directory
 
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
-Generate an rsa keypair: (When prompted for a password just press enter twice - and keep the key safe!!!)
+Generate an rsa keypair: (When prompted for a password just press enter twice - and put the keys security under appropriate management)
 ```
 ssh-keygen -f ./networkkeypair -t rsa -b 4096
 ```
 Build Geth:
 ```
 ansible-playbook vitalik.yml
-```
-The Vagrantfile also copies the networkkeypair public key to authorized_users on bane, and sets up a private virtual network of 192.168.33.0. You should now be able to ssh into bane with the username vagrant. Ansible commands and the playbook should now also work.
+```You should now be able to SSH into bane with your chosen username/password. 
+The Ansible commands and the playbook should now also work.
 
 Build the firewall, Install Chainlink, and run Ansible Hardening...
 
