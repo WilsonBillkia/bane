@@ -2,6 +2,7 @@ bane readme
 
 
 # BaNE(Baremetal Node Erector)
+*THIS VERSION IS A TEST AND WILL NOT DEPLOY*
 
 Bane builds configurations a la Docker, but directly to bare metal or SSH enabled cloud compute.
 It uses Linux / Bash native tooling to reduce the attack surface while still providing Dev and Operations with an easy way to build and manage their Nodes.
