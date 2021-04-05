@@ -16,13 +16,22 @@ It uses Linux / Bash native tooling to reduce the attack surface while still pro
 (For the nodes)
 * A Linux or Mac machine with Python 3.5 or Python 2.6 
 
-If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows.
+If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form sadly.
 
-## Design Considerations:
-* Provide a platform to automatically meet some of the ISO 27001 Information Security Management system requirements (Firewall, Monitoring) 
+## Project Goals:
+* Positive Social Impact
+Lower the cost for node operation.
+Lower the difficulty of node operation
+Enable potential reuse of obsolete pcs
+Enable low power nodes such as Raspberry Pi
+
+* Secure. 
+Always be compliant with the ISO 27001 Information Security control sets 
+Remove any management layers or attack surfaces which are not required
 
 ## In Scope
 * Ubuntu Server 20.x LTS
+* Raspberry Pi
 
 ## Out of Scope 
 * Cloud storage, user management, policies, tags etc. 
@@ -33,11 +42,11 @@ If you need to run Ansible from a Windows Box, I believe the WSL is your best be
 * Legal and Compliance issues relating to Information Technology or Blockchain.
 
 ## Removed
-* DoD STiG hardening scripts.
+* DoD STiG hardening scripts
 * Vagrant pipeline
 
 ## Disclaimer
-The author is a consultant with some Chainlink holdings. I'm not responsible for anything you do with this, etc. 
+I'm not responsible for anything you do with this. 
 
 ## A Word on Risk Management
 This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
@@ -51,26 +60,38 @@ Any enterprise using Bane should be risk managed on its own merits.
 ## Installation Instructions:
 
 You will need a live Linux box, with ssh access enabled.
-```
-git clone and cd into the bane directory 
-```
 
+git clone and cd into the bane directory 
+
+```
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
+
 Generate an rsa keypair: (When prompted for a password just press enter twice - and put the keys security under appropriate management)
 ```
 ssh-keygen -f ./networkkeypair -t rsa -b 4096
 ```
-Build Geth:
-```
-ansible-playbook vitalik.yml
-```You should now be able to SSH into bane with your chosen username/password. 
-The Ansible commands and the playbook should now also work.
 
-Build the firewall, Install Chainlink, and run Ansible Hardening...
+# GETH Node
+System Requirements (Always check with offical Ethereum documentation)
+run the following command:
 
 ```
-ansible-playbook sergey.yml
+ansible-playbook vitalik.yml -i <IPADDRESS OF BOX> -l ethers --ask-pass 
+```
+
+# Chainlink Node
+System Requirements (Always check with offical Chainlink documentation)
+
+```
+ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l links --ask-pass 
+```
+
+# Chainlink Database
+System Requirements (Always check with offical Chainlink documentation)
+
+```
+ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l db --ask-pass 
 ```
 
 NB Host key checking on your Ansible management server may cause subsequent node spinups to error out until you clear the key from your own ssh client. I use the alias / shellscript killsshkeybane.sh to do this, which basically just replays the help from the sshd output. 
