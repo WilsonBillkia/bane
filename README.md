@@ -42,7 +42,7 @@ If you need to run Ansible from a Windows Box, I believe the WSL is your best be
 * Legal and Compliance issues relating to Information Technology or Blockchain.
 
 ## Removed
-* DoD STiG hardening scripts
+* The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
 * Vagrant pipeline
 
 ## Disclaimer
