@@ -78,8 +78,13 @@ and for the Chainlink box
 ssh-keygen -f sergey -C "chainlink node key"
 ```
 
-You now have two keyfiles in your working directory. (WARNING - use appropriate ISMS for your keys)
+You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
+
 To copy the keys to the machines:
+
+```
+ssh-copy-id -i <KEY FILE> <BOOTACCOUNT>@<IPADDRESS> 
+```
 
 # GETH Node
 System Requirements (Always check with offical Ethereum documentation)
