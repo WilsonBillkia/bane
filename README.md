@@ -57,9 +57,9 @@ Any enterprise using Bane should be risk managed on its own merits.
 * Tested on Ubuntu 20.04
 * Tested with Python 3.69
 
-## Installation Instructions:
+(Not required but strongly recommended - DHCP host reservation. This can be found on all but the most basic of routers / Wireless Access Points / some NAS's. With this enabled your IP address stops changing on system restarts, which makes the workflow significantly more practical. See the manufacturers guidance.)
 
-You will need a live Linux box, with ssh access enabled.
+## Installation Instructions:
 
 git clone and cd into the bane directory 
 
@@ -68,9 +68,10 @@ git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
 
 Generate an rsa keypair in your home directory: (When prompted for a password just press enter twice - use an appropriate ISMS for your keys)
+
 This is for the ethereum node
 ```
-ssh-keygen -f ./vitalik  
+ssh-keygen -f ~/vitalik  
 ```
 and for the Chainlink box
 ```
