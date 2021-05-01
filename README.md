@@ -67,10 +67,16 @@ git clone and cd into the bane directory
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
 
-Generate an rsa keypair: (When prompted for a password just press enter twice - and put the keys security under appropriate management)
+Generate an rsa keypair in your home directory: (When prompted for a password just press enter twice - use an appropriate ISMS for your keys)
+This is for the ethereum node
 ```
-ssh-keygen -f ./networkkeypair -t rsa -b 4096
+ssh-keygen -f ./vitalik  
 ```
+and for the Chainlink box
+```
+ssh-keygen -f ./sergey  
+```
+
 
 # GETH Node
 System Requirements (Always check with offical Ethereum documentation)
