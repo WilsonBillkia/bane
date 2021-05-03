@@ -44,8 +44,10 @@ If you need to run Ansible from a Windows Box, I believe the WSL is your best be
 * Legal and Compliance issues relating to Information Technology or Blockchain.
 
 ## Removed
+* Automated build of a Chainlink node 
 * The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
 * Vagrant pipeline
+
 
 ## Disclaimer
 I'm not responsible for anything you do with this. 
@@ -59,7 +61,11 @@ Any enterprise using Bane should be risk managed on its own merits.
 * Tested on Ubuntu 20.04
 * Tested with Python 3.69
 
-(Not required but strongly recommended - DHCP host reservation. This can be found on all but the most basic of routers / Wireless Access Points / some NAS's. With this enabled your IP address stops changing on system restarts, which makes the workflow significantly more practical. See the manufacturers guidance.)
+## (Not required but strongly recommended) 
+* DHCP host reservation. 
+* This can be found on all but the most basic of routers / Wireless Access Points / some NAS's. With this enabled your IP address stops changing on system restarts, which makes the workflow significantly more practical. (See the manufacturers guidance.)
+* Single Board Compute 
+* Old pc's are great, but the open architecture means automation of OS install is quite technical in order to accomodate enterprise class network boot and install of the pc base. A sufficiently specified Raspberry Pi, conversely, has a tightly defined architecture which means you can securely build a system using a temporary login. Bane can then remove this login and replace it with the SSH keys of your choice.  
 
 ## Installation Instructions:
 
