@@ -3,9 +3,10 @@ bane readme
 
 # BaNE(Baremetal Node Erector)
 *THIS VERSION IS A TEST AND WILL NOT DEPLOY*
+*
 
-Bane builds configurations a la Docker, but directly to bare metal or SSH enabled cloud compute.
-It uses Linux / Bash native tooling to reduce the attack surface while still providing Dev and Operations with an easy way to build and manage their Nodes.
+Bane builds node configurations a la Docker, but directly to bare metal or SSH enabled cloud compute.
+Ansible uses Linux / Bash native tooling to reduce the attack surface while still providing Dev and Operations with an easy way to build and manage their Nodes.
 
 
 ## Requirements
@@ -18,16 +19,17 @@ It uses Linux / Bash native tooling to reduce the attack surface while still pro
 
 If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form sadly.
 
-## Project Goals:
+## Project Goals: 
+  
+### Secure. 
+* Always be compliant with ISO 27001 Information Security control sets 
+* Remove any management layers or attack surfaces which are not required
+
 ### Positive Social Impact
 * Lower the cost for node operation.
 * Lower the difficulty of node operation
 * Enable potential reuse of obsolete pcs
 * Enable low power nodes such as Raspberry Pi
-
-### Secure. 
-* Always be compliant with ISO 27001 Information Security control sets 
-* Remove any management layers or attack surfaces which are not required
 
 ## In Scope
 * Ubuntu Server 20.x LTS
@@ -73,9 +75,9 @@ This is for the ethereum node
 ```
 ssh-keygen -f vitalik -C "ethereum node key"
 ```
-and for the Chainlink box
+and for the xnode box
 ```
-ssh-keygen -f sergey -C "chainlink node key"
+ssh-keygen -f xuser -C "xnode node key"
 ```
 
 You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
