@@ -94,18 +94,18 @@ run the following command:
 ansible-playbook vitalik.yml -i <IPADDRESS OF BOX> -l ethers --ask-pass 
 ```
 
-# Chainlink Node
-System Requirements (Always check with offical Chainlink documentation)
+# xNode
+System Requirements (Always check with offical xNode documentation)
 
 ```
-ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l links --ask-pass 
+ansible-playbook xnode.yml -i <IPADDRESS OF BOX> -l xnode --ask-pass 
 ```
 
-# Chainlink Database
-System Requirements (Always check with offical Chainlink documentation)
+# xNode Database
+System Requirements (Always check with offical xNode documentation)
 
 ```
-ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l db --ask-pass 
+ansible-playbook xnode.yml -i <IPADDRESS OF BOX> -l db --ask-pass 
 ```
 
 NB Host key checking on your Ansible management server may cause subsequent node spinups to error out until you clear the key from your own ssh client. I use the alias / shellscript killsshkeybane.sh to do this, which basically just replays the help from the sshd output. 
