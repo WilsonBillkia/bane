@@ -102,14 +102,14 @@ run the following command:
 ansible-playbook vitalik.yml -i <IPADDRESS OF BOX> -l ethers --ask-pass 
 ```
 
-# xNode
+# Chainlink Node
 System Requirements (Always check with offical xNode documentation)
 
 ```
-ansible-playbook xnode.yml -i <IPADDRESS OF BOX> -l xnode --ask-pass 
+ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l xnode --ask-pass 
 ```
 
-# xNode Database
+# Chainlink Database
 System Requirements (Always check with offical xNode documentation)
 
 ```
