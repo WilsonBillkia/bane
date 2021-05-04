@@ -2,12 +2,13 @@ bane readme
 
 
 # BaNE(Baremetal Node Erector)
-*THIS VERSION IS A TEST AND WILL NOT DEPLOY*
+*THIS VERSION IS A TEST AND WILL NOT DEPLOY A CHAINLINK NODE*
 *
 
-Bane builds node configurations a la Docker, but directly to bare metal or SSH enabled cloud compute.
+Bane builds blockchain nodes a la Docker, but directly to bare metal or SSH enabled cloud compute.
 Ansible uses Linux / Bash native tooling to reduce the attack surface while still providing Dev and Operations with an easy way to build and manage their Nodes.
 
+This version builds a Chainlink node and a local geth node. Both have node.js installed by default.
 
 ## Requirements
 (For the management machine)
@@ -22,13 +23,14 @@ If you need to run Ansible from a Windows Box, I believe the WSL is your best be
 ## Project Goals: 
   
 ### Secure. 
-* Always be compliant with ISO 27001 Information Security control sets 
-* Remove any management layers or attack surfaces which are not required
+* Decentralise nodes at scale outside the main cloud providers
+* Be compliant with ISO 27001 Information Security control sets 
+* An alternative to securing containers in production
 
 ### Positive Social Impact
-* Lower the cost for node operation.
-* Lower the difficulty of node operation
-* Enable potential reuse of obsolete pcs
+* Reduce or remove cloud costs
+* Lower the barrier for entry for node operation
+* Enable potentially eco friendly reuse of obsolete tech
 * Enable low power nodes such as Raspberry Pi
 
 ## In Scope
@@ -44,10 +46,8 @@ If you need to run Ansible from a Windows Box, I believe the WSL is your best be
 * Legal and Compliance issues relating to Information Technology or Blockchain.
 
 ## Removed
-* Automated build of a Chainlink node 
 * The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
-* Vagrant pipeline
-
+* Vagrant & Virtualbox pipeline used in the Alpha
 
 ## Disclaimer
 I'm not responsible for anything you do with this. 
