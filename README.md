@@ -18,7 +18,7 @@ This version builds a Chainlink node and a local geth node. Both have node.js in
 (For the nodes)
 * Linux 
 * Mac 
-* Raspberry Pi 
+* Raspberry Pi (Raspbian or Ubuntu 20 Server)
 
 
 ## Project Goals: 
@@ -30,14 +30,15 @@ This version builds a Chainlink node and a local geth node. Both have node.js in
 
 ### Positive Social Impact
 * Reduce or entirely remove cloud and hosting costs
-* Lower entry barrier for node operation
+* Lower technical barrier for node operation
 * Enable potentially eco friendly reuse of obsolete tech
 * Enable low power nodes such as Raspberry Pi
 
 ## In Scope
-* Chainlink Node build
-* PostGreSQL Host build
-* Geth Node build
+* Automatic Chainlink Node build
+* Automatic Chainlink firewall configuration
+* Automatic PostGreSQL Host build
+* Automatic Geth Node build
 * Key Management
 
 ## Out of Scope 
@@ -65,9 +66,9 @@ Any enterprise using Bane should be risk managed on its own merits.
 * Tested with Python 3.69
 
 ## (Not required but strongly recommended) 
-* DHCP host reservation. 
+* DHCP host reservation.  
 This can be found on all but the most basic of routers / Wireless Access Points / some NAS's. With this enabled your IP address stops changing on system restarts, which makes the workflow significantly more practical. (See the manufacturers guidance.)
-* Single Board Compute 
+* Single Board Compute.  
 Old pc's are great, but the open architecture means automation of OS install is quite technical in order to accomodate enterprise class network boot and install of the pc base. A sufficiently specified Raspberry Pi, conversely, has a tightly defined architecture which means you can securely build a system using a temporary login saved to the install media. Bane can then remove this login and replace it with the SSH keys of your choice. 
 
 ## Installation Instructions:
