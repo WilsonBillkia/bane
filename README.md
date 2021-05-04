@@ -7,8 +7,6 @@ bane readme
 
 Bane builds blockchain nodes a la Docker, but directly to bare metal or SSH enabled cloud compute.
 
-Ansible uses Linux / Bash native tooling to reduce the attack surface while still providing Dev and Operations with an easy way to build and manage their Nodes.
-
 This version builds a Chainlink node and a local geth node. Both have node.js installed by default.
 
 ## Requirements
