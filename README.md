@@ -34,6 +34,9 @@ If you need to run Ansible from a Windows Box, I believe the WSL is your best be
 * Enable low power nodes such as Raspberry Pi
 
 ## In Scope
+* Chainlink Node
+* Geth Node
+* Ubuntu Server 20.x LTS
 * Ubuntu Server 20.x LTS
 * Raspberry Pi
 
