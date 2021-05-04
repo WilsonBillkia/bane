@@ -2,7 +2,7 @@ bane readme
 
 
 # BaNE(Baremetal Node Erector)
-*THIS VERSION IS A TEST AND WILL NOT DEPLOY A CHAINLINK NODE*
+*THIS VERSION IS A TEST AND WILL NOT DEPLOY A CHAINLINK NODE. IT SHOULD BUILD A GETH NODE*
 *
 
 Bane builds blockchain nodes a la Docker, but directly to bare metal or SSH enabled cloud compute.
