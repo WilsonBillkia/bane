@@ -1,6 +1,6 @@
 ---
 - hosts: linkies
-
+################### BUILD FIREWALL ####################
   tasks: 
   - name: Iptables - allow all TCP OUT on port 6688 for CHAINLINK
     iptables: 
@@ -145,6 +145,7 @@
   - name: Save the iptables configuration 
     shell: 'sudo iptables-save > /etc/iptables/rules.v4' 
     become: yes
+################### MANAGEMENT TOOLS ####################
   - name: Update repositories cache and install screen from apt - screen makes node management over ssh viable
     apt:
       name: screen
