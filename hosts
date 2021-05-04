@@ -1,4 +1,4 @@
-# This is a copy to be activated with a switch at runtime. 
+# This is a copy to be activated with a switch at runtime once you have the IPs of your ssh ready boxes 
 ---
 all:
   children:
