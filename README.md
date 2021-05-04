@@ -25,21 +25,20 @@ This version builds a Chainlink node and a local geth node. Both have node.js in
   
 ### Secure. 
 * Decentralise nodes at scale outside cloud providers
-* Be compliant with ISO 27001 Information Security baselines 
-* An alternative to securing containers in production
+* Be compliant with the ISO 27001 Information Security Standard 
+* Provide an alternative to a containerised pipeline
 
 ### Positive Social Impact
-* Reduce or remove cloud costs
-* Entry barrier for node operation lowered
+* Reduce or entirely remove cloud and hosting costs
+* Lower entry barrier for node operation
 * Enable potentially eco friendly reuse of obsolete tech
 * Enable low power nodes such as Raspberry Pi
 
 ## In Scope
-* Chainlink Node
-* Geth Node
-* Ubuntu Server 20.x LTS
-* Ubuntu Server 20.x LTS
-* Raspberry Pi
+* Chainlink Node build
+* PostGreSQL Host build
+* Geth Node build
+* Key Management
 
 ## Out of Scope 
 * Cloud storage, user management, policies, tags etc. 
