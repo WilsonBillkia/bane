@@ -13,22 +13,24 @@ This version builds a Chainlink node and a local geth node. Both have node.js in
 (For the management machine)
 * A Linux or Mac machine with Python 3.5 or Python 2.7 
 * SSH 
+(If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form, sadly.)
 
 (For the nodes)
-* A Linux or Mac machine with Python 3.5 or Python 2.6 
+* Linux 
+* Mac 
+* Raspberry Pi 
 
-If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form sadly.
 
 ## Project Goals: 
   
 ### Secure. 
-* Decentralise nodes at scale outside the main cloud providers
-* Be compliant with ISO 27001 Information Security control sets 
+* Decentralise nodes at scale outside cloud providers
+* Be compliant with ISO 27001 Information Security baselines 
 * An alternative to securing containers in production
 
 ### Positive Social Impact
 * Reduce or remove cloud costs
-* Lower the barrier for entry for node operation
+* Entry barrier for node operation lowered
 * Enable potentially eco friendly reuse of obsolete tech
 * Enable low power nodes such as Raspberry Pi
 
