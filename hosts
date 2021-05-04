@@ -1,14 +1,18 @@
-# This is a copy. ansible defaults to the inventory in /etc/ansible/hosts
+# This is a copy to be activated with a switch at runtime. 
 ---
 all:
   children:
-    linkies:
+    links:
       hosts:
-        192.168.33.15:
-          name: bane
+        <IP ADDRESS>:
+          name: sergey
+    ethers:
+      hosts:
+        <IP ADDRESS>:
+          name: vitalik
   vars:
-    ansible_ssh_user: vagrant
-    ansible_ssh_private_key_file: ./networkkeypair
+    ansible_ssh_user: vitalik
+#    ansible_ssh_private_key_file: ./<YOURKEY>
     ansible_become: true
     ansible_python_interpreter: /usr/bin/python3 
 ...
