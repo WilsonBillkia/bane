@@ -81,9 +81,9 @@ This is for the ethereum node
 ```
 ssh-keygen -f vitalik -C "ethereum node key"
 ```
-and for the xnode box
+and for the Chainlink box
 ```
-ssh-keygen -f xuser -C "xnode node key"
+ssh-keygen -f xuser -C "Chainlink node key"
 ```
 
 You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
