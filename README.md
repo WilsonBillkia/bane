@@ -87,7 +87,7 @@ ssh-keygen -f vitalik -C "ethereum node key"
 ```
 and for the Chainlink box
 ```
-ssh-keygen -f xuser -C "Chainlink node key"
+ssh-keygen -f sergey -C "Chainlink node key"
 ```
 
 You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
@@ -110,7 +110,7 @@ ansible-playbook vitalik.yml -i <IPADDRESS OF BOX> -l ethers --ask-pass
 System Requirements (Always check with offical xNode documentation)
 
 ```
-ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l xnode --ask-pass 
+ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l links --ask-pass 
 ```
 
 # Chainlink Database
