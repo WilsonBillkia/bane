@@ -11,7 +11,7 @@ This version builds a Chainlink node and a local geth node. Both have node.js in
 
 ## Requirements
 (For the management machine)
-* A Linux or Mac machine with Python 3.5 or Python 2.7 
+* A Linux or Mac machine with Python 3.5 or above  
 * SSH 
 (If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form, sadly.)
 
