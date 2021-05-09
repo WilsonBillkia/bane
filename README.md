@@ -7,8 +7,8 @@ bane readme
 Bane builds blockchain nodes a la Docker, but directly to bare metal or SSH enabled cloud compute.
 
 This version builds  
-a chainlink node with go, node.js, yarn, postgresql installed  
-an ethereum node with node.js installed
+* a chainlink node with go, node.js, yarn, and postgresql installed  
+* an ethereum node with node.js installed
 
 ## Requirements
 (For the management machine)
@@ -25,13 +25,14 @@ an ethereum node with node.js installed
 ## Project Goals: 
   
 ### Secure. 
-* Decentralise nodes at scale outside cloud providers
-* Be compliant with the ISO 27001 Information Security Standard 
-* Provide an alternative to a containerised pipeline
+* Help decentralise nodes at scale outside cloud providers
+* Compliant with the ISO 27001 Information Security Standard 
+* Harden nodes by reducing attack surface; no management agents 
+* Only needs python and secure shell.
 
 ### Positive Social Impact
-* Reduce or entirely remove cloud and hosting costs
-* Lower technical barrier for node operation
+* Reduce or entirely remove cloud and hosting costs from projects
+* Lower technical and cost barriers for node operation
 * Enable potentially eco friendly reuse of obsolete tech
 * Enable low power nodes such as Raspberry Pi
 
@@ -74,21 +75,21 @@ Old pc's are great, but the open architecture means automation of OS install is 
 
 ## Installation Instructions:
 
-git clone and cd into the bane directory 
+On your management machine with ansible installed, git clone bane and cd into the directory 
 
 ```
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
-
-Generate an rsa keypair in your working directory: (When prompted for a password just press enter twice) 
+(Optional - but recommended, especially for production systems)
+Generate an rsa keypair in your working directory: (When prompted for a password just press enter twice and put the key under ISO27001 compliant management) 
 
 This is for the ethereum node
 ```
-ssh-keygen -f vitalik -C "ethereum node key"
+ssh-keygen -f vitalik -C "vitaliks key"
 ```
 and for the Chainlink box
 ```
-ssh-keygen -f xuser -C "Chainlink node key"
+ssh-keygen -f sergey -C "sergeys key"
 ```
 
 You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
@@ -98,30 +99,34 @@ To copy the keys to the machines:
 ```
 ssh-copy-id -i <KEY FILE> <BOOTACCOUNT>@<IPADDRESS> 
 ```
+Bane needs the optional core community libraries to be installed to ansible using the ansible-galaxy package manager
 
-# GETH Node
+```
+ansible-galaxy collection install community.general 
+```
+
+# Build a Chainlink / PostgreSQL Node
+System Requirements (Always check with offical xNode documentation)
+
+Run the following command:
+
+```
+ansible-playbook sergey.yml -i hosts --ask-pass -kK
+```
+
+sergey.yml is an ansible 'playbook' with steps to install geth and node.js.  
+The -i switch loads the hosts file we use for asset management. You just add the IP addresses of any nodes to the relevant group within the file (links or ethers)
+The -kK switch gathers passwords from operator for ssh and sudo if tasks require it
+
+
+# Build a GETH Node
 System Requirements (Always check with offical Ethereum documentation)
-run the following command:
+
+Run the following command:
 
 ```
-ansible-playbook vitalik.yml -i <IPADDRESS OF BOX> -l ethers --ask-pass 
+ansible-playbook vitalik.yml -i hosts --ask-pass -kK
 ```
-
-# Chainlink Node
-System Requirements (Always check with offical xNode documentation)
-
-```
-ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l xnode --ask-pass 
-```
-
-# Chainlink Database
-System Requirements (Always check with offical xNode documentation)
-
-```
-ansible-playbook xnode.yml -i <IPADDRESS OF BOX> -l db --ask-pass 
-```
-
-NB Host key checking on your Ansible management server may cause subsequent node spinups to error out until you clear the key from your own ssh client. I use the alias / shellscript killsshkeybane.sh to do this, which basically just replays the help from the sshd output. 
 
 ## Operation
 
