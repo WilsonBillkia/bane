@@ -26,8 +26,6 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Automatic Chainlink firewall configuration
 * Automatic PostGreSQL Host build (on CL node)
 * Automatic Geth Node build
-* Key Management
-
 
 ## Out of Scope
 * Cloud storage, user management, policies, tags etc. 
@@ -58,23 +56,8 @@ On your management machine with ansible installed, git clone bane and cd into th
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
 (Optional - but recommended, especially for production systems)
-Generate an rsa keypair in your working directory: (When prompted for a password just press enter twice and put the key under ISO27001 compliant management) 
+Use an RSA keypair to sign in. An Open SSH port with password auth is not ideal. 
 
-This is for the ethereum node
-```
-ssh-keygen -f vitalik -C "vitaliks key"
-```
-and for the Chainlink box
-```
-ssh-keygen -f sergey -C "sergeys key"
-```
-
-You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
-
-To copy the keys to the machines:
-
-```
-ssh-copy-id -i <KEY FILE> <BOOTACCOUNT>@<IPADDRESS> 
 ```
 
 # Build a Chainlink / PostgreSQL Node
@@ -113,6 +96,7 @@ ansible-playbook vitalik.yml -i hosts --ask-pass -kK
 ## Removed
 * The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
 * Vagrant & Virtualbox pipeline used in the Alpha
+* Key management
 
 ## Disclaimer
 I'm not responsible for anything you do with this. 
