@@ -14,18 +14,18 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Enable low power / IoT nodes using Raspberry Pi  
 
 
-### Secure. 
+### Secure 
 * Help decentralise networks 
 * Compliance with the ISO 27001 Information Security Standard 
 * Harden nodes by reducing attack surface; no management agents (only needs python and secure shell)
 
-# Installation Instructions:
+# Installation Instructions
 
 ## Requirements
 (For the management machine)
 * Linux or Mac with Python 3.5 
 * SSH 
-(If you need to run Ansible from a Windows Box, I believe it will work fine in the WSL, but its maybe better to have a Linux / Mac management system as Ansible  leverages *nix conventions to work well and sometimes it does not play nice with Windows as a matter of form. However for simple admin of a fleet of nodes it should be sufficient)
+(If you need to run Ansible from a Windows Box, I believe it will work fine in the WSL, but its maybe better to have a Linux / Mac management system as Ansible leverages *nix conventions and it does not play well with Windows as a matter of form. However for simple admin of nodes it should be sufficient)
 
 (For the nodes)
 * Linux, Mac, or Raspberry Pi (Raspbian or Ubuntu 20 Server)
@@ -33,11 +33,6 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 V0.8 was tested on Ansible 2.9.19, Ubuntu Server 20.04, Python 3.69
 
 
-On your management machine with ansible installed, git clone bane and cd into the directory 
-
-```
-git clone https://github.com/WilsonBillkia/bane.git && cd bane
-```
 (Optional - but recommended, especially for production systems)
 Use an RSA keypair to sign in. An Open SSH port with password auth is not ideal. 
 
@@ -49,6 +44,12 @@ Bane needs the optional core community libraries to be installed to ansible usin
 
 ```
 ansible-galaxy collection install community.general 
+```
+
+On your management machine with ansible installed:
+
+```
+git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
 
 To build a chainlink node with postgreSQL installed run the following command:
