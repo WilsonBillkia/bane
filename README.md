@@ -23,18 +23,19 @@ This version builds
 
 
 ## Project Goals: 
-  
-### Secure. 
-* Help decentralise nodes at scale outside cloud providers
-* Compliant with the ISO 27001 Information Security Standard 
-* Harden nodes by reducing attack surface; no management agents 
-* Only needs python and secure shell.
 
 ### Positive Social Impact
 * Reduce or entirely remove cloud and hosting costs from projects
 * Lower technical and cost barriers for node operation
 * Enable potentially eco friendly reuse of obsolete tech
-* Enable low power nodes such as Raspberry Pi
+* Enable low power nodes such as Raspberry Pi  
+
+
+### Secure. 
+* Help decentralise networks 
+* Compliance with the ISO 27001 Information Security Standard 
+* Harden nodes by reducing attack surface; no management agents (only needs python and secure shell)
+
 
 ## In Scope
 * Automatic Chainlink Node build
