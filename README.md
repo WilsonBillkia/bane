@@ -38,12 +38,6 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Legal and Compliance issues relating to Information Technology or Blockchain.
 
 
-
-V.08 Includes    
-* a chainlink node with go, node.js, yarn, and postgresql installed  
-* an ethereum node with node.js installed
-
-
 # Installation Instructions:
 
 ## Requirements
