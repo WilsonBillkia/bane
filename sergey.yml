@@ -7,7 +7,7 @@
     apt:
       update_cache: yes
   
-  # overly permissive below
+  # TODO overly permissive below
   - name: ============================mkdir for CL in usr/local =======================
     ansible.builtin.file:
       path: /home/sergey/chainlink
