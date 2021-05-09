@@ -20,22 +20,6 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Compliance with the ISO 27001 Information Security Standard 
 * Harden nodes by reducing attack surface; no management agents (only needs python and secure shell)
 
-
-## In Scope
-* Automatic Chainlink Node build
-* Automatic Chainlink firewall configuration
-* Automatic PostGreSQL Host build (on CL node)
-* Automatic Geth Node build
-
-## Out of Scope
-* Cloud storage, user management, policies, tags etc. 
-* Intrusion Detection and Prevention 
-* Web Application Firewall 
-* Smart Contracts
-* Application security. (eg Node.js, databases, front ends, API’s, etc)
-* Legal and Compliance issues relating to Information Technology or Blockchain.
-
-
 # Installation Instructions:
 
 ## Requirements
@@ -90,8 +74,19 @@ Run the following command:
 ansible-playbook vitalik.yml -i hosts --ask-pass -kK
 ```
 
+## In Scope
+* Automatic Chainlink Node build
+* Automatic Chainlink firewall configuration
+* Automatic PostGreSQL Host build (on CL node)
+* Automatic Geth Node build
 
-
+## Out of Scope
+* Cloud storage, user management, policies, tags etc. 
+* Intrusion Detection and Prevention 
+* Web Application Firewall 
+* Smart Contracts
+* Application security. (eg Node.js, databases, front ends, API’s, etc)
+* Legal and Compliance issues relating to Information Technology or Blockchain.
 
 ## Removed
 * The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
