@@ -1,19 +1,20 @@
 bane readme
 
 
-# BaNE(Baremetal Node Erector)
-*THIS VERSION IS A TEST AND WILL NOT DEPLOY A CHAINLINK NODE. IT SHOULD BUILD A GETH NODE*
-*
+# BaNE(Baremetal Node Erector) v0.8
+
 
 Bane builds blockchain nodes a la Docker, but directly to bare metal or SSH enabled cloud compute.
 
-This version builds a Chainlink node and a local geth node. Both have node.js installed by default.
+This version builds  
+a chainlink node with go, node.js, yarn, postgresql installed 
+an ethereum node with node.js installed
 
 ## Requirements
 (For the management machine)
-* A Linux or Mac machine with Python 3.5 or above  
+* A Linux or Mac machine with Python 3.5 or Python 2.7 
 * SSH 
-(If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form, sadly.)
+(If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form)
 
 (For the nodes)
 * Linux 
@@ -37,7 +38,7 @@ This version builds a Chainlink node and a local geth node. Both have node.js in
 ## In Scope
 * Automatic Chainlink Node build
 * Automatic Chainlink firewall configuration
-* Automatic PostGreSQL Host build
+* Automatic PostGreSQL Host build (on CL node)
 * Automatic Geth Node build
 * Key Management
 
@@ -87,7 +88,7 @@ ssh-keygen -f vitalik -C "ethereum node key"
 ```
 and for the Chainlink box
 ```
-ssh-keygen -f sergey -C "Chainlink node key"
+ssh-keygen -f xuser -C "Chainlink node key"
 ```
 
 You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
@@ -110,7 +111,7 @@ ansible-playbook vitalik.yml -i <IPADDRESS OF BOX> -l ethers --ask-pass
 System Requirements (Always check with offical xNode documentation)
 
 ```
-ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l links --ask-pass 
+ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l xnode --ask-pass 
 ```
 
 # Chainlink Database
