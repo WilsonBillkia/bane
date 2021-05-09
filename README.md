@@ -48,7 +48,8 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 
 (For the nodes)
 * Linux, Mac, or Raspberry Pi (Raspbian or Ubuntu 20 Server)
-* V0.8 tested on Ansible 2.9.19, Ubuntu Server 20.04, Python 3.69
+
+V0.8 was tested on Ansible 2.9.19, Ubuntu Server 20.04, Python 3.69
 
 
 On your management machine with ansible installed, git clone bane and cd into the directory 
