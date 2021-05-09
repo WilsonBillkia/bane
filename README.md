@@ -91,15 +91,10 @@ ansible-playbook vitalik.yml -i hosts --ask-pass -kK
 * Key management
 
 ## Disclaimer
-I'm not responsible for anything you do with this. 
+I'm not responsible for anything you do with this.
 
 ## A Word on Risk Management
 This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
 Any enterprise using Bane should be risk managed on its own merits.
-
-## (Not required but strongly recommended) 
-* Fixed IP / DHCP host reservation on your network.  
-Your IP address stops changing on system builds ns restarts, which makes the workflow significantly more practical. (See the manufacturers guidance.)  
-
 
 
