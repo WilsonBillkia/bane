@@ -88,7 +88,7 @@ ansible-galaxy collection install community.general
 ```
 
 # Build a Chainlink / PostgreSQL Node
-System Requirements (Always check with offical xNode documentation)
+System Requirements (Always check with offical documentation)
 
 Run the following command:
 
