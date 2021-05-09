@@ -44,9 +44,9 @@ V.08 Includes
 * an ethereum node with node.js installed
 
 
-## Installation Instructions:
+# Installation Instructions:
 
-# Requirements
+## Requirements
 (For the management machine)
 * Linux or Mac with Python 3.5 
 * SSH 
