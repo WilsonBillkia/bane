@@ -41,8 +41,6 @@ git clone https://github.com/WilsonBillkia/bane.git && cd bane
 (Optional - but recommended, especially for production systems)
 Use an RSA keypair to sign in. An Open SSH port with password auth is not ideal. 
 
-```
-
 # Build a Chainlink / PostgreSQL Node
 
 System Requirements (Always check with offical documentation)
@@ -60,7 +58,7 @@ ansible-playbook sergey.yml -i hosts --ask-pass -kK
 ```
 
 sergey.yml is an ansible 'playbook' with steps to install geth and node.js.  
-The -i switch loads the hosts file we use for asset management. You just add the IP addresses of any nodes to the relevant group within the file (links or ethers)
+The -i switch loads the hosts file we use for asset management - add the IP addresses of any nodes to the relevant group within the file (links or ethers)
 The -kK switch gathers passwords from operator for ssh and sudo if tasks require it
 
 
