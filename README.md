@@ -7,7 +7,7 @@ bane readme
 Bane builds blockchain nodes a la Docker, but directly to bare metal or SSH enabled cloud compute.
 
 This version builds  
-a chainlink node with go, node.js, yarn, postgresql installed 
+a chainlink node with go, node.js, yarn, postgresql installed  
 an ethereum node with node.js installed
 
 ## Requirements
