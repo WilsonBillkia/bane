@@ -1,5 +1,5 @@
 ---
-- hosts: linkies
+- hosts: links
 ################### BUILD FIREWALL ####################
   tasks: 
   - name: Iptables - allow all TCP OUT on port 6688 for CHAINLINK
@@ -145,18 +145,10 @@
   - name: Save the iptables configuration 
     shell: 'sudo iptables-save > /etc/iptables/rules.v4' 
     become: yes
-################### MANAGEMENT TOOLS ####################
-  - name: Update repositories cache and install screen from apt - screen makes node management over ssh viable
-    apt:
-      name: screen
-      update_cache: yes
-    become: true
+################### Monitoring / Intrusion ####################
   - name: Install tcpdump from apt - Useful to monitor traffic ad hoc / intrusion detection
-    apt: 
+    apt:
       name: tcpdump
-    become: true
-  - name: Install htop from apt - info rich and lets us know whats running on our box at a glance if we are concerned with malware or intrusion
-    apt: 
-      name: htop
+      update_cache: yes
     become: true
 ...
