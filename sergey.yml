@@ -1,7 +1,5 @@
 ---
 - hosts: links
-#  roles:
-#    - geerlingguy.nodejs
 
   tasks:
 
