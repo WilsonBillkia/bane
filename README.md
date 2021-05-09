@@ -76,16 +76,18 @@ To copy the keys to the machines:
 ```
 ssh-copy-id -i <KEY FILE> <BOOTACCOUNT>@<IPADDRESS> 
 ```
-Bane needs the optional core community libraries to be installed to ansible using the ansible-galaxy package manager
+
+# Build a Chainlink / PostgreSQL Node
+
+System Requirements (Always check with offical documentation)
+
+Bane needs the optional core community libraries to be installed to ansible using the ansible-galaxy package manager:
 
 ```
 ansible-galaxy collection install community.general 
 ```
 
-# Build a Chainlink / PostgreSQL Node
-System Requirements (Always check with offical documentation)
-
-Run the following command:
+To build a chainlink node with postgreSQL installed run the following command:
 
 ```
 ansible-playbook sergey.yml -i hosts --ask-pass -kK
