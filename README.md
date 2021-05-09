@@ -69,10 +69,10 @@ Any enterprise using Bane should be risk managed on its own merits.
 * Tested with Python 3.69
 
 ## (Not required but strongly recommended) 
-* DHCP host reservation.  
-This can be found on all but the most basic of routers / Wireless Access Points / some NAS's. With this enabled your IP address stops changing on system restarts, which makes the workflow significantly more practical. (See the manufacturers guidance.)
+* Fixed IP / DHCP host reservation on your network.  
+Your IP address stops changing on system builds ns restarts, which makes the workflow significantly more practical. (See the manufacturers guidance.)
 * Single Board Compute.  
-Old pc's are great, but the open architecture means automation of OS install is quite technical in order to accomodate enterprise class network boot and install of the pc base. A sufficiently specified Raspberry Pi, conversely, has a tightly defined architecture which means you can securely build a system using a temporary login saved to the install media. Bane can then remove this login and replace it with the SSH keys of your choice. 
+
 
 ## Installation Instructions:
 
