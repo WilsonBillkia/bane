@@ -12,10 +12,9 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Reduce or entirely remove cloud and hosting costs from projects
 * Greatly simplify reuse of otherwise obsolete tech as chainlink nodes
 * Enable low power / IoT nodes on Raspberry Pi  
-
+* Help decentralise networks 
 
 ### Secure 
-* Help decentralise networks 
 * Compliance with the ISO 27001 Information Security Standard 
 * Harden nodes by reducing attack surface; no management agents (only needs python and secure shell)
 
