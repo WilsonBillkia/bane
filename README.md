@@ -9,10 +9,11 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 ## Project Goals: 
 
 ### Positive Social Impact
+#### Lower barriers to entry of blockchain operation in developing world:
 * Reduce or entirely remove cloud and hosting costs from projects
-* Greatly simplify reuse of otherwise obsolete tech as chainlink nodes
+* Simplify reuse of otherwise obsolete tech as nodes
 * Enable low power / IoT nodes on Raspberry Pi  
-* Help decentralise networks 
+* Accelerate decentralisation of networks 
 
 ### Secure 
 * Compliments ISO 27001 Information Security framework (v.08 has controls for asset management, key management, and bastion hardening)   
