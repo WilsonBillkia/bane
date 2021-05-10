@@ -10,8 +10,8 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 
 ### Positive Social Impact
 * Reduce or entirely remove cloud and hosting costs from projects
-* Enable potentially eco friendly reuse of obsolete tech
-* Enable low power / IoT nodes using Raspberry Pi  
+* Greatly simplify reuse of otherwise obsolete tech as chainlink nodes
+* Enable low power / IoT nodes on Raspberry Pi  
 
 
 ### Secure 
