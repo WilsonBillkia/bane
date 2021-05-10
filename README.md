@@ -15,8 +15,7 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Help decentralise networks 
 
 ### Secure 
-* Compliance with the ISO 27001 Information Security Standard 
-* Harden nodes by reducing attack surface; no management agents (only needs python and secure shell)
+* Compliments ISO 27001 Information Security framework (v.08 has controls for asset management, key management, and bastion hardening by removing unneccesary services and ports)   
 
 # Installation Instructions
 
