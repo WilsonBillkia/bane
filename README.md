@@ -58,9 +58,9 @@ To build a chainlink node with postgreSQL installed run the following command:
 ansible-playbook sergey.yml -i hosts --ask-pass -kK
 ```
 
-sergey.yml is an ansible 'playbook' with steps to install geth and node.js.  
-The -i switch loads the hosts file we use for asset management - add the IP addresses of any nodes to the relevant group within the file (links or ethers)
-The -kK switch gathers passwords from operator for ssh and sudo if tasks require it
+(sergey.yml is an ansible 'playbook' with the steps from the CL github automated to install chainlink.  
+The -i switch loads the hosts file we use for asset management; add the IP addresses of any nodes to the relevant group within the file (links or ethers)
+The -kK switch gathers passwords from operator for ssh and sudo if tasks require it)
 
 
 # Build a GETH Node
@@ -71,6 +71,7 @@ Run the following command:
 ```
 ansible-playbook vitalik.yml -i hosts --ask-pass -kK
 ```
+This installs node.js and geth from the Ubuntu repositories.
 
 ## In Scope
 * Automatic Chainlink Node build
