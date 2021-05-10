@@ -76,18 +76,10 @@ ansible-playbook vitalik.yml -i hosts --ask-pass -kK
 This installs node.js and geth from the Ubuntu repositories.
 
 ## In Scope
-* Automatic Chainlink Node build
-* Automatic Chainlink firewall configuration
-* Automatic PostGreSQL Host build (on CL node)
-* Automatic Geth Node build
+* Chainlink Node build, Chainlink firewall configuration, PostGreSQL Host build (on CL node), Geth Node build
 
 ## Out of Scope
-* Cloud storage, user management, policies, tags etc. 
-* Intrusion Detection and Prevention 
-* Web Application Firewall 
-* Smart Contracts
-* Application security. (eg Node.js, databases, front ends, API’s, etc)
-* Legal and Compliance issues relating to Information Technology or Blockchain.
+*  Key management, Intrusion Detection and Prevention, Smart Contracts, Application security, Compliance 
 
 ## Removed
 * The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
