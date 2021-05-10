@@ -16,7 +16,10 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Accelerate decentralisation of networks 
 
 ### Secure 
-* Compliments ISO 27001 Information Security framework (v.08 has controls for asset management, key management, and bastion hardening)   
+V0.8 compliments the following ISO 27001 information security control sets;
+* Asset management 
+* Access control 
+* Operations security (bastion hardening)   
 
 # Installation Instructions
 
