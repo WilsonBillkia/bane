@@ -30,13 +30,13 @@ V0.8 compliments the following ISO 27001 information security control sets;
 (If you need to run Ansible from a Windows Box, I believe it will work fine in the WSL, but its maybe better to have a Linux / Mac management system as Ansible leverages *nix conventions and it does not play well with Windows as a matter of form. However for simple admin of nodes it should be sufficient)
 
 (For the nodes)
-* Linux, Mac, or Raspberry Pi (Raspbian or Ubuntu 20 Server)
+* Linux, MacOS, or Raspberry Pi (Raspbian or Ubuntu 20 Server)
 
 V0.8 was tested on Ansible 2.9.19, Ubuntu Server 20.04, Python 3.69
 
 
 (Optional - but recommended, especially for production systems)
-Use an RSA keypair to sign in. An Open SSH port with password auth is not ideal. 
+Use an RSA keypair to sign in. 
 
 # Build a Chainlink / PostgreSQL Node
 
