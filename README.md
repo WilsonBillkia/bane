@@ -12,7 +12,6 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 #### Lower barriers to entry of blockchain operation in developing world:
 * Reduce or entirely remove cloud and hosting costs from projects
 * Simplify reuse of otherwise obsolete tech as nodes
-* Enable low power / IoT nodes on Raspberry Pi  
 * Accelerate decentralisation of networks 
 
 ### Secure 
@@ -30,7 +29,7 @@ V0.8 compliments the following ISO 27001 information security control sets;
 (If you need to run Ansible from a Windows Box, I believe it will work fine in the WSL, but its maybe better to have a Linux / Mac management system as Ansible leverages *nix conventions and it does not play well with Windows as a matter of form. However for simple admin of nodes it should be sufficient)
 
 (For the nodes)
-* Linux, MacOS, or Raspberry Pi (Raspbian or Ubuntu 20 Server)
+* Linux or MacOS
 
 V0.8 was tested on Ansible 2.9.19, Ubuntu Server 20.04, Python 3.69
 
