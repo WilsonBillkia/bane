@@ -10,7 +10,7 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 
 ### Positive Social Impact
 #### Lower barriers to entry of blockchain operation in developing world:
-* Reduce or entirely remove cloud and hosting costs from projects
+* Reduce or entirely remove cloud and hosting costs from oracle networks
 * Simplify reuse of otherwise obsolete tech as nodes
 * Accelerate decentralisation of networks 
 
@@ -22,16 +22,15 @@ V0.8 compliments the following ISO 27001 information security control sets;
 
 # Installation Instructions
 
-## Requirements
-(For the management machine)
-* Linux or Mac with Python 3.5 
-* SSH 
-(If you need to run Ansible from a Windows Box, I believe it will work fine in the WSL, but its maybe better to have a Linux / Mac management system as Ansible leverages *nix conventions and it does not play well with Windows as a matter of form. However for simple admin of nodes it should be sufficient)
+## Minimum requirements for the management system  
+* Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+* Linux or MacOS  
+* Python (3.8 or higher)   
+* SSH client  
+Windows (WSL) was tested successully in 2018. It should still work. 
 
-(For the nodes)
-* Linux or MacOS
-
-V0.8 was tested on Ansible 2.9.19, Ubuntu Server 20.04, Python 3.69
+## Minimum requirements for the nodes)
+* Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69)  
 
 
 (Optional - but recommended, especially for production systems)
