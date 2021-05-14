@@ -34,7 +34,7 @@ V0.8 compliments the following ISO 27001 information security control sets;
 
 
 (Optional - but recommended, especially for production systems)
-Use an RSA keypair to sign in. 
+Use an RSA keypair to sign in.  
 
 ## Build a Chainlink / PostgreSQL Node
 
