@@ -24,17 +24,13 @@ V0.8 compliments the following ISO 27001 information security control sets;
 
 ## Minimum requirements for the management system  
 * Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
-* Linux or MacOS (Windows / WSL was tested successully in 2018. It should still work) 
+* Linux (tested on Ubuntu 18.04) or MacOS. (NB Windows / WSL was tested successully in 2018. It should still work) 
 * Python (3.8 or higher)   
 * SSH client  
 
 
 ## Minimum requirements for the nodes
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69)  
-
-
-(Optional - but recommended, especially for production systems)
-Use an RSA keypair to sign in.  
 
 ## Build a Chainlink / PostgreSQL Node
 
