@@ -29,14 +29,14 @@ V0.8 compliments the following ISO 27001 information security control sets;
 * SSH client  
 
 
-## Minimum requirements for the nodes)
+## Minimum requirements for the nodes
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69)  
 
 
 (Optional - but recommended, especially for production systems)
 Use an RSA keypair to sign in. 
 
-# Build a Chainlink / PostgreSQL Node
+## Build a Chainlink / PostgreSQL Node
 
 System Requirements (Always check with offical documentation)
 
@@ -63,7 +63,7 @@ The -i switch loads the hosts file we use for asset management; add the IP addre
 The -kK switch gathers passwords from operator for ssh and sudo if tasks require it)
 
 
-# Build a GETH Node
+## Build a GETH Node
 System Requirements (Always check with offical Ethereum documentation)
 
 Run the following command:
