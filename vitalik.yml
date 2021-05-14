@@ -35,8 +35,8 @@
 ###################INSTALL GETH##############################################
 
   - name: ===================== Add Geth PPA  ===============
-  ansible.builtin.apt_repository:
-    repo: ppa:ethereum/ethereum
+    ansible.builtin.apt_repository:
+      repo: ppa:ethereum/ethereum
 
   - name: ===================== install geth ===============
     command: go install github.com/ethereum/go-ethereum/cmd/geth  

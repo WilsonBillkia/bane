@@ -4,15 +4,18 @@ all:
   children:
     links:
       hosts:
-        <IP ADDRESS>:
-          name: sergey
+        {{ cl1_ip }}:
+          name: sergey_1
     ethers:
       hosts:
-        <IP ADDRESS>:
-          name: vitalik
+        {{ geth1_ip }}:
+          name: vitalik_1
   vars:
-    ansible_ssh_user: vitalik
-#    ansible_ssh_private_key_file: ./<YOURKEY>
+    ansible_ssh_user: cia
+# bane- shouldnt be needed? v0.8
+#   ansible_ssh_private_key_file: ./cia
     ansible_become: true
-    ansible_python_interpreter: /usr/bin/python3 
+    ansible_python_interpreter: /usr/bin/python3
+  vars_files:
+    bane_cfg.yml 
 ...

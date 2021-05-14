@@ -1,45 +1,81 @@
 ---
+#we are setting the tasks for the links group in hosts
 - hosts: links
-  tasks:
 
-  - name: update the cache 
+  tasks:
+  - name: update the cache
     apt:
       update_cache: yes
+  
+  # overly permissive below
+  - name: ============================mkdir for CL in usr/local =======================
+    ansible.builtin.file:
+      path: /home/sergey/chainlink
+      state: directory
+      mode: '0775'
 
-  - name: ============================Get go 1.16 for x64 / PC =======================
+  - name: ============= Add the user sergey  ==============
+    ansible.builtin.user:
+      name: sergey
+      shell: /bin/bash
+      comment: management account
+
+  - name: ========Download go 1.15 for x64 / PC =======================
     get_url:
-      url: https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
-      dest: /home/vitaly/go1.16.2.linux-amd64.tar.gz
-      mode: +x
+      url: https://golang.org/dl/go1.15.11.linux-amd64.tar.gz
+      dest: /home/sergey/goinstaller.tar.gz
+      checksum: sha256:8825b72d74b14e82b54ba3697813772eb94add3abf70f021b6bdebe193ed01ec
 
-#  - name: ================Uncomment to Get go for raspberry pi  =======================
-#    get_url:
-#      url: https://golang.org/dl/go1.16.2.linux-amd64.tar.gz
-#      dest: /home/vitaly/go1.16.2.linux-amd64.tar.gz
-#      mode: +x
-
-  - name: ==== Set PATH in /etc/environment to include usr/local/go/bin ====
+  - name: ==== For Ubuntu Set PATH in /etc/environment to include usr/local/go/bin ====
     lineinfile:
       path: /etc/environment
       regexp: '^PATH'
       line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin"
     become: true
 
-  - name: ============================Install Node JS=======================
+  - name: ========================== untar Go =======================
+    ansible.builtin.unarchive:
+      src: /home/sergey/goinstaller.tar.gz
+      dest: /usr/local
+      remote_src: yes
+  
+############      Install node snap with classic confinement       #################
+  - name: Snap Install "node" channel 12 with option --classic
     snap:
       name: node
       classic: yes
-###################INSTALL GO##############################################
+      channel: '12'
 
-  - name: Install Go
-    ansible.builtin.unarchive:  
-      src: /home/vitaly/go1.16.2.linux-amd64.tar.gz
-      dest: /usr/local
-      remote_src: yes
+################ install yarn ###################
 
+  - name: Install yarn node.js package
+    community.general.npm:
+      name: yarn
+      path: /app/location
+      global: yes
 
-  environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/home/ubuntu/go/bin"
-    GOPATH: "/usr/local/go"
+################ install postgres ###################
+################ (needed reboot for psql to appear?  ###################
+
+  - name: Install postgresql packages, make, screen htop, from ubuntu apt
+    apt:
+      pkg:
+      - postgresql
+      - postgresql-contrib
+      - make
+      - htop
+      - screen
+# below seems to install most of the GUI - avoid ? -
+# it certainly turns on power saving - 20 minute sleep timer
+##      - pgadmin3
+
+  - name: Clone chainlink
+    ansible.builtin.git:
+      repo: https://github.com/smartcontractkit/chainlink
+      dest: /home/sergey/chainlink
+
+  - name: Install packages based on package.json.
+    community.general.yarn:
+      path: /home/sergey/chainlink
 
 ...
