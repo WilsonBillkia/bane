@@ -4,12 +4,14 @@ all:
   children:
     links:
       hosts:
-        {{ cl1_ip }}:
-          name: sergey_1
+       "{{ cl1_ip }}":
+          name: cl1
+       "{{ cl2_ip }}":
+          name: cl2
     ethers:
       hosts:
-        {{ geth1_ip }}:
-          name: vitalik_1
+        "{{ geth1_ip }}":
+          name: geth1
   vars:
     ansible_ssh_user: cia
 # bane- shouldnt be needed? v0.8
@@ -17,5 +19,6 @@ all:
     ansible_become: true
     ansible_python_interpreter: /usr/bin/python3
   vars_files:
-    bane_cfg.yml 
+    ./group_vars/links/sergey.yml
+    ./group_vars/geths/vitalik.yml 
 ...
