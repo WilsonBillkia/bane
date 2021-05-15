@@ -1,5 +1,5 @@
 ---
-- hosts: linkies
+- hosts: links
 ################### BUILD FIREWALL ####################
   tasks: 
   - name: Iptables - allow all TCP OUT on port 6688 for CHAINLINK
