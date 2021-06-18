@@ -1,139 +1,90 @@
 bane readme
 
 
-# BaNE(Baremetal Node Erector)
-*THIS VERSION IS A TEST AND WILL NOT DEPLOY A CHAINLINK NODE. IT SHOULD BUILD A GETH NODE*
-*
+# BaNE(Baremetal Node Erector) v0.8
 
-Bane builds blockchain nodes a la Docker, but directly to bare metal or SSH enabled cloud compute.
 
-This version builds a Chainlink node and a local geth node. Both have node.js installed by default.
-
-## Requirements
-(For the management machine)
-* A Linux or Mac machine with Python 3.5 or Python 2.7 
-* SSH 
-(If you need to run Ansible from a Windows Box, I believe the WSL is your best bet, but overall it would be better to have a Linux / Mac management system as Ansible absolutely leverages *nix conventions to work well and it does not play nice with Windows as a matter of form, sadly.)
-
-(For the nodes)
-* Linux 
-* Mac 
-* Raspberry Pi (Raspbian or Ubuntu 20 Server)
-
+Bane builds blockchain nodes directly to SSH enabled *nix systems.
 
 ## Project Goals: 
-  
-### Secure. 
-* Decentralise nodes at scale outside cloud providers
-* Be compliant with the ISO 27001 Information Security Standard 
-* Provide an alternative to a containerised pipeline
 
 ### Positive Social Impact
-* Reduce or entirely remove cloud and hosting costs
-* Lower technical barrier for node operation
-* Enable potentially eco friendly reuse of obsolete tech
-* Enable low power nodes such as Raspberry Pi
+#### Lower barriers to entry of blockchain operation in developing world:
+* Reduce or entirely remove cloud and hosting costs from oracle networks
+* Simplify reuse of otherwise obsolete tech as nodes
+* Accelerate decentralisation of networks 
 
-## In Scope
-* Automatic Chainlink Node build
-* Automatic Chainlink firewall configuration
-* Automatic PostGreSQL Host build
-* Automatic Geth Node build
-* Key Management
+### Secure 
+V0.8 compliments the following ISO 27001 information security control sets;
+* Asset management 
+* Access control 
+* Operations security (bastion hardening)   
 
-## Out of Scope 
-* Cloud storage, user management, policies, tags etc. 
-* Intrusion Detection and Prevention 
-* Web Application Firewall 
-* Smart Contracts
-* Application security. (eg Node.js, databases, front ends, API’s, etc)
-* Legal and Compliance issues relating to Information Technology or Blockchain.
+# Installation Instructions
 
-## Removed
-* The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
-* Vagrant & Virtualbox pipeline used in the Alpha
+## Minimum requirements for the management system  
+* Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+* Linux (tested on Ubuntu 18.04) or MacOS. (NB Windows / WSL was tested successully in 2018. It should still work) 
+* Python (3.8 or higher)   
+* SSH client  
 
-## Disclaimer
-I'm not responsible for anything you do with this. 
 
-## A Word on Risk Management
-This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
-Any enterprise using Bane should be risk managed on its own merits.
+## Minimum requirements for the nodes
+* Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69)  
 
-## Requirements on Host:
-* Tested on Ansible 2.9.19
-* Tested on Ubuntu 20.04
-* Tested with Python 3.69
+## Build a Chainlink / PostgreSQL Node
 
-## (Not required but strongly recommended) 
-* DHCP host reservation.  
-This can be found on all but the most basic of routers / Wireless Access Points / some NAS's. With this enabled your IP address stops changing on system restarts, which makes the workflow significantly more practical. (See the manufacturers guidance.)
-* Single Board Compute.  
-Old pc's are great, but the open architecture means automation of OS install is quite technical in order to accomodate enterprise class network boot and install of the pc base. A sufficiently specified Raspberry Pi, conversely, has a tightly defined architecture which means you can securely build a system using a temporary login saved to the install media. Bane can then remove this login and replace it with the SSH keys of your choice. 
+System Requirements (Always check with offical documentation)
 
-## Installation Instructions:
+Bane needs the optional core community libraries to be installed to ansible using the ansible-galaxy package manager:
 
-git clone and cd into the bane directory 
+```
+ansible-galaxy collection install community.general 
+```
+
+On your management machine with ansible installed:
 
 ```
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
 
-Generate an rsa keypair in your working directory: (When prompted for a password just press enter twice) 
-
-This is for the ethereum node
-```
-ssh-keygen -f vitalik -C "ethereum node key"
-```
-and for the Chainlink box
-```
-ssh-keygen -f xuser -C "Chainlink node key"
-```
-
-You will have two keyfiles in your working directory for each command. (WARNING - use appropriate ISMS for your keys)
-
-To copy the keys to the machines:
+To build a chainlink node with postgreSQL installed run the following command:
 
 ```
-ssh-copy-id -i <KEY FILE> <BOOTACCOUNT>@<IPADDRESS> 
+ansible-playbook sergey.yml -i hosts --ask-pass -kK
 ```
 
-# GETH Node
+(sergey.yml is an ansible 'playbook' with the steps from the CL github automated to install chainlink.  
+The -i switch loads the hosts file we use for asset management; add the IP addresses of any nodes to the relevant group within the file (links or ethers)
+The -kK switch gathers passwords from operator for ssh and sudo if tasks require it)
+
+
+## Build a GETH Node
 System Requirements (Always check with offical Ethereum documentation)
-run the following command:
+
+Run the following command:
 
 ```
-ansible-playbook vitalik.yml -i <IPADDRESS OF BOX> -l ethers --ask-pass 
+ansible-playbook vitalik.yml -i hosts --ask-pass -kK
 ```
+This installs node.js and geth from the Ubuntu repositories.
 
-# Chainlink Node
-System Requirements (Always check with offical xNode documentation)
+## In Scope
+* Chainlink Node build, Chainlink firewall configuration, PostGreSQL Host build (on CL node), Geth Node build
 
-```
-ansible-playbook sergey.yml -i <IPADDRESS OF BOX> -l xnode --ask-pass 
-```
+## Out of Scope
+*  Key management, Intrusion Detection and Prevention, Smart Contracts, Application security, Compliance 
 
-# Chainlink Database
-System Requirements (Always check with offical xNode documentation)
+## Removed
+* The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
+* Vagrant & Virtualbox pipeline used in the Alpha
+* Key management
 
-```
-ansible-playbook xnode.yml -i <IPADDRESS OF BOX> -l db --ask-pass 
-```
+## Disclaimer
+I'm not responsible for anything you do with this.
 
-NB Host key checking on your Ansible management server may cause subsequent node spinups to error out until you clear the key from your own ssh client. I use the alias / shellscript killsshkeybane.sh to do this, which basically just replays the help from the sshd output. 
-
-## Operation
-
-
-## Architecture
-The following main components were chosen for this project:
-
-## Ansible (2.9.19)
-https://www.ansible.com/ 
-Ansible requires only that the node operator have access to the host via SSH. No additional agents or libraries are required. Ansible also provides simple creation and management of test environments and enterprise grade system provisioning and configuration.
-NB, while Ansible is clientless there are some modules, such as gather-facts which require Python 2.7 on the host. This should not be an issue with Python 3.
-
-## Ubuntu Server LTS 20.04.
-Headless, lightweight and familiar Linux distribution with good support. 
+## A Word on Risk Management
+This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
+Any enterprise using Bane should be risk managed on its own merits.
 
 
