@@ -1,0 +1,62 @@
+# bane config v0.8
+#
+---
+
+# ucomment and use cloudinit or github otherwise ops to manage key here
+- name: Set authorized key from cia.pub in ./files
+  ansible.posix.authorized_key:
+    user: cia
+    state: present
+    key: "{{ lookup('file', './files/cia.pub') }}"
+
+- name: wheel group present
+  become: yes
+  group: 
+    name: wheel
+    state: present
+
+# todo - use sudoers.d dir instead to enable unattended os upgrades 
+- name: wheel group passwordless sudo
+  become: yes
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: visudo -cf %s
+
+- name: cia group present
+  become: yes
+  ansible.builtin.group:
+    name: cia
+    state: present
+
+- name: cia user in wheel
+  become: yes
+  ansible.builtin.user:
+    name: cia
+    home: /home/cia
+    comment: big guy for you
+    shell: /bin/bash
+    groups: wheel
+
+
+- name: cia home directory owned by cia
+  ansible.builtin.file:
+    path: /home/cia
+    state: directory
+    owner: cia
+    group: cia
+
+- name:  tools and ansible requirements in place - screen, tree, tcpdump, make, htop, build essential, libssldev from apt
+  become: yes
+  apt:
+    pkg: 
+    - screen
+    - tcpdump
+    - htop
+    - tree
+    - build-essential
+    - libssl-dev  
+    - unzip
+...

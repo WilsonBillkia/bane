@@ -1,0 +1,11 @@
+################ install postgres ###################
+################ (It needs a reboot for psql to finish install / appear?  ###################
+  - name: Install postgresql packages from ubuntu apt
+    become: yes
+    apt:
+      pkg:
+      - postgresql
+      - postgresql-contrib
+# below seems to install most of the GUI - avoid ? -
+# it certainly turns on power saving - 20 minute sleep timer, which will have to be disabled by hand
+##      - pgadmin3

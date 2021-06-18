@@ -1,0 +1,8 @@
+# bane config v0.8
+#
+---
+- hosts: geth
+  roles:
+    - node
+    - vitalik     
+...
