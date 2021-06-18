@@ -32,11 +32,11 @@ V0.9 compliments the following ISO 27001 information security control sets;
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
 
 ## Asset Management
-Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file
+Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
 Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
 These files are ansible defaults  
 
-## Build a Chainlink / PostgreSQL Node
+## Build a Chainlink / PostgreSQL Node  
 
 System Requirements (Always check with offical documentation)  
 
