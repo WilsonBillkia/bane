@@ -32,20 +32,19 @@ V0.9 compliments the following ISO 27001 information security control sets;
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
 
 ## Asset Management
-Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file
+Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
 Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
 These files are ansible defaults  
 
-## Build a Chainlink / PostgreSQL Node
+## Build a Chainlink / PostgreSQL Node  
 
-System Requirements (Always check with offical documentation)  
+Hardware requirements (Always check with offical documentation)  
 
 Bane needs the optional core community and posix libraries to be installed:  
 
 ```
 ansible-galaxy collection install community.general  
 ansible-galaxy collection install ansible.posix  
-
 ```
 
 When you are ready to build some nodes - on your management machine:  
@@ -91,14 +90,13 @@ ansible-playbook postlcy.yml
 * Key management, Chainlink node, PostGreSQL node, Geth node
 
 ## Out of Scope
-*  Intrusion Detection and Prevention, Smart Contracts, Application security, Compliance, Firewall 
+*  Configuration management, Intrusion Detection and Prevention, Smart Contracts, Application security, Compliance, Firewall 
 
 ## Removed
 * The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
-* Firewall Management
 
 ## Disclaimer
-I'm not responsible for anything you do with this.
+I'm not responsible for anything that you do with this.
 
 ## A Word on Risk Management
 This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
