@@ -27,9 +27,13 @@ V0.9 compliments the following ISO 27001 information security control sets;
 * Linux (tested on Ubuntu 18.04) or MacOS. (NB Windows / WSL was tested successully in 2018. It should still work) 
 * Python (3.8 or higher)   
 * SSH client  
+* Node 12.18 tar.gz (always check version against current chainlink github before build) https://nodejs.org/dist/v0.12.18/  
+* Go 1.15 tar.gz (works with 1.16 though) https://golang.org/dl/  
+* The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in sergeyxxx.yml  
 
 ## Minimum requirements for the nodes  
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
+
 
 ## Asset Management
 Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
