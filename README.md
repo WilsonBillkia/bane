@@ -75,7 +75,7 @@ ansible-playbook linklcy.yml  -kK
 
 (linklcy.yml is an ansible playbook with the steps from the CL github automated to install chainlink.  
 The -kK switch asks us for a ssh password (-k) and sudo password (-K).  
-You will need it first run and then every run unless you generate a key, drop it in files, and reference it in the nodexxx.yml (recommended)  
+You will need it first run and then every run unless you generate a key, drop it in files, and reference it in the roles/node/main.yml playbook (recommended)  
 
 ## Provision GETH Nodes  
 For hardware requirements always check with offical Ethereum documentation  
@@ -92,6 +92,7 @@ ansible-playbook postlcy.yml
 
 ## In Scope v0.9
 * Key management, Chainlink node, PostGreSQL node, Geth node
+* Idempotence
 
 ## Out of Scope
 *  Configuration management, Intrusion Detection and Prevention, Smart Contracts, Application security, Compliance, Firewall 
