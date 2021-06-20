@@ -29,7 +29,7 @@ V0.9 compliments the following ISO 27001 information security control sets;
 * SSH client  
 * Node 12.18 tar.gz (always check version against current chainlink github before build) https://nodejs.org/dist/v0.12.18/  
 * Go 1.15 tar.gz (works with 1.16 though) https://golang.org/dl/  
-* The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in sergeyxxx.yml  
+* The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in roles/sergey/main.yml  
 
 ## Minimum requirements for the nodes  
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
@@ -61,7 +61,7 @@ use ansible-playbook nodexxx.yml command to
 * Deploy your public key to your nodes  
 * Install requirements to all nodes (build-essential, libssl-dev, unzip)  
 * Install screen, htop, tcpdump, tree to all nodes (management tools for headless maintenance and monitoring)  
-(In these examples lcy is an airport code for the location - use your own naming conventions)  
+(In these examples lcy is an airport/geo code - use your own naming conventions)  
 
 ```
 ansible-playbook nodelcy.yml
