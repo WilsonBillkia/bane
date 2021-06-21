@@ -40,7 +40,7 @@ Manage your assets by adding their ip addresses to groups in the /etc/ansible/ho
 Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
 These files are ansible defaults  
 
-## Build a Chainlink / PostgreSQL Node  
+## Provision Chainlink Nodes  
 
 Hardware requirements (Always check with offical documentation)  
 
