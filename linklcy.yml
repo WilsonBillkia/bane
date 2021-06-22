@@ -1,8 +1,0 @@
-# bane config v0.8
-#
----
-- hosts: link
-  roles:
-    - node
-    - sergey      
-...
