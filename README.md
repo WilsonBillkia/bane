@@ -22,7 +22,7 @@ V0.9 compliments the following ISO 27001 information security control sets;
 
 # Installation Instructions
 
-## Minimum requirements for the management system  
+## Minimum requirements for management system  
 * Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), including ansible community and posix collections
 * Linux (tested on Ubuntu 18.04) or MacOS. (NB Windows / WSL was tested successully in 2018. It should still work) 
 * Python (3.8 or higher)   
@@ -38,56 +38,55 @@ V0.9 compliments the following ISO 27001 information security control sets;
 ## Asset Management
 Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
 Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
-These files are ansible defaults  
+Both files are ansible defaults  
 
 ## Provision Chainlink Nodes  
 
 Hardware requirements (Always check with offical documentation)  
 
-Bane needs the optional core community and posix libraries to be installed:  
+Bane needs the optional core community and posix libraries to be installed on your management machine:  
 
 ```
 ansible-galaxy collection install community.general  
 ansible-galaxy collection install ansible.posix  
 ```
 
-When you are ready to build some nodes - on your management machine:  
+When you are ready to build some nodes:  
 
 ```
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
 
-use ansible-playbook nodexxx.yml command to  
+use ansible-playbook node.yml command to  
 * Deploy your public key to your nodes  
 * Install requirements to all nodes (build-essential, libssl-dev, unzip)  
 * Install screen, htop, tcpdump, tree to all nodes (management tools for headless maintenance and monitoring)  
-(In these examples lcy is an airport/geo code - use your own naming conventions)  
 
 ```
-ansible-playbook nodelcy.yml
+ansible-playbook node.yml
 ```
 
 To provision your chainlink nodes:  
 
 ```
-ansible-playbook linklcy.yml  -kK
+ansible-playbook link.yml  -kK
 ```
 
-(linklcy.yml is an ansible playbook with the steps from the CL github automated to install chainlink.  
-The -kK switch asks us for a ssh password (-k) and sudo password (-K).  
+(link.yml is an ansible playbook with the steps from the CL github automated to install chainlink.  
+The -kK switch lets us pass a ssh password (-k) and sudo password (-K).  
 You will need it first run and then every run unless you generate a key, drop it in files, and reference it in the roles/node/main.yml playbook (recommended)  
 
-## Provision GETH Nodes  
+## Provision GETH nodes  
 For hardware requirements always check with offical Ethereum documentation  
 
 ```
-ansible-playbook gethlcy.yml 
+ansible-playbook geth.yml 
 ```
-## Provision PostgreSQL Nodes
+## Provision PostgreSQL nodes
 For hardware requirements always check with offical PostgreSQL documentation
 
 ```
-ansible-playbook postlcy.yml 
+ansible-playbook post.yml 
 ```
 
 ## In Scope v0.9
@@ -105,6 +104,6 @@ I'm not responsible for anything that you do with this.
 
 ## A Word on Risk Management
 This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
-Any enterprise using Bane should be risk managed on its own merits.
+Any person or organisation using Bane should manage risk accordingly.
 
 
