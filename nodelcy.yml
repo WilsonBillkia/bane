@@ -1,7 +1,0 @@
-# bane config v0.8
-#
----
-- hosts: all
-  roles:
-    - node
-...
