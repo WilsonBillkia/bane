@@ -29,7 +29,7 @@ V0.9 compliments the following ISO 27001 information security control sets;
 * SSH client  
 * Node 12.18 tar.gz (always check version against current chainlink github before build) https://nodejs.org/dist/v0.12.18/  
 * Go 1.15 tar.gz (works with 1.16 though) https://golang.org/dl/  
-* The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in roles/sergey/main.yml  
+* The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in roles/sergey/tasks/main.yml  
 
 ## Minimum requirements for the nodes  
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
@@ -38,7 +38,7 @@ V0.9 compliments the following ISO 27001 information security control sets;
 ## Asset Management
 Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
 Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
-Both files are ansible defaults  
+Both files are ansible defaults.  
 
 ## Provision Chainlink Nodes  
 
