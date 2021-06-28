@@ -106,4 +106,8 @@ I'm not responsible for anything that you do with this.
 This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
 Any person or organisation using Bane should manage risk accordingly.
 
+## Contact us
+wilsonbillkia@gmail.com
+
+
 
