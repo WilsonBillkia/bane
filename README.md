@@ -15,7 +15,7 @@ Bane builds blockchain nodes directly to SSH enabled *nix systems.
 * Accelerate decentralisation of networks 
 
 ### Secure 
-V0.9 compliments the following ISO 27001 information security control sets;
+Complements the following ISO 27001 information security control sets;
 * Asset management 
 * Access control 
 * Operations security (bastion hardening)   
