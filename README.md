@@ -109,5 +109,7 @@ Any person or organisation using Bane should manage risk accordingly.
 ## Contact us
 wilsonbillkia@gmail.com
 
+All rights reserved.
+
 
 
