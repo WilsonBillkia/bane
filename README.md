@@ -31,17 +31,17 @@ Complements the following ISO 27001 information security control sets;
 * Go 1.15 tar.gz (works with 1.16 though) https://golang.org/dl/  
 * The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in roles/sergey/tasks/main.yml  
 
-## Minimum requirements for the nodes  
-* Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
-
-
-Bane needs the optional core community and posix libraries to be installed on your management machine:  
+To install ansible core community and posix libraries on your management machine:  
 
 ```
 ansible-galaxy collection install community.general  
 ansible-galaxy collection install ansible.posix  
 ```
 
+
+
+## Minimum requirements for the nodes  
+* Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
 
 
 ## Asset Management
