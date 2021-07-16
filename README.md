@@ -35,6 +35,15 @@ Complements the following ISO 27001 information security control sets;
 * Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
 
 
+Bane needs the optional core community and posix libraries to be installed on your management machine:  
+
+```
+ansible-galaxy collection install community.general  
+ansible-galaxy collection install ansible.posix  
+```
+
+
+
 ## Asset Management
 Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
 Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
@@ -43,13 +52,6 @@ Both files are ansible defaults.
 ## Provision Chainlink Nodes  
 
 Hardware requirements (Always check with offical documentation)  
-
-Bane needs the optional core community and posix libraries to be installed on your management machine:  
-
-```
-ansible-galaxy collection install community.general  
-ansible-galaxy collection install ansible.posix  
-```
 
 When you are ready to build some nodes:  
 
