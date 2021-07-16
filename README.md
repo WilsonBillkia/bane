@@ -39,15 +39,15 @@ ansible-galaxy collection install ansible.posix
 ```
 
 
-
-## Minimum requirements for the nodes  
-* Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
-
-
 ## Asset Management
 Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
 Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
 Both files are ansible defaults.  
+
+
+## Minimum requirements for the nodes  
+* Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
+
 
 ## Provision Chainlink Nodes  
 
