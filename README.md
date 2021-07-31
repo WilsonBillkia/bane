@@ -4,7 +4,7 @@ bane readme
 # BaNE(Baremetal Node Erector) v0.9
 
 
-Bane builds blockchain nodes directly to SSH enabled *nix systems.
+Bane builds and manages blockchain nodes with Ansible.
 
 ## Project Goals: 
 
