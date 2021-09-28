@@ -1,0 +1,26 @@
+# This is an example for reference only.
+# All asset management is recommended to take place in the default location /etc/ansible/hosts 
+
+[all]
+# ansible default - every host must be listed here eg...
+192.168.1.10 
+192.168.1.20
+192.168.1.50 #etc ...
+
+[link]
+# chainlink nodes
+192.168.1.10
+192.168.1.20
+
+[geth]
+# ethereum node(s) 
+192.168.1.50
+
+[database]
+# The postgresql databases - these can be on same host as a CL node BTW, it will just need a local config.
+192.168.1.60
+
+[node]
+# Every host. Bane specific. Used to install dependencies and tools for the network nodes. 
+192.168.1.10 
+192.168.1.20 #etc ...
