@@ -53,13 +53,15 @@ Both files are ansible defaults.
 
 Hardware requirements (Always check with offical documentation)  
 
+NB cia (/home/cia) is hardcoded as the user during install (Confidentiality, Integrity, Availability) but this can be changed to whatever you like.
+
 When you are ready to build some nodes:  
 
 ```
 git clone https://github.com/WilsonBillkia/bane.git && cd bane
 ```
 
-use ansible-playbook node.yml command to  
+Use ansible-playbook node.yml command to  
 * Deploy your public key to your nodes  
 * Install requirements to all nodes (build-essential, libssl-dev, unzip)  
 * Install screen, htop, tcpdump, tree to all nodes (management tools for headless maintenance and monitoring)  
