@@ -1,7 +1,7 @@
 # -bane config v0.9
 #
 ---
-  - name: PATH in /etc/environment includes usr/local/go/bin and /usr/local/node-v12.18.4-linux-x64/bin
+  - name: PATH in /etc/environment includes usr/local/go/bin and /usr/local/node-v12.22.7-linux-x64/bin
     lineinfile:
       path: /etc/environment
       regexp: '^PATH'
