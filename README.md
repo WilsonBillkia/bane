@@ -22,7 +22,7 @@ Complements the following ISO 27001 information security control sets;
 
 ## Minimum requirements for management system  
 * Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), including ansible community and posix collections
-* Linux (tested on Ubuntu 18.04) or MacOS. (NB Windows / WSL Ubuntu was tested successully in 2018. It should still work) 
+* Linux (tested on Ubuntu 18.04, 20.04) or MacOS. (NB Windows / WSL Ubuntu was tested successully in 2018. It should still work) 
 * Python (3.8 or higher)   
 * SSH client  
 * Node 12.22 (always check version against current chainlink github before build) https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz 
