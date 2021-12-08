@@ -25,8 +25,8 @@ Complements the following ISO 27001 information security control sets;
 * Linux (tested on Ubuntu 18.04) or MacOS. (NB Windows / WSL Ubuntu was tested successully in 2018. It should still work) 
 * Python (3.8 or higher)   
 * SSH client  
-* Node 12.18 tar.gz (always check version against current chainlink github before build) https://nodejs.org/dist/v0.12.18/  
-* Go 1.15 tar.gz (works with 1.16 though) https://golang.org/dl/  
+* Node 12.22 (always check version against current chainlink github before build) https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz 
+* Go 1.17 https://golang.org/dl/  
 * The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in roles/sergey/tasks/main.yml  
 
 To install ansible core community and posix libraries on your management machine:  
