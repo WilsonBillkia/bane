@@ -27,7 +27,7 @@ Complements the following ISO 27001 information security control sets;
 * SSH client  
 * Node 12.22 (always check version against current chainlink github before build) https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz 
 * Go 1.17 https://golang.org/dl/  
-* The above two files get copied to your nodes at build from the management server. Save them in /files then refer to them in roles/sergey/tasks/main.yml  
+* The above two files get copied to your nodes at build from the management server. Save them in /files 
 
 To install ansible core community and posix libraries on your management machine:  
 
