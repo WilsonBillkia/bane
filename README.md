@@ -1,5 +1,5 @@
 
-# BaNE(Baremetal Node Erector) v0.9
+# BaNE(Baremetal Node Erector) v0.9.1 
 
 
 Bane builds and manages blockchain nodes with Ansible.
