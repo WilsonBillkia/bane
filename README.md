@@ -1,5 +1,3 @@
-bane readme
-
 
 # BaNE(Baremetal Node Erector) v0.9
 
