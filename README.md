@@ -1,115 +1,95 @@
 
-# BaNE(Baremetal Node Erector) v0.9.1 
+
+# BaNE(Baremetal Node Erector) v1.0 
+
+## BANE?
+Baremetal Node Erector is a toolset for managing Chainlink networks on Ubuntu server. 
+
+You can use BaNE and a few old boxes to turn bare metal (desktop pc's , laptops, what-have-you) into a simple Distributed Oracle Network, or to help provision bare metal servers in data centres.  
+
+The default install creates a class C, NAT'ed  Network consisting of Chainlink nodes, a postgreSQL backend, and an Ethereum node, suitable for a home /test network.  But it is possible to build and manage larger networks.  
+
+Also, Bane is agentless and only requires SSH and Ubuntu (although any flavour of debian should work), so can also extend your operations into amazon ec2, digital ocean droplets, etc, if required.
 
 
-Bane builds and manages blockchain nodes with Ansible.
+## Security
+Bane supports the deployment of chainlink networks on bare metal. This allows networks to extend outside of cloud providers, with the decentralisation and key management benefits that brings. 
 
-## Project Goals: 
+The project was started principally as an alternative to managing nodes using containers.
 
-### Positive Social Impact
-#### Lower barriers to entry of blockchain operation in developing world:
-* Reduce or entirely remove cloud and hosting costs from oracle networks
-* Simplify reuse of otherwise obsolete tech as nodes
-* Accelerate decentralisation of networks 
+Just for fun, Bane also audited chainlink nodes against [Department of Defense]( https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux ) security standards using  [Ansible-lockdown](https://github.com/ansible-lockdown/UBUNTU20-CIS)! However this is no longer the case as the StiG roles are only supported on Red Hat, and as nice as granular security reports are, the automation of [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html) preventative controls is the main focus for the time being.   
+ 
 
-### Secure 
-Complements the following ISO 27001 information security control sets;
-* Asset management 
-* Access control 
-* Operations security (bastion hardening)   
+## Social Impact
+The project also hopefully has the potential to realise some positive social impact: 
+* Can help with re-use of IT assets in developing world into physically secure, community led blockchain projects
+* Provides testing & training tools for building cheap blockchain development labs
 
-# Installation Instructions
+## Minimum Requirements  
+* 3 x Ubuntu Server 20.04 hosts (4 for basic CL redundancy)
+* 1 x Management host with ansible (Linux, Mac, or Windows)
 
-## Minimum requirements for management system  
-* Ansible (https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), including ansible community and posix collections
-* Linux (tested on Ubuntu 18.04, 20.04) or MacOS. (NB Windows / WSL Ubuntu was tested successully in 2018. It should still work) 
-* Python (3.8 or higher)   
-* SSH client  
-* Node 12.22 (always check version against current chainlink github before build) https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz 
-* Go 1.17 https://golang.org/dl/  
-* The above two files get copied to your nodes at build from the management server. Save them in /files 
+NB Any Debian based host should work. 
 
-To install ansible core community and posix libraries on your management machine:  
+## Instructions  
+WARNING SSH IP connectivity on your nodes is assumed to be restricted to your management host ONLY throughout, or at the very least as taking place on a trusted network. An Internet facing SSH port is possible but definitely not advised.  
 
-```
-ansible-galaxy collection install community.general  
-ansible-galaxy collection install ansible.posix  
-```
+This repo does not require any substantial knowledge of ansible to set up a test or training network, though some [orientation](https://docs.ansible.com/) will help.  
+Otherwise, ansible skills are essential if running production systems.  Ansible was chosen for it's native, SSH management layer (Polygon has since elected it for their node deployments!) and substantial security controls can be leveraged through adherence to ansible's best practices. 
+### Step 1 - Asset Management  
+Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your management machine (you should need sudo for this). You can refer to the [hosts_example](../blob/master/hosts_example) file to see the roles used for asset management (node, link, post, geth.) These can be any Ubuntu hosts with IP connectivity and SSH.
 
 
-## Asset Management
-Manage your assets by adding their ip addresses to groups in the /etc/ansible/hosts file  
-Configuration of ansible otherwise is done in /etc/ansible/ansible.cfg  
-Both files are ansible defaults.  
+Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. As of Chainlink v 1.01 these are  
+* [Node 12.22](https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz)
+* [Go 1.17](https://golang.org/dl/)
 
+Save your node and go installers to the /files directory as node.tar.gz and go.tar.gz respectively. They will then get copied to your nodes if and when required.
 
-## Minimum requirements for the nodes  
-* Linux or MacOS (BaNE was tested on Ubuntu Server 20.04 with Python 3.69, not yet tested on osx)  
+BaNE manages environments using the ansible.builtin.lineinfile module to apply configuration to the /etc/environment file. 
+To apply your environment variables for ETH_URL etc on the hosts, check out the example settings in link.yml for PATH and GOBIN etc for basic usage of the module.  
 
+### Step 2 - Setup the Network   
+ (After this the order of the remaining steps doesn't matter.)  
 
-## Provision Chainlink Nodes  
-
-Hardware requirements (Always check with offical documentation)  
-
-NB cia (/home/cia) is hardcoded as the user during install (Confidentiality, Integrity, Availability) but this can be changed to whatever you like.
-
-When you are ready to build some nodes:  
-
-```
-git clone https://github.com/WilsonBillkia/bane.git && cd bane
-```
-
-Use ansible-playbook node.yml command to  
-* Deploy your public key to your nodes  
-* Install requirements to all nodes (build-essential, libssl-dev, unzip)  
-* Install screen, htop, tcpdump, tree to all nodes (management tools for headless maintenance and monitoring)  
-
+To build the network: 
 ```
 ansible-playbook node.yml
 ```
+NB If you don't have public keys on your hosts, run the above command with the -kK switch (ansible-playbook -kK node.yml).  This prompts for an ssh (-k) and sudo (-K) password and SCP's your key across for all subsequent authentication.  
 
-To provision your chainlink nodes:  
+The ansible-playbook node command also installs the build requirements from APT (build-essential, libssl-dev, unzip)  
 
+Finally, it uses APT to install screen, htop, tcpdump, and tree. You can alter this list to better reflect your preferred systems management tools by providing the names of the packages you need in the YAML list under roles/sergey/tasks/main.yml  
+
+
+### Step 2 -Build the Chainlink nodes
+ 
 ```
-ansible-playbook link.yml  -kK
+ansible-playbook link.yml
 ```
 
-(link.yml is an ansible playbook with the steps from the CL github automated to install chainlink.  
-The -kK switch lets us pass a ssh password (-k) and sudo password (-K).  
-You will need it first run and then every run unless you generate a key, drop it in files, and reference it in the roles/node/main.yml playbook (recommended)  
-
-## Provision GETH nodes  
-For hardware requirements always check with offical Ethereum documentation  
-
-```
-ansible-playbook geth.yml 
-```
-## Provision PostgreSQL nodes
-For hardware requirements always check with offical PostgreSQL documentation
+link.yml downloads Go and NodeJS, installs them, installs Yarn via APT, clones the chainlink repo, then compiles it from source on each chainlink node.  
+ 
+### Step 3 - Build PostgreSQL nodes
 
 ```
 ansible-playbook post.yml 
 ```
 
-## In Scope v0.9
-* Key management, Chainlink node, PostGreSQL node, Geth node
-* Idempotence
+This just installs a POSTGRESQL 12 database using APT.  Refer to the official [chainlink](https://docs.chain.link/docs/connecting-to-a-remote-database/) and [Postgresql]((https://www.postgresql.org/docs/12/server-start.html)) guidance for PostgresQL 12 Database setup.
 
-## Out of Scope
-*  Configuration management, Intrusion Detection and Prevention, Smart Contracts, Application security, Compliance, Firewall 
+### Step 4 - Build GETH node(s)  
 
-## Removed
-* The (excellent) DoD STiG hardening scripts developed here (https://github.com/openstack/ansible-hardening)
+```
+ansible-playbook geth.yml 
+```
+This installs Go Ethereum from the Ubuntu APT. This can then be configured to run as required (eg mainnet / testnet , lightmode, etc) 
 
-## Disclaimer
-I'm not responsible for anything that you do with this.
+## Risk Management & Disclaimer
+These tools are based on a free, unqualified analyis of the threats and risks operating with blockchain data and networks. Any person or organisation using Bane should manage their risk appropriately.
+Also, I'm not responsible for anything you do with this! Please be careful.
 
-## A Word on Risk Management
-This is not a substitute for a risk assessment. The build guide is based on a free, unqualified understanding of the threats and risks operating with blockchain data and networks.
-Any person or organisation using Bane should manage risk accordingly.
-
-## Contact us
+## Contact
 wilsonbillkia@gmail.com
-
-
 
