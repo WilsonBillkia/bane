@@ -37,7 +37,7 @@ WARNING SSH IP connectivity on your nodes is assumed to be restricted to your ma
 This repo does not require any substantial knowledge of ansible to set up a test or training network, though some [orientation](https://docs.ansible.com/) will help.  
 Otherwise, ansible skills are essential if running production systems.  Ansible was chosen for it's native, SSH management layer (Polygon has since elected it for their node deployments!) and substantial security controls can be leveraged through adherence to ansible's best practices. 
 ### Step 1 - Asset Management  
-Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your management machine (you should need sudo for this). You can refer to the [hosts_example](../blob/master/hosts_example) file to see the roles used for asset management (node, link, post, geth.) These can be any Ubuntu hosts with IP connectivity and SSH.
+Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your management machine (you should need sudo for this). You can refer to the [hosts_example](../master/hosts_example) file to see the roles used for asset management (node, link, post, geth.) These can be any Ubuntu hosts with IP connectivity and SSH.
 
 
 Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. As of Chainlink v 1.01 these are  
