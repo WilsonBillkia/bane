@@ -5,8 +5,6 @@
 ## BaNE?
 Baremetal Node Erector is a toolset for managing Chainlink networks on Ubuntu server. 
 
-You can use BaNE to turn bare metal (desktop pc's , laptops, servers, what-have-you) into a simple Distributed Oracle Network.    
-
 The default install creates a class C, NAT'ed network consisting of Chainlink nodes, a postgreSQL backend, and an Ethereum node, suitable for a home or test network.  But it is possible to build and manage larger networks.  
 
 Also, Bane is agentless and only requires SSH and Ubuntu (although any flavour of debian should work), so can also extend your operations into amazon ec2, digital ocean droplets, etc, if required.
