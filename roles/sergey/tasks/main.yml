@@ -10,14 +10,14 @@
 
   - name: go 1.17 installed in /usr/local from the files directory on management server  
     ansible.builtin.unarchive:
-      src: ./files/goinstaller.tar.gz
+      src: ./files/go.tar.gz
       dest: /usr/local/bin
       owner: root
     become: true
 
   - name: node 12.22-7 unarchived from management server into usr/local/bin
     ansible.builtin.unarchive:
-      src: ./files/node12227.tar.gz
+      src: ./files/node.tar.gz
       dest: /usr/local/bin
       owner: root
       creates: /usr/local/bin/node
