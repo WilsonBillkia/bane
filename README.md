@@ -79,7 +79,7 @@ ansible-playbook post.yml
 
 This installs a POSTGRESQL 12 database using APT.  Refer to the official [chainlink](https://docs.chain.link/docs/connecting-to-a-remote-database/) and [Postgresql]((https://www.postgresql.org/docs/12/server-start.html)) guidance for PostgresQL 12 Database setup.
 
-### Step 4 - Build GETH node(s)  
+### Step 5 - Build GETH node(s)  
 
 ```
 ansible-playbook geth.yml 
