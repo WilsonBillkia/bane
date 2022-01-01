@@ -47,7 +47,7 @@ Save your node and go installers to the /files directory as node.tar.gz and go.t
 
 BaNE manages environments using the ansible.builtin.lineinfile module to apply configuration to the /etc/environment file.  
 
-To apply your environment variables for ETH_URL etc on the hosts, check out the example settings in link.yml for PATH and GOBIN etc for basic usage of the module.  
+To apply your environment variables for ETH_URL etc on the hosts, check out the settings in roles/sergey/tasks/main.yml for PATH and GOBIN etc for basic usage of the module.  
 
 ### Step 2 - Setup the Network   
  (After this the order of the remaining steps doesn't matter.)  
