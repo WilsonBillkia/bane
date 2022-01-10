@@ -43,7 +43,7 @@ Bane builds it's chainlink nodes from source, so you will need the correct versi
 * [Node 12.22](https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz)
 * [Go 1.17](https://golang.org/dl/)
 
-Save your node and go installers to the /files directory as node.tar.gz and go.tar.gz respectively. They will then get copied to your nodes if and when required.
+Save your node and go installers to the files directory as node.tar.gz and go.tar.gz respectively. They will then get copied to your nodes if and when required.
 
 BaNE manages environments using the ansible.builtin.lineinfile module to apply configuration to the /etc/environment file.  
 
