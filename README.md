@@ -39,7 +39,7 @@ NB Any Debian based host should work.
 Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your management machine (you should need sudo for this). You can refer to the [hosts_example](../master/hosts_example) file to see the groups used for asset management (node, link, post, geth.) These can be any Ubuntu hosts with IP connectivity and SSH.
 
 
-Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. As of Chainlink v 1.01 these are  
+Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. As of Chainlink v 1.10 these are  
 * [Node 12.22](https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz)
 * [Go 1.17](https://golang.org/dl/)
 
@@ -47,7 +47,7 @@ Save your node and go installers to the files directory as node.tar.gz and go.ta
 
 BaNE manages environments using the ansible.builtin.lineinfile module to apply configuration to the /etc/environment file.  
 
-To apply your environment variables for ETH_URL etc on the hosts, check out the settings in roles/sergey/tasks/main.yml for PATH and GOBIN etc for basic usage of the module.  
+To apply your environment variables on the hosts, check out the settings in roles/sergey/tasks/main.yml for PATH and GOBIN etc for basic usage of the module.  
 
 ### Step 2 - Setup the Network   
  (After this the order of the remaining steps doesn't matter.)  
