@@ -1,7 +1,7 @@
 
   
 
-# BaNE(Baremetal Node Erector) v1.0 
+# BaNE(Baremetal Node Erector) v1.1 
 
 ## BaNE?
 Baremetal Node Erector is a toolset for managing Chainlink networks on Ubuntu server. 
@@ -15,8 +15,6 @@ Also, Bane is agentless and only requires SSH and Ubuntu (although any flavour o
 Bane supports the deployment of chainlink networks on bare metal. This allows networks to extend outside of cloud providers, with the decentralisation and key management benefits that brings. 
 
 The project was started principally as an alternative to managing nodes using containers.
-
-(Just for fun, Bane audited chainlink nodes against Department of Defense [security baselines]( https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux ) using  [Ansible-lockdown](https://github.com/ansible-lockdown/UBUNTU20-CIS)! However this feature has gone as the StiG roles support Red Hat, and as nice as security reports are, risk management dictates preventative controls be applied before baseline compliance reporting.)  
 
 The toolset is designed to comply with  ISO 27001 [standards](https://www.iso.org/standard/54534.html) for information security management.  
 
@@ -37,7 +35,7 @@ NB Any Debian based host should work.
 
 ### Step 1 - Prerequisites and Asset Management  
 
-Install ansible on your management host, being sure to include the ansible posix collection
+Install ansible on your management host, being sure to include the ansible community and posix collections.
 ```
 sudo apt update
 sudo apt install ansible
