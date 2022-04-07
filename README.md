@@ -35,13 +35,22 @@ NB Any Debian based host should work.
 ## Instructions  
 
 
-### Step 1 - Asset Management  
+### Step 1 - Prerequisites and Asset Management  
+
+Install ansible on your management host, being sure to include the ansible posix collection
+```
+sudo apt update
+sudo apt install ansible
+ansible-galaxy collection install ansible.posix
+
+```
+
 Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your management machine (you should need sudo for this). You can refer to the [hosts_example](../master/hosts_example) file to see the groups used for asset management (node, link, post, geth.) These can be any Ubuntu hosts with IP connectivity and SSH.
 
 
-Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. As of Chainlink v 1.10 these are  
-* [Node 12.22](https://nodejs.org/dist/latest-v12.x/node-v12.22.7-linux-x64.tar.gz)
-* [Go 1.17](https://golang.org/dl/)
+Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. As of Chainlink v 1.1.1 / April 2022 these are  
+* [Node 16.14](https://nodejs.org/dist/latest-v16.x/node-v16.14.2-linux-x64.tar.gz)
+* [Go 1.18](https://golang.org/dl/)
 
 Save your node and go installers to the files directory as node.tar.gz and go.tar.gz respectively. They will then get copied to your nodes if and when required.
 

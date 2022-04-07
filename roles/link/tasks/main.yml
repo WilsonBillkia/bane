@@ -8,14 +8,14 @@
       line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin/go:/usr/local/bin/node-v12.22.7-linux-x64/bin"
     become: true
 
-  - name: go 1.17 installed in /usr/local from the files directory on management server  
+  - name: go installed in /usr/local from the files directory on management server  
     ansible.builtin.unarchive:
       src: ./files/go.tar.gz
       dest: /usr/local/bin
       owner: root
     become: true
 
-  - name: node 12.22-7 unarchived from management server into usr/local/bin
+  - name: node unarchived from management server into usr/local/bin
     ansible.builtin.unarchive:
       src: ./files/node.tar.gz
       dest: /usr/local/bin

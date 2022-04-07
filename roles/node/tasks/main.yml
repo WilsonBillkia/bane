@@ -2,7 +2,6 @@
 #
 ---
 
-# ucomment and use cloudinit or github otherwise ops to manage key here
 - name: Set authorized key from cia.pub in ./files
   ansible.posix.authorized_key:
     user: cia
@@ -39,7 +38,6 @@
     comment: big guy for you
     shell: /bin/bash
     groups: wheel
-
 
 - name: cia home directory owned by cia
   ansible.builtin.file:

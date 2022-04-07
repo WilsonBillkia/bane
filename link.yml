@@ -4,5 +4,5 @@
 - hosts: link
   roles:
     - node
-    - sergey      
+    - link      
 ...
