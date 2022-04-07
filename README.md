@@ -41,8 +41,7 @@ Install ansible on your management host, being sure to include the ansible posix
 ```
 sudo apt update
 sudo apt install ansible
-ansible-galaxy collection install ansible.posix
-
+ansible-galaxy collection install community.general ansible.posix
 ```
 
 Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your management machine (you should need sudo for this). You can refer to the [hosts_example](../master/hosts_example) file to see the groups used for asset management (node, link, post, geth.) These can be any Ubuntu hosts with IP connectivity and SSH.
