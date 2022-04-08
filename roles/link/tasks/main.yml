@@ -29,7 +29,7 @@
       path: /usr/local/bin
       global: yes
     environment:
-      PATH: /usr/local/bin/node-v12.22.7-linux-x64/bin:{{ ansible_facts.env.PATH }}
+      PATH: /usr/local/bin/node-v{{ node_version }}-linux-x64/bin:{{ ansible_facts.env.PATH }}
     become: true
 
   - name: chainlink dir cloned from https://github.com/smartcontractkit/chainlink
