@@ -37,11 +37,13 @@
       repo: https://github.com/smartcontractkit/chainlink
       dest: /home/cia/chainlink
 
+
   - name: Install packages based on package.json.
     community.general.yarn:
       path: /home/cia/chainlink
+      version: 'v1.1.1'
     environment:
-      PATH: /usr/local/bin/node-v12.22.7-linux-x64/bin:{{ ansible_facts.env.PATH }}
+      PATH: /usr/local/bin/node-v{{ node_version }}-linux-x64/bin:{{ ansible_facts.env.PATH }}
       production: yes
       
 ...
