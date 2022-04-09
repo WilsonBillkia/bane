@@ -3,6 +3,7 @@
   - name: geth PPA - ppa:ethereum/ethereum added
     ansible.builtin.apt_repository:
       repo: ppa:ethereum/ethereum
+    become: yes
 
   - name: Geth install from PPA
     apt:
