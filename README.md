@@ -11,7 +11,7 @@ It's the public / pro bono version of the tools I use to run my bane.sh oracles 
 
 This version is designed to help students and the generally cash strapped deploy their own chainlink oracles across old compute / away from cloud, while serving as a baseline build for security enhancements etc. It might be useful if you want to build a lab.
 
-For details on the bane.sh oracle network just go to www.bane.sh
+For details on the bane.sh oracle network just go to https://www.bane.sh
 
 
 ## What does this do?
