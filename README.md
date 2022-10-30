@@ -53,8 +53,8 @@ Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your manag
 
 Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. This repo uses  Chainlink v1.1.1 nodes.
 
-* [Node 16.14](https://nodejs.org/dist/latest-v16.x/node-v16.14.2-linux-x64.tar.gz)
-* [Go 1.18](https://golang.org/dl/)
+* [Node 12.22](https://nodejs.org/dist/latest-v16.x/node-v12.22.2-linux-x64.tar.gz)
+* [Go 1.17](https://golang.org/dl/)
 
 Save your node and go installers to the files directory as node.tar.gz and go.tar.gz respectively. They will then get copied to your nodes if and when required.
 
