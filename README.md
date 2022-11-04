@@ -11,8 +11,6 @@ It's the public / pro bono version of the tools I use to run my bane.sh oracles 
 
 This version is designed to help students and the generally cash strapped deploy their own chainlink oracles across old compute / away from cloud, while serving as a baseline build for security enhancements etc. It might be useful if you want to build a lab.
 
-For details on the bane.sh oracle network just go to https://www.bane.sh
-
 
 ## What does this do?
 The default install here creates a class C, NAT'ed network consisting of Chainlink nodes, a postgreSQL backend, and an Ethereum node. Just point the code at the right kit. It will build chainlink from source, set up a geth client and install postgres on the systems provided in your inventory file.  
