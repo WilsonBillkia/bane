@@ -1,38 +1,43 @@
 ---
- - name: Python3 is installed.
-    apt:
+  - name: Python3 is installed.
+    ansible.builtin.apt:
       update_cache: yes  
       name: python3
     become: yes
 
- - name: /etc/environment PATH includes usr/local/go/bin and /usr/local/node-v{{ nodejs_version }}-linux-x64/bin
+  - name: /etc/environment PATH includes usr/local/go/bin and /usr/local/node-v{{ nodejs_version }}-linux-x64/bin
     lineinfile:
       path: /etc/environment
-      regexp: '^PATH'
-      line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin/go:/usr/local/bin/node-v{{ nodejs_version }}-linux-x64/bin"
+      regexp: '^PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin'
+      line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/home/{{ ansible_user }}/go/bin:/usr/local/bin/node-v{{ nodejs_version }}-linux-x64/bin"
     become: true
 
-  - name: chainlink credentials file location set in /etc/environment
+  - name: chainlink credentials file location set in /etc/environment to enable optional automatic startup of cl go exe
     lineinfile:
       path: /etc/environment
       regexp: '^ADMIN_CREDENTIALS_FILE'
-    admin_creds_file: "ADMIN_CREDENTIALS_FILE=/path/to/credentials/file"
+      line: ADMIN_CREDENTIALS_FILE=/path/to/credentials/file
     become: true
 
-  - name: {{ go_tar_gz }} unarchived into /usr/local  
+  - name: $GOBIN folder set in /etc/environment 
+    lineinfile:
+      path: /etc/environment
+      regexp: '^GOBIN'
+      line: GOBIN=/home/{{ ansible_user }}/go
+    become: true
+
+  - name: '{{ go_tar_gz }} unarchived into /usr/local'  
     ansible.builtin.unarchive:
-      src: files/{{ go_tar_gz }}
-      dest: /usr/local/bin
+      src: '{{ go_tar_gz }}'
+      dest: /usr/local
       owner: root
     become: true
 
-  - name: {{ nodejs_tar_gz }} unarchived into usr/local/bin
+  - name: '{{ nodejs_tar_gz }} unarchived into usr/local/bin'
     ansible.builtin.unarchive:
-      src: {{ nodejs_tar_gz }}
+      src: '{{ nodejs_tar_gz }}'
       dest: /usr/local/bin
       owner: root
-      creates: /usr/local/bin/node
-    become: true
 
   - name: pnpm installed by npm
     community.general.npm:
@@ -48,5 +53,4 @@
       repo: https://github.com/smartcontractkit/chainlink
       dest: /home/{{ ansible_user }}/chainlink
       version: v2.7.2
-     
 ...
