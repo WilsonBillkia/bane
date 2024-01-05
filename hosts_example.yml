@@ -1,0 +1,37 @@
+---
+# ansible uses yaml formated files. ensure spacing is correct etc if making changes here. You can load this test inventory by using the ansible-playbook -i switch to load this file. Otherwise ansible will follow a strict order looking for inventory files. Your inventory in ansible should be rigorously controlled. Refer to their docs. 
+all:
+  hosts:
+  vars:
+    ansible_ssh_private_key_file: "YOURSSHPRIVATEKEY"
+# example of cia stands for confidentiality, integrity, and availability. User account for chainlink.
+    ansible_user: cia
+geth:
+  hosts:         
+  vars: 
+    eth_chain_id: "goerli"
+
+link:
+  hosts:         
+#  use per host variables for postgres hostname, username and pw, address of blockchain websockets, Chain ID 
+#  192.168.1.11 cl_node_name:"DBLOGINACCOUNTNAMEHERE" cl_node_db_pw: "DBPASSWORDHERE" geth_ip: "YOURGETHIP" chain_id: 'ETH_CHAIN_ID=4'
+#  192.168.1.12 cl_node_name:"DBLOGINACCOUNTNAMEHERE" cl_node_db_pw: "DBPASSWORDHERE" geth_ip: "YOURGETHIP" chain_id: 'ETH_CHAIN_ID=4'
+ 
+  vars: 
+    nodejs_version: "16.14.2"
+    eth_url: "ETH_URL=ws://{{ geth_ip }}:8546"
+    go_dl_uri: "https://go.dev/dl/go1.21.1.src.tar.gz"  
+    node_install_tar: "node_install_tar"
+    p2p_listen_port: "8778"
+    # post_ip: "YOURPGIP"
+    database_env: "DATABASE_URL=postgresql://{{ node_name }}:{{ node_db_pw }}@{{ post_ip }}:5432/{{ node_name }}?sslmode=disable"
+    go_install_tar: "go_install_tar"
+    go_tar_gz: "files/go.tar.gz"
+    cl_source_version: 'v2.7.2'
+    admin_creds_file: "ADMIN_CREDENTIALS_FILE=/path/to/credentials/file"
+post:
+hosts:         
+vars: 
+
+...
+

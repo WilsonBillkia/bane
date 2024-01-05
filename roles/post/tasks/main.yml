@@ -6,6 +6,3 @@
       pkg:
       - postgresql
       - postgresql-contrib
-# below step WILL install the Ubuntu GUI, Gnome etc, as dependency - avoid.
-# it certainly turns on power saving - 20 minute sleep timer, which will have to be disabled by hand
-##      - pgadmin3

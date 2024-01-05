@@ -2,18 +2,18 @@
 
   
 
-# BaNE(Baremetal Node Erector) v1.1 
+# BaNE(Baremetal Network Extender) v1.2 
 
 ## BaNE?
-Baremetal Node Erector is a toolset for managing Chainlink networks on Ubuntu server. 
+Baremental Network Extender (previously Baremetal Node Erector) is a toolset for managing Chainlink networks on debian based hosts running apt. You just need SSH enabled. 
 
-It's the public / pro bono version of the tools I use to run my bane.sh oracles across a higgledy piggledy network of rusty old compute. 
+It's the public / pro bono version of the tools I use to run oracles on bare metal. 
 
-This version is designed to help students and the generally cash strapped deploy their own chainlink oracles across old compute / away from cloud, while serving as a baseline build for security enhancements etc. It might be useful if you want to build a lab.
+It gives freedom to deploy away from cloud, while also playing very well with all of the cloud providers, to enable truly hybrid infrastructure. It also serves as a suitable baseline for security management under ISO27001. It might be useful if you want to build a lab. It will be especially useful if you want to remove containers from the build and management of chainlink networks, or if you want to add bare metal,  old hardware or virtual machines to a chainlink network.
 
 
 ## What does this do?
-The default install here creates a class C, NAT'ed network consisting of Chainlink nodes, a postgreSQL backend, and an Ethereum node. Just point the code at the right kit. It will build chainlink from source, set up a geth client and install postgres on the systems provided in your inventory file.  
+Bane will build chainlink nodes on any suitable linux hosts you specify. The link hosts are chainlink nodes. The post hosts are the backend PosgreSQL databases.
 
 ## Security
 Bane supports the deployment of chainlink networks on bare metal. This allows networks to extend outside of cloud providers, with the decentralisation and key management benefits that brings. 
@@ -24,15 +24,15 @@ The toolset is designed to comply with  ISO 27001 [standards](https://www.iso.or
 
 If you just want to run a test network, this repo does not require any knowledge of ansible to set up, though some [orientation](https://docs.ansible.com/) will help.  
 
-Otherwise, Ansible skills are essential if running production systems.  Ansible was chosen as a means of deploying native Linux security for blockchain security. Polygon uses it for their node deployments also! Substantial security controls can be leveraged through adherence to Ansible's best practices.  
+Otherwise, Ansible skills are essential if running production systems.  Ansible was chosen as a means of deploying native Linux security for blockchain security. Polygon and Polkadot use it for their node management. Substantial security controls can be leveraged through adherence to Ansible's best practices, notably by reducing the attack surface by using ssh.  
 
 NB! SSH IP connectivity on your nodes is assumed to be restricted to your management host ONLY throughout, or at the very least as taking place on a trusted network. An Internet facing SSH port is possible but definitely not advised.   
 
 ## Minimum Requirements  
-* 3 x Ubuntu Server 20.04 hosts (4 for basic CL redundancy)
-* 1 x Management host with ansible (Linux, Mac, or Windows)
+* Chainlink nodes need 2x CPU cores and 4GB RAM 
+* Databases need 4x CPU cores, 100GB of storage, and 16GB RAM
 
-NB Any Debian based host should work. 
+NB Any Debian based host should work. Bane was tested on Ubuntu Server 22 
 
 ## Instructions  
 
@@ -46,19 +46,17 @@ sudo apt install ansible
 ansible-galaxy collection install community.general ansible.posix
 ```
 
-Add your ubuntu server IP addresses to the /etc/ansible/hosts file on your management machine (you should need sudo for this). You can refer to the [hosts_example](../master/hosts_example) file to see the groups used for asset management (node, link, post, geth.) These can be any Ubuntu hosts with IP connectivity and SSH.
+Add your IP addresses to the hosts file. You can use the example hosts_example.yml file with the ansible-playbook -i switch. Look after your hosts file in ansible. Back it up and keep it secure. 
 
 
-Bane builds it's chainlink nodes from source, so you will need the correct versions of NodeJS and Go saved on your management machine. This repo uses  Chainlink v1.1.1 nodes.
+You will need the correct versions of NodeJS and Go.
 
-* [Node 12.22](https://nodejs.org/dist/latest-v16.x/node-v12.22.2-linux-x64.tar.gz)
-* [Go 1.17](https://golang.org/dl/)
 
-Save your node and go installers to the files directory as node.tar.gz and go.tar.gz respectively. They will then get copied to your nodes if and when required.
+* [NodeJS 16](https://nodejs.org/en/blog/release/v16.16.0)
+* [Go 1.21](https://golang.org/dl/)
 
-BaNE manages environments using the ansible.builtin.lineinfile module to apply configuration to the /etc/environment file.  
+Save your node and go installers to the files directory as node.tar.gz and go.tar.gz
 
-To apply your environment variables on the hosts, check out the settings in roles/sergey/tasks/main.yml for PATH and GOBIN etc for basic usage of the module.  
 
 ### Step 2 - Setup the Network   
  (After this the order of the remaining steps doesn't matter.)  
@@ -69,9 +67,9 @@ ansible-playbook node.yml
 ```
 NB If you don't have public keys on your hosts, run the above command with the -kK switch (ansible-playbook -kK node.yml).  This prompts for an ssh (-k) and sudo (-K) password and SCP's your key across to enable passwordless authentication from thereon.  
 
-The ansible-playbook node command also installs the build requirements from APT (build-essential, libssl-dev, unzip)  
+The ansible-playbook node command also installs the build requirements from apt (build-essential, libssl-dev, unzip)  
 
-Finally, it uses APT to install screen, htop, tcpdump, and tree. You can alter this list to better reflect your preferred systems management tools by providing the names of the packages you need in the YAML list under roles/sergey/tasks/main.yml  
+Finally, it uses apt to install screen, htop, tcpdump, and tree. You can alter this list to better reflect your preferred systems management tools by providing the names of the packages.  
 
 
 ### Step 3 -Build the Chainlink nodes
@@ -80,7 +78,7 @@ Finally, it uses APT to install screen, htop, tcpdump, and tree. You can alter t
 ansible-playbook link.yml
 ```
 
-link.yml downloads Go and NodeJS, installs them, installs Yarn via NPM, clones the chainlink repo, then compiles it from source on each chainlink node.  
+link.yml installs Go and NodeJS and clones the chainlink repo.  
  
 ### Step 4 - Build PostgreSQL nodes
 
@@ -88,14 +86,7 @@ link.yml downloads Go and NodeJS, installs them, installs Yarn via NPM, clones t
 ansible-playbook post.yml 
 ```
 
-This installs a POSTGRESQL 12 database using APT.  Refer to the official [chainlink](https://docs.chain.link/docs/connecting-to-a-remote-database/) and [Postgresql]((https://www.postgresql.org/docs/12/server-start.html)) guidance for PostgresQL 12 Database setup.
-
-### Step 5 - Build GETH node(s)  
-
-```
-ansible-playbook geth.yml 
-```
-This installs Go Ethereum from the Ubuntu APT. This can then be configured to run as required (eg mainnet / testnet , lightmode, etc) 
+This installs a POSTGRESQL 12 database to the hosts of your choice using apt.  Refer to the official [chainlink](https://docs.chain.link/docs/connecting-to-a-remote-database/) and [Postgresql]((https://www.postgresql.org/docs/12/server-start.html)) guidance for PostgresQL 12 Database setup.
 
 
 ## Social Impact

@@ -1,5 +1,3 @@
-# bane config v0.8
-#
 ---
 
 - name: Set authorized key from cia.pub in ./files
