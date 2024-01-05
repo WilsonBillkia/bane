@@ -5,11 +5,9 @@
 # BANE(Baremetal Network Extender) v1.2 
 
 ## BANE?
-Baremetal Network Extender (previously Baremetal Node Erector) is a toolset for managing Chainlink networks on debian based hosts running apt. You just need SSH enabled. 
+Baremetal Network Extender (previously Baremetal Node Erector) is a toolset for managing Chainlink networks on debian based hosts. 
 
-It's the public / pro bono version of the tools I use to run oracles on bare metal. 
-
-It gives freedom to deploy away from cloud, while also playing very well with all of the cloud providers, to enable truly hybrid infrastructure. It also serves as a suitable baseline for security management under ISO27001. It might be useful if you want to build a lab. It will be especially useful if you want to remove containers from the build and management of chainlink networks, or if you want to add bare metal,  old hardware or virtual machines to a chainlink network.
+It deploys chainlink nodes on bare metal, while also playing very well with cloud providers. This enables truly hybrid infrastructure. It also serves as a suitable baseline for security management under ISO27001. It might be useful if you want to build a lab. It will be especially useful if you want to remove containers from the build and management of chainlink networks, or if you want to add bare metal,  old hardware or virtual machines to a chainlink network.
 
 ## Social Impact
 The project hopefully has the potential to realise some positive social impact: 
@@ -20,6 +18,7 @@ The project hopefully has the potential to realise some positive social impact:
 
 ## What does this do?
 Bane will build chainlink nodes on any suitable linux hosts you specify. It also sets up passwordless authentication to each host for secure management of the estate.
+
 ## Security
 
 The project was started principally as an alternative to managing nodes using containers.
@@ -35,7 +34,6 @@ NB! SSH IP connectivity on your nodes is assumed to be restricted to your manage
 * Databases need 4x CPU cores, 100GB of storage, and 16GB RAM
 
 NB Any Debian based host should work. Version 1.2 of Bane was tested on Ubuntu Server 22  
-The link hosts group in the inventory is for chainlink nodes. The post group is for building backend PosgreSQL databases.
 
 Ansible must be installed on your management host. Binaries for NodeJS and Go must be on the management host.
 
@@ -52,6 +50,7 @@ Save your node and go installers to the files directory as nodejs.tar.gz and go.
 ### Asset Management  
 Add ip addresses to the hosts file. You can use the example hosts_example.yml file with the ansible-playbook -i switch. 
 
+The link hosts group in the inventory is for chainlink nodes. The post group is for building backend PosgreSQL databases.
 
 ### Setup the Link Nodes   
 
@@ -59,14 +58,11 @@ Add ip addresses to the hosts file. You can use the example hosts_example.yml fi
 ansible-playbook link.yml -kK -i hosts_example.yml
 ```
 
-NB You only run the above command with the -kK switch (ansible-playbook -kK node.yml) first time. This prompts for an ssh (-k) and sudo (-K) password for the remotes hosts so it can copy your public keys to enable passwordless authentication.  
-
-The ansible-playbook node playbook will be run first. This installs the build requirements from apt (build-essential, libssl-dev, unzip)  
-It uses apt to install screen, htop, tcpdump, and tree. You can alter this list to better reflect your preferred systems management tools by providing the names of different apt packages.  
+You only run the above command with the -kK switch (ansible-playbook -kK node.yml) the first time. This copies your public keys to the hosts to enable passwordless authentication.  
 
 This then installs Go and NodeJS and clones the chainlink repo.  
  
-### Build PostgreSQL nodes
+### Setup the PostgreSQL nodes
 
 ```
 ansible-playbook post.yml 
