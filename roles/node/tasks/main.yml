@@ -1,10 +1,10 @@
 ---
 
-- name: Set authorized key from cia.pub in ./files
+- name: Set authorized key
   ansible.posix.authorized_key:
-    user: cia
+    user: {{ ansible_user }}
     state: present
-    key: "{{ lookup('file', './files/cia.pub') }}"
+    key: "{{ lookup('file', './files/{{ ansible_user }}.pub') }}"
 
 - name: wheel group present
   become: yes
@@ -22,27 +22,27 @@
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
     validate: visudo -cf %s
 
-- name: cia group present
+- name: {{ ansible_user }} group present
   become: yes
   ansible.builtin.group:
-    name: cia
+    name: {{ ansible_user }}
     state: present
 
-- name: cia user in wheel
+- name: {{ ansible_user }} user in wheel
   become: yes
   ansible.builtin.user:
-    name: cia
-    home: /home/cia
-    comment: big guy for you
+    name: {{ ansible_user }}
+    home: /home/{{ ansible_user }}
+    comment: account for running chainlink
     shell: /bin/bash
     groups: wheel
 
-- name: cia home directory owned by cia
+- name: {{ ansible_user }} home directory owned by {{ ansible_user }}
   ansible.builtin.file:
-    path: /home/cia
+    path: /home/{{ ansible_user }}
     state: directory
-    owner: cia
-    group: cia
+    owner: {{ ansible_user }}
+    group: {{ ansible_user }}
 
 - name:  tools and ansible requirements in place - screen, tree, tcpdump, make, htop, build essential, libssldev from apt
   become: yes
