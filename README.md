@@ -11,9 +11,8 @@ It deploys chainlink nodes on bare metal, while also playing very well with clou
 
 ## Social Impact
 The project hopefully has the potential to realise some positive social impact: 
-* Can potentially help with the re-use of IT assets in the developing world into physically secure, community led blockchain projects / agricultural / IoT applications, etc.
-* Provides testing & training tools for building cheap blockchain development labs
-* Made entirely with open source software.
+* Enables re-use of IT assets in the developing world into physically secure, community led blockchain projects / agricultural / IoT applications, etc.
+* Provides testing & training tools for building cheap blockchain development labs for education
 
 
 ## What does this do?
@@ -21,13 +20,15 @@ Bane will build chainlink nodes on any suitable linux hosts you specify. It also
 
 ## Security
 
-The project was started principally as an alternative to managing nodes using containers.
+The project was started principally as an alternative to managing nodes using containers and is made entirely with open source software.
 
-The toolset is designed to comply with  ISO 27001 [standards](https://www.iso.org/standard/54534.html) for information security management.  
 
-If you just want to run a test network, this repo does not require any knowledge of ansible to set up, though some [orientation](https://docs.ansible.com/) will be of benefit.  
+The toolset is designed to comply with ISO 27001 [standards](https://www.iso.org/standard/54534.html) for information security management.  
 
-NB! SSH IP connectivity on your nodes is assumed to be restricted to your management host ONLY throughout, or at the very least as taking place on a trusted network. An Internet facing SSH port is possible but definitely not advised.   
+Some [orientation](https://docs.ansible.com/) in ansible.  
+
+NB! ssh ip connectivity on your nodes is assumed to be restricted to your management host ONLY throughout, or as taking place on a trusted network. An Internet facing ssh port is not advised.   
+
 
 ## Minimum Requirements  
 * Chainlink nodes need 2x CPU cores and 4GB RAM 
@@ -37,12 +38,10 @@ NB Any Debian based host should work. Version 1.2 of Bane was tested on Ubuntu S
 
 Ansible must be installed on your management host. Binaries for NodeJS and Go must be on the management host.
 
-
 * [NodeJS 16](https://nodejs.org/en/blog/release/v16.16.0)
 * [Go 1.21](https://golang.org/dl/)
 
 Save your node and go installers to the files directory as nodejs.tar.gz and go.tar.gz. You can use the http_get_executables.sh shell script to curl them directly to the files folder of the repo, for transfer to link nodes.
-
 
 ## Instructions  
 
@@ -71,7 +70,7 @@ ansible-playbook post.yml
 This installs a POSTGRESQL 12 database to the hosts of your choice using apt.  Refer to the official [chainlink](https://docs.chain.link/docs/connecting-to-a-remote-database/) and [Postgresql]((https://www.postgresql.org/docs/12/server-start.html)) guidance for PostgresQL 12 Database setup.
 
 ## Risk Management & Disclaimer
-These tools are based on a free, unqualified analyis of the threats and risks operating with blockchain data and networks. Any person or organisation using Bane should manage their risk appropriately.
+These tools are based on a free analyis of the threats and risks operating with blockchain data and networks. Any person or organisation using Bane should manage their risk appropriately.
 Also, I'm not responsible for anything you do with this! Please be careful.
 
 ## Contact
