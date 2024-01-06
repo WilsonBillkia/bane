@@ -1,6 +1,6 @@
 ---
 
-- name: Set authorized key
+- name: Set public key for {{ ansible_user }}
   ansible.posix.authorized_key:
     user: "{{ ansible_user }}"
     state: present
@@ -37,36 +37,12 @@
     shell: /bin/bash
     groups: wheel
 
-- name: "{{ chainlink_user }} group present"
-  become: yes
-  ansible.builtin.group:
-    name: "{{ chainlink_user }}"
-    state: present
-
-- name: "{{ chainlink_user }} user in wheel"
-  become: yes
-  ansible.builtin.user:
-    name: "{{ chainlink_user }}"
-    home: /home/{{ chainlink_user }}
-    comment: account for running chainlink
-    shell: /bin/bash
-    groups: wheel
-
 - name: "{{ ansible_user }} home directory owned by {{ ansible_user }}"
   ansible.builtin.file:
     path: "/home/{{ ansible_user }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  become: yes
-
-
-- name: "{{ chainlink_user }} home directory owned by {{ chainlink_user }}"
-  ansible.builtin.file:
-    path: "/home/{{ chainlink_user }}"
-    state: directory
-    owner: "{{ chainlink_user }}"
-    group: "{{ chainlink_user }}"
   become: yes
 
 - name:  tools and ansible requirements in place - screen, tree, tcpdump, make, htop, build essential, libssldev from apt

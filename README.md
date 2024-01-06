@@ -41,7 +41,7 @@ Ansible must be installed on your management host. Binaries for NodeJS and Go mu
 * [NodeJS 16](https://nodejs.org/en/blog/release/v16.16.0)
 * [Go 1.21](https://golang.org/dl/)
 
-Save your node and go installers to the files directory as nodejs.tar.gz and go.tar.gz
+Save your node and go installers to the files directory as nodejs.tar.gz and go.tar.gz. You can use the http_get_executables.sh shell script to curl them directly to the files folder of the repo, for transfer to link nodes.
 
 
 ## Instructions  
@@ -50,7 +50,7 @@ Save your node and go installers to the files directory as nodejs.tar.gz and go.
 ### Asset Management  
 Add ip addresses to the hosts file. You can use the example hosts_example.yml file with the ansible-playbook -i switch. 
 
-The link hosts group in the inventory is for chainlink nodes. The post group is for building backend PosgreSQL databases.
+The link hosts group in the inventory is for chainlink nodes. The postgres group is for building backend PosgreSQL databases.
 
 ### Setup the Link Nodes   
 

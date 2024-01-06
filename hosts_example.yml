@@ -31,9 +31,9 @@ link:
     nodejs_tar_gz: "files/nodejs.tar.gz"
     cl_source_version: 'v2.7.2'
     admin_creds_file: "ADMIN_CREDENTIALS_FILE=/path/to/credentials/file"
-post:
-hosts:         
-vars: 
+postgres:
+  hosts:         
+  vars: 
 
 ...
 
