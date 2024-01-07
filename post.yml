@@ -1,6 +1,6 @@
 ---
 
-- hosts: database
+- hosts: postgres
   roles: 
     - node
     - post
