@@ -27,7 +27,7 @@ link:
     go_dl_uri: "https://go.dev/dl/go1.21.1.src.tar.gz"  
     node_install_tar: "node_install_tar"
     p2p_listen_port: "8778"
-    # post_ip: "YOURPGIP"
+    post_ip: "YOURPGIP"
     database_env: "DATABASE_URL=postgresql://{{ node_name }}:{{ node_db_pw }}@{{ post_ip }}:5432/{{ node_name }}?sslmode=disable"
     go_install_tar: "files/go.tar.gz"
     go_tar_gz: "files/go.tar.gz"
