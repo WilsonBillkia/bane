@@ -1,5 +1,8 @@
 ---
-# ansible uses yaml formated files. ensure spacing is correct etc if making changes here. You can load this test inventory by using the ansible-playbook -i switch to load this file. Otherwise ansible will follow a strict order looking for inventory files. Your inventory in ansible should be rigorously controlled. Refer to their docs. 
+# ansible uses yaml formated files. ensure spacing is correct etc if making changes here. 
+# You can load this test inventory by using the ansible-playbook -i switch to load this file. 
+# Otherwise ansible will follow a strict order looking for inventory files. Your inventory in ansible should be rigorously controlled. Refer to their docs. 
+
 all:
   hosts:
   vars:
