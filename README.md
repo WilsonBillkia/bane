@@ -57,7 +57,7 @@ The link hosts group in the inventory is for chainlink nodes. The postgres group
 ansible-playbook link.yml -kK -i hosts_example.yml
 ```
 
-You only run the above command with the -kK switch (ansible-playbook -kK node.yml) the first time. This copies your public keys to the hosts to enable passwordless authentication.  
+You only run the above command with the -kK switch (ansible-playbook -kK node.yml) the first time. This prompts for password auth to copy your public keys to the hosts for passwordless authentication.  
 
 This then installs Go and NodeJS and clones the chainlink repo.  
  
@@ -68,6 +68,8 @@ ansible-playbook post.yml
 ```
 
 This installs a POSTGRESQL 12 database to the hosts of your choice using apt.  Refer to the official [chainlink](https://docs.chain.link/docs/connecting-to-a-remote-database/) and [Postgresql]((https://www.postgresql.org/docs/12/server-start.html)) guidance for PostgresQL 12 Database setup.
+
+Run the disable_ssh_pw_auth.yml playbook to harden ssh from attack. MAKE SURE you have access working with the keys you used first, as this disables password authentication over ssh.
 
 ## Risk Management & Disclaimer
 These tools are based on a free analyis of the threats and risks operating with blockchain data and networks. Any person or organisation using Bane should manage their risk appropriately.

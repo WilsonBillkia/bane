@@ -16,14 +16,14 @@
     lineinfile:
       path: /etc/environment
       regexp: '^ADMIN_CREDENTIALS_FILE'
-      line: ADMIN_CREDENTIALS_FILE=/path/to/credentials/file
+      line: ADMIN_CREDENTIALS_FILE="/path/to/credentials/file"
     become: true
 
   - name: $GOBIN folder set in /etc/environment 
     lineinfile:
       path: /etc/environment
       regexp: '^GOBIN'
-      line: GOBIN=/home/{{ ansible_user }}/go
+      line: GOBIN="/home/{{ ansible_user }}/go/bin"
     become: true
 
   - name: '{{ go_tar_gz }} unarchived into /usr/local'  
@@ -51,6 +51,19 @@
   - name: chainlink {{ cl_source_version }} cloned into /home/{{ ansible_user }}/chainlink
     ansible.builtin.git:
       repo: https://github.com/smartcontractkit/chainlink
-      dest: /home/{{ ansible_user }}/chainlink
+      dest: "/home/{{ ansible_user }}/chainlink"
       version: v2.7.2
+
+  - name: make install the chainlink source code
+    command:
+      cmd:  make install
+    args:
+      chdir: "/home/{{ ansible_user }}/chainlink"
+      creates: "/home/{{ ansible_user }}/go/bin/chainlink"
+    register: cl_make_output
+
+  - name: print output from chainlink build to terminal
+    ansible.builtin.debug:
+      msg: "{{ cl_make_output }}" 
+
 ...

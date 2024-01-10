@@ -1,0 +1,18 @@
+- name: remove password auth and deny remote root login on all nodes in the estate
+  hosts: all
+  tasks:
+  - name: /etc/ssh/sshd_config.d/50-cloud-init.conf replaced with bane config
+    ansible.builtin.copy:
+      src: 50-cloud-init.conf 
+      dest: /etc/ssh/sshd_config.d/50-cloud-init.conf
+      owner: root 
+      group: root 
+    become: true
+ 
+  - name: restart ssh services with systemd
+    ansible.builtin.systemd:
+      name: ssh
+      daemon_reload: true
+      state: restarted
+    become: yes
+ 
