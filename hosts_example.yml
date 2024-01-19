@@ -6,7 +6,6 @@
 all:
   hosts:
   vars:
-    chainlink_user: "chainlink"
     ansible_ssh_private_key_file: "YOURSSHPRIVATEKEY"
 # example of cia stands for confidentiality, integrity, and availability. User account for chainlink.
     ansible_user: cia
@@ -25,11 +24,9 @@ link:
     nodejs_version: "16.14.2"
     eth_url: "ETH_URL=ws://{{ geth_ip }}:8546"
     go_dl_uri: "https://go.dev/dl/go1.21.1.src.tar.gz"  
-    node_install_tar: "node_install_tar"
     p2p_listen_port: "8778"
     post_ip: "YOURPGIP"
     database_env: "DATABASE_URL=postgresql://{{ node_name }}:{{ node_db_pw }}@{{ post_ip }}:5432/{{ node_name }}?sslmode=disable"
-    go_install_tar: "files/go.tar.gz"
     go_tar_gz: "files/go.tar.gz"
     nodejs_tar_gz: "files/nodejs.tar.gz"
     cl_source_version: 'v2.7.2'

@@ -5,6 +5,13 @@
       name: python3
     become: yes
 
+  - name: users profile PATH includes usr/local/go/bin and /usr/local/node-v{{ nodejs_version }}-linux-x64/bin
+    lineinfile:
+      path: "/home/{{ ansible_user }}/.profile"
+      regexp: '^PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin'
+      line: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/home/{{ ansible_user }}/go/bin:/usr/local/bin/node-v{{ nodejs_version }}-linux-x64/bin"
+    become: true
+
   - name: /etc/environment PATH includes usr/local/go/bin and /usr/local/node-v{{ nodejs_version }}-linux-x64/bin
     lineinfile:
       path: /etc/environment
@@ -50,9 +57,9 @@
 
   - name: chainlink {{ cl_source_version }} cloned into /home/{{ ansible_user }}/chainlink
     ansible.builtin.git:
-      repo: https://github.com/smartcontractkit/chainlink
-      dest: "/home/{{ ansible_user }}/chainlink"
-      version: v2.7.2
+     repo: https://github.com/smartcontractkit/chainlink
+     dest: "/home/{{ ansible_user }}/chainlink"
+     version: v2.7.2
 
   - name: make install the chainlink source code
     command:
@@ -60,10 +67,7 @@
     args:
       chdir: "/home/{{ ansible_user }}/chainlink"
       creates: "/home/{{ ansible_user }}/go/bin/chainlink"
-    register: cl_make_output
-
-  - name: print output from chainlink build to terminal
-    ansible.builtin.debug:
-      msg: "{{ cl_make_output }}" 
+    environment:
+      PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/home/john/go/bin:/usr/local/bin/node-v16.14.2-linux-x64/bin
 
 ...
